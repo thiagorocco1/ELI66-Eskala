@@ -1,9 +1,926 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>ELI66-Eskala</title>
-  </head>
-  <body>
-    <h1>ELI66 Eskala</h1>
-  </body>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#F5F3EF">
+<title>ELI66 × BSPar — Programa Estratégico de IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F3EF;
+  --bg2:#EDEAE4;
+  --bg3:#E4E0D8;
+  --dark:#1A1714;
+  --dark2:#2E2B27;
+  --surf:#FFFFFF;
+  --border:#D6D1C8;
+  --border2:#C4BDB2;
+  --vt:#7C3AED;
+  --vl:#9D5FFF;
+  --vd:rgba(124,58,237,0.10);
+  --vd2:rgba(124,58,237,0.05);
+  --mu:#7A7469;
+  --ml:#5A5550;
+  --re:#C0392B;
+  --wa:#A0620A;
+  --gr:#1E7A46;
+  --gd:rgba(30,122,70,0.09);
+  --gd2:rgba(30,122,70,0.05);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--dark);font-family:'Inter',sans-serif;line-height:1.6;font-size:17px;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(245,243,239,0.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:.9rem 5vw;display:flex;align-items:center;justify-content:flex-end}
+.nav-logo img{height:28px;width:auto}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--vt)}
+.nav-links a.active{color:var(--vt)}
+
+/* LAYOUT */
+.wrap{max-width:1020px;margin:0 auto;padding:0 5vw}
+
+/* COVER */
+.cover{min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0;position:relative;overflow:hidden;background:#0B0D10}
+.cover::before{content:'';position:absolute;top:-40%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,0.18) 0%,transparent 70%);pointer-events:none}
+.cover-inner{max-width:1020px;margin:0 auto;width:100%;position:relative;z-index:1}
+.cover img.cover-logo{height:52px;width:auto;margin-bottom:3rem;display:block}
+.cover-tag{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:.28rem .75rem;border-radius:2px;background:rgba(124,58,237,0.15);color:#B89FFF;border:1px solid rgba(124,58,237,0.3);margin-bottom:2rem}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:#F5F3EF;margin-bottom:1.5rem}
+.cover h1 em{font-style:italic;color:#B89FFF}
+.cover-meta{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1)}
+.cover-meta-item{font-size:.78rem;color:rgba(245,243,239,0.5);letter-spacing:.06em;text-transform:uppercase}
+.cover-meta-item strong{display:block;font-size:1rem;color:rgba(245,243,239,0.9);font-weight:400;letter-spacing:0;text-transform:none;margin-bottom:.15rem;font-family:'Playfair Display',serif}
+
+/* SECTIONS */
+.section{padding:5rem 0;border-bottom:1px solid var(--border)}
+.section:last-of-type{border-bottom:none}
+.section.alt{background:var(--bg2)}
+.section.dark{background:var(--dark2);color:#F5F3EF}
+.section.dark .eyebrow span{color:#B89FFF}
+.section.dark h2 em{color:#B89FFF}
+.section.dark .lead{color:rgba(245,243,239,0.65)}
+.section.dark .lead strong{color:#F5F3EF}
+
+/* TYPE */
+.eyebrow{font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-bottom:1.2rem}
+.eyebrow span{color:var(--vt)}
+.rule{display:block;width:32px;height:2px;background:var(--vt);margin-bottom:1.4rem;border-radius:1px}
+h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;line-height:1.2;letter-spacing:-.01em;margin-bottom:1rem}
+h2 em{font-style:italic;color:var(--vt)}
+h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:400;line-height:1.25;margin-bottom:.5rem}
+.lead{font-size:1rem;line-height:1.8;color:var(--ml);font-weight:300;max-width:680px;margin-bottom:1.4rem}
+.lead strong{color:var(--dark);font-weight:500}
+.lead em{color:var(--vt);font-style:italic}
+
+/* DIAG CARDS */
+.diag{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.8rem}
+.diag-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.6rem}
+.diag-label{font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.diag-label.v{color:var(--vt)}.diag-label.r{color:var(--re)}.diag-label.g{color:var(--gr)}.diag-label.w{color:var(--wa)}
+.diag-item{font-size:.88rem;color:var(--ml);line-height:1.6;padding:.4rem 0;border-bottom:1px solid var(--border2)}
+.diag-item:last-child{border-bottom:none}
+.diag-item strong{color:var(--dark);font-weight:500}
+
+/* VALOR CARDS */
+.valor-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.8rem}
+.valor-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.6rem;position:relative;overflow:hidden}
+.valor-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--vt)}
+.valor-n{font-size:3rem;font-family:'Playfair Display',serif;color:var(--vt);opacity:.2;line-height:1;margin-bottom:.5rem}
+.valor-t{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;margin-bottom:.5rem;color:var(--dark)}
+.valor-d{font-size:.85rem;color:var(--ml);line-height:1.65;font-weight:300;margin-bottom:.8rem}
+.valor-ex{font-size:.78rem;color:var(--mu);font-style:italic;line-height:1.5;padding-top:.7rem;border-top:1px solid var(--border)}
+
+/* MODULE CARDS — PART 1 EXECUTIVE */
+.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.8rem}
+.mod-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:.5rem}
+.mod-card.optional{border-style:dashed;background:var(--bg)}
+.mod-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem}
+.mod-card-num{font-size:.62rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--vt)}
+.mbadge{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .55rem;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.bqw{background:var(--gd);color:var(--gr);border:1px solid rgba(30,122,70,.25)}
+.bph{background:rgba(160,98,10,.08);color:var(--wa);border:1px solid rgba(160,98,10,.25)}
+.bct{background:var(--vd);color:var(--vt);border:1px solid rgba(124,58,237,.25)}
+.bop{background:var(--bg2);color:var(--mu);border:1px solid var(--border)}
+.mod-card h3{font-size:1rem;color:var(--dark)}
+.mod-card-dur{font-size:.75rem;color:var(--mu);font-weight:400}
+.mod-card-desc{font-size:.85rem;color:var(--ml);line-height:1.6;font-weight:300}
+.mod-card-del{margin-top:.5rem;padding-top:.7rem;border-top:1px solid var(--border)}
+.mod-card-del-title{font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);margin-bottom:.4rem}
+.mod-card-del ul{list-style:none;padding:0}
+.mod-card-del ul li{font-size:.78rem;color:var(--ml);padding:.18rem 0;display:flex;gap:.4rem;align-items:flex-start;font-weight:300}
+.mod-card-del ul li::before{content:'→';color:var(--vt);flex-shrink:0;font-size:.7rem}
+
+/* MACRO GANTT */
+.macro-phases{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.8rem}
+.macro-phase{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.3rem}
+.macro-phase-label{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:.3rem}
+.macro-phase-period{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--dark);margin-bottom:.6rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.macro-phase-items{list-style:none;padding:0}
+.macro-phase-items li{font-size:.78rem;color:var(--ml);padding:.22rem 0;border-bottom:1px solid var(--border2);line-height:1.4;font-weight:300}
+.macro-phase-items li:last-child{border-bottom:none}
+.macro-phase-items li strong{color:var(--dark);font-weight:500}
+
+.macro-timeline{margin-top:2rem;background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.6rem}
+.macro-tl-title{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:1.2rem}
+.tl-row{display:grid;grid-template-columns:160px 1fr;gap:1.2rem;align-items:center;margin-bottom:.9rem}
+.tl-row:last-child{margin-bottom:0}
+.tl-label{font-size:.8rem;font-weight:500;color:var(--dark)}
+.tl-label span{display:block;font-size:.68rem;font-weight:300;color:var(--mu)}
+.tl-bars{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;height:10px}
+.tl-bar{border-radius:2px;height:100%}
+.tl-bar.v{background:var(--vt);opacity:.8}
+.tl-bar.g{background:var(--gr);opacity:.8}
+.tl-bar.w{background:var(--wa);opacity:.8}
+.tl-bar.vl{background:#B89FFF;opacity:.6}
+.tl-bar.empty{background:var(--bg2)}
+.tl-months{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;margin-top:.5rem}
+.tl-month{font-size:.46rem;color:var(--mu);text-align:center}
+
+/* TEAM */
+.team-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.8rem}
+.team-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
+.team-role{font-size:.62rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--vt);margin-bottom:.3rem}
+.team-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;color:var(--dark);margin-bottom:.5rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.team-desc{font-size:.85rem;color:var(--ml);line-height:1.65;font-weight:300}
+.team-desc strong{color:var(--dark);font-weight:500}
+
+/* NEXT */
+.next-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.8rem}
+.next-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
+
+/* DIVIDER */
+.divider{background:var(--dark);padding:4rem 5vw;text-align:center}
+.divider-inner{max-width:1020px;margin:0 auto}
+.divider h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:400;color:#F5F3EF;margin-bottom:.5rem}
+.divider h2 em{color:#B89FFF;font-style:italic}
+.divider p{font-size:.88rem;color:rgba(245,243,239,0.5);font-weight:300}
+.divider-arrow{display:inline-block;margin-top:1.5rem;font-size:1.5rem;color:rgba(245,243,239,.3)}
+
+/* PART 2 — DETAIL */
+.detail-section{padding:4rem 0;border-bottom:1px solid var(--border)}
+.detail-section:last-of-type{border-bottom:none}
+
+/* ACCORDION */
+.acc{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:1rem}
+.acc-hdr{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.4rem;background:var(--surf);cursor:pointer;user-select:none;transition:background .15s}
+.acc-hdr:hover{background:var(--bg2)}
+.acc-hdr-l{flex:1}
+.acc-num{font-size:.6rem;font-weight:600;letter-spacing:.14em;color:var(--vt);text-transform:uppercase;margin-bottom:.18rem}
+.acc-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:400;color:var(--dark)}
+.acc-arrow{font-size:.9rem;color:var(--mu);transition:transform .25s;flex-shrink:0}
+.acc.open .acc-arrow{transform:rotate(180deg)}
+.acc-body{display:none;padding:1.4rem;border-top:1px solid var(--border);background:var(--bg)}
+.acc.open .acc-body{display:block}
+
+/* PHASE BLOCKS */
+.ph-block{margin:1.1rem 0;padding:1.1rem;background:var(--surf);border:1px solid var(--border);border-radius:6px}
+.ph-block:first-child{margin-top:0}
+.ph-top{display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.ph-dot{width:8px;height:8px;border-radius:50%;background:var(--vt);flex-shrink:0}
+.ph-name{font-size:.82rem;font-weight:600;color:var(--dark);flex:1}
+.ph-time{font-size:.7rem;color:var(--mu);font-weight:300}
+.ph-sub-t{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin:.7rem 0 .35rem}
+.ph-sub-t.v{color:var(--vt)}.ph-sub-t.g{color:var(--gr)}
+.ph-list{list-style:none;padding:0}
+.ph-list li{font-size:.83rem;color:var(--ml);padding:.28rem 0;border-bottom:1px solid var(--border2);line-height:1.55;font-weight:300;display:flex;gap:.45rem;align-items:flex-start}
+.ph-list li:last-child{border-bottom:none}
+.ph-list li::before{content:'→';color:var(--vt);flex-shrink:0;font-size:.7rem;margin-top:.08rem}
+.ph-list li.g::before{color:var(--gr)}
+.enables{background:var(--vd2);border-left:3px solid var(--vt);padding:.6rem .9rem;margin-top:.7rem;border-radius:0 4px 4px 0;font-size:.8rem;color:var(--ml);font-weight:300;line-height:1.55}
+.enables strong{color:var(--vt);font-weight:500}
+
+/* DETAIL GANTT */
+.det-gantt{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.4rem}
+.det-gantt-section{font-size:.65rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--vt);margin:1.6rem 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)}
+table.dgt{width:100%;border-collapse:collapse;min-width:700px}
+table.dgt th{font-size:.5rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);padding:.3rem .3rem;border-bottom:1px solid var(--border);text-align:center;white-space:nowrap;min-width:28px;background:var(--bg2)}
+table.dgt th:first-child{text-align:left;min-width:180px;background:var(--bg2)}
+table.dgt td{padding:.2rem .2rem;border-bottom:1px solid var(--border2);vertical-align:middle;background:var(--surf)}
+table.dgt td:first-child{font-size:.75rem;color:var(--ml);font-weight:300;padding:.3rem .5rem .3rem 0;line-height:1.3;background:var(--bg)}
+table.dgt td:first-child strong{display:block;color:var(--dark);font-weight:500;font-size:.76rem}
+table.dgt td:first-child span{font-size:.65rem;color:var(--mu)}
+table.dgt tr:last-child td{border-bottom:none}
+table.dgt .sub-row td{font-size:.65rem;font-weight:600;color:var(--gr);padding:.35rem 0;border-bottom:1px solid var(--border);letter-spacing:.05em;background:var(--gd2)}
+.gc{min-width:28px;height:22px;position:relative}
+.gb{position:absolute;top:50%;transform:translateY(-50%);height:10px;border-radius:3px;min-width:3px}
+.bv{background:var(--vt);opacity:.75}.bvl{background:#B89FFF;opacity:.55}.bgb{background:var(--gr);opacity:.8}.bwb{background:var(--wa);opacity:.8}.bsb{background:var(--border2);opacity:.9}
+.gms{position:absolute;top:50%;transform:translateY(-50%) rotate(45deg);width:8px;height:8px;border:2px solid var(--vt)}
+.gms.gm{border-color:var(--gr)}.gms.gw{border-color:var(--wa)}
+.gleg{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1.2rem;padding-top:.8rem;border-top:1px solid var(--border)}
+.gli{display:flex;align-items:center;gap:.4rem;font-size:.7rem;color:var(--ml)}
+.gld{width:14px;height:8px;border-radius:3px;flex-shrink:0}
+.glms{width:8px;height:8px;border:2px solid var(--vt);rotate:45deg;flex-shrink:0}.glms.gm{border-color:var(--gr)}.glms.gw{border-color:var(--wa)}
+
+/* QUOTE */
+.quote{border-left:3px solid var(--vt);padding:1rem 1.4rem;background:var(--vd2);border-radius:0 6px 6px 0;margin-top:1.4rem;max-width:680px}
+.quote p{font-size:.92rem;font-style:italic;color:var(--dark);line-height:1.7;font-weight:300}
+.quote cite{display:block;margin-top:.5rem;font-size:.65rem;color:var(--mu);letter-spacing:.1em;font-style:normal;text-transform:uppercase}
+
+/* ONDA GRID */
+.onda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:.9rem 0}
+.onda-col{background:var(--surf);border:1px solid var(--border);border-radius:6px;padding:1.1rem}
+.onda-num{font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--vt);margin-bottom:.3rem}
+.onda-t{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--dark);margin-bottom:.55rem;padding-bottom:.55rem;border-bottom:1px solid var(--border)}
+.onda-i{font-size:.8rem;color:var(--ml);padding:.3rem 0;border-bottom:1px solid var(--border2);line-height:1.5;font-weight:300}
+.onda-i:last-of-type{border-bottom:none}
+.onda-i strong{color:var(--dark);font-weight:500}
+.onda-tempo{margin-top:.55rem;font-size:.65rem;color:var(--vt);font-weight:500}
+
+/* SUMMARY TABLE */
+.sum-table{width:100%;border-collapse:collapse;margin-top:1.2rem}
+.sum-table th{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);padding:.5rem .8rem;border-bottom:2px solid var(--border);text-align:left;background:var(--bg2)}
+.sum-table td{font-size:.85rem;color:var(--ml);padding:.55rem .8rem;border-bottom:1px solid var(--border2);line-height:1.4;font-weight:300;vertical-align:top}
+.sum-table td:first-child{color:var(--dark);font-weight:500;font-family:'Playfair Display',serif;font-size:.92rem}
+.sum-table tr:last-child td{border-bottom:none}
+.sum-table tr:hover td{background:var(--bg2)}
+.opt-c{color:var(--wa);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.req-c{color:var(--gr);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+
+/* FOOTER */
+footer{text-align:center;padding:3rem 5vw;background:var(--dark);color:rgba(245,243,239,0.4);font-size:.72rem;letter-spacing:.08em}
+footer span{color:rgba(245,243,239,0.8)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  body{font-size:16px}
+  .diag,.valor-row,.team-row,.next-row,.onda-grid{grid-template-columns:1fr}
+  .mod-grid{grid-template-columns:1fr}
+  .macro-phases{grid-template-columns:1fr 1fr}
+  .tl-row{grid-template-columns:1fr;gap:.5rem}
+  .cover h1{font-size:2rem}
+}
+@media(max-width:480px){
+  .macro-phases{grid-template-columns:1fr}
+  nav .nav-links{display:none}
+}
+
+.cover-logo-strip { display: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  
+  <div class="nav-links">
+    <a href="#executivo" class="active">Visão Executiva</a>
+    <a href="#detalhamento">Detalhamento</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     CAPA
+═══════════════════════════════════════ -->
+<div class="cover" id="executivo" style="min-height:92vh;display:flex;flex-direction:column;padding:0;position:relative;overflow:hidden;background:#0B0D10">
+
+  <!-- FOTO — fundo, lado direito, não dominante -->
+  <div style="position:absolute;top:0;right:0;width:52%;height:100%;z-index:0">
+    <img src="https://www.bspar.com.br/wp-content/uploads/2026/03/banner_marco2026-2.jpg" alt="BSPar"
+         style="width:100%;height:100%;object-fit:cover;object-position:68% top;display:block">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,#0B0D10 0%,rgba(11,13,16,0.75) 35%,rgba(11,13,16,0.25) 100%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(11,13,16,0.85) 0%,transparent 50%)"></div>
+  </div>
+  <!-- Fundo sólido lado esquerdo -->
+  <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(to right,#0B0D10 38%,transparent 62%)"></div>
+
+  <!-- FAIXA DE MARCAS — parte do fluxo, não absolute -->
+  <div style="position:relative;z-index:10;padding:2rem 5vw 1.8rem;display:flex;align-items:center;gap:0;border-bottom:1px solid rgba(255,255,255,0.07)">
+    <!-- ELI66 — bloco com fundo próprio intencional -->
+    <svg height="36" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+  <!-- Símbolo: 3 barras finas e largas -->
+  <rect x="0" y="1"  width="28" height="5" rx="0.5" fill="#F5F3EF"/>
+  <rect x="0" y="13" width="20" height="5" rx="0.5" fill="#7C3AED"/>
+  <rect x="0" y="25" width="28" height="5" rx="0.5" fill="#F5F3EF"/>
+  <!-- Wordmark: ELI66 tudo junto -->
+  <text x="37" y="28" font-family="Georgia,'Times New Roman',serif" font-size="24" font-weight="400" fill="#F5F3EF" letter-spacing="0.5">ELI66</text>
+</svg>
+    <!-- Divisória -->
+    <div style="width:1px;height:46px;background:rgba(255,255,255,0.15);margin:0 1.4rem;flex-shrink:0"></div>
+    <!-- BSPar -->
+    <img src="https://www.bspar.com.br/wp-content/uploads/2025/09/logobsparverticalprioritaria-scaled.webp" alt="BSPar" style="height:44px;width:auto;display:block;flex-shrink:0;mix-blend-mode:screen;filter:invert(1) hue-rotate(180deg) saturate(2.2) brightness(1.1);opacity:.95">
+  </div>
+
+  <!-- CONTEÚDO PRINCIPAL — cresce para preencher o espaço restante -->
+  <div style="position:relative;z-index:5;flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 5vw 4rem;max-width:1020px;margin:0 auto;width:100%">
+
+    <!-- Selo -->
+    <div class="cover-tag" style="margin-bottom:3rem;align-self:flex-start">Escopo Estratégico · Exclusivo · Setembro 2026</div>
+
+    <!-- Headline -->
+    <h1 style="max-width:580px;margin-bottom:0">
+      O programa de IA<br>que o Grupo BSPar<br><em>precisa agora.</em>
+    </h1>
+
+    <!-- Rodapé -->
+    <p style="margin-top:1.8rem;font-size:.76rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,243,239,0.78);max-width:480px;line-height:1.65">
+      Proposta estratégica para liderar o futuro com inteligência.
+    </p>
+
+    <!-- Separador -->
+    <div style="width:40px;height:1px;background:rgba(255,255,255,0.15);margin:2rem 0"></div>
+
+    <!-- Meta -->
+    <div class="cover-meta" style="margin-top:0;padding-top:0">
+      <div class="cover-meta-item"><strong>18 a 24 meses</strong>Duração do programa</div>
+      <div class="cover-meta-item"><strong>4 unidades</strong>Incorporações · BScash · Finanças · Urbanismo</div>
+      <div class="cover-meta-item"><strong>6 módulos</strong>Entrada até evolução contínua</div>
+      <div class="cover-meta-item"><strong>Primeiro resultado tangível</strong>Em 30 dias</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════
+     S1 — PONTO DE PARTIDA
+═══════════════════════════════════════ -->
+<div class="section">
+  <div class="wrap">
+    <div class="eyebrow">01 &nbsp;·&nbsp; <span>Ponto de Partida</span></div>
+    <span class="rule"></span>
+    <h2>O que o Grupo BSPar<br>construiu — e o que ainda falta</h2>
+    <div class="diag">
+      <div class="diag-card">
+        <div class="diag-label v">Construído corretamente</div>
+        <div class="diag-item"><strong>Infraestrutura de dados madura</strong> — lake house, modelo semântico, governança e anonimização em andamento.</div>
+        <div class="diag-item"><strong>Consciência de segurança</strong> — LGPD, controle de acesso e monitoramento antes de liberar ferramentas.</div>
+        <div class="diag-item"><strong>Parceiro de ferramentas contratado</strong> — plataforma corporativa para centralizar o que está disperso.</div>
+        <div class="diag-item"><strong>Programa de letramento iniciado</strong> — movimento correto, precisa de direção estratégica.</div>
+        <div class="diag-item"><strong>Iniciativas espontâneas rodando</strong> — times já gerando resultados com IA. A organização está pronta.</div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-label r">O que ainda não existe</div>
+        <div class="diag-item"><strong>Nenhum programa com objetivo específico</strong> — demanda chega passivamente, sem prioridade definida.</div>
+        <div class="diag-item"><strong>Nenhuma hipótese de valor econômico</strong> — quanto vale para o resultado do grupo?</div>
+        <div class="diag-item"><strong>Sem estrutura para o depois das licenças</strong> — quando forem liberadas, o que acontece?</div>
+        <div class="diag-item"><strong>Parceiros sem direção estratégica</strong> — letramento e plataforma operam sem roadmap que os conecte.</div>
+        <div class="diag-item"><strong>Fase estratégica sem dono</strong> — quem conduz o uso de IA como vantagem competitiva?</div>
+      </div>
+    </div>
+    <div class="quote">
+      <p>"A gente imagina que essa segunda etapa vai ser muito mais divertida. Não vi nada, não aconteceu nada até agora."</p>
+      <cite>Liderança BSPar · Reunião agosto 2026</cite>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     S2 — METODOLOGIA DE VALOR
+═══════════════════════════════════════ -->
+<div class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">02 &nbsp;·&nbsp; <span>Metodologia de Valor</span></div>
+    <span class="rule"></span>
+    <h2>IA não gera apenas<br><em>eficiência. Gera redesenho.</em></h2>
+    <p class="lead">A maioria das iniciativas para na primeira camada. A ELI66 trabalha com três camadas — é nas camadas 2 e 3 que o resultado econômico real está.</p>
+    <div class="valor-row">
+      <div class="valor-card">
+        <div class="valor-n">01</div>
+        <div class="valor-t">Eficiência</div>
+        <div class="valor-d">O que a IA elimina, acelera ou automatiza. Medido em horas liberadas × custo × volume.</div>
+        <div class="valor-ex">Analista atualiza 50 certidões manualmente todo mês → com automação, feito em minutos. X horas/mês liberadas.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-n">02</div>
+        <div class="valor-t">Redesenho de Função</div>
+        <div class="valor-d">O que a pessoa passa a fazer com o tempo liberado. Onde esse tempo gera mais valor para o negócio.</div>
+        <div class="valor-ex">Analista libera X horas/mês → passa a fazer análise preditiva de fluxo de caixa → valor incremental gerado: Y.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-n">03</div>
+        <div class="valor-t">Impacto no Negócio</div>
+        <div class="valor-d">O que o redesenho move em resultado econômico real — receita, custo, risco, velocidade.</div>
+        <div class="valor-ex">Controle preditivo de obra reduz atraso em X% → impacto em multas + velocidade de receita + reputação.</div>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:1.4rem;font-size:.92rem">A hipótese de retorno e os critérios de captura são definidos <strong>antes da execução</strong> — não descobertos depois. Baseline, métricas e premissas são estruturados no M1, confirmados no kick-off e medidos durante a execução.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     S3 — MÓDULOS EXECUTIVO
+═══════════════════════════════════════ -->
+<div class="section">
+  <div class="wrap">
+    <div class="eyebrow">03 &nbsp;·&nbsp; <span>O Programa</span></div>
+    <span class="rule"></span>
+    <h2>Seis módulos.<br><em>Entrada flexível.</em></h2>
+    <p class="lead">O que entra agora é escolhido aqui. A proposta com valor é gerada a partir dessa seleção. O que não entra agora pode entrar numa segunda fase.</p>
+    <div class="mod-grid">
+      <div class="mod-card">
+        <div class="mod-card-top">
+          <div class="mod-card-num">M0 · 4 semanas</div>
+          <span class="mbadge bqw">Quick Win</span>
+        </div>
+        <h3>Aceleração da Distribuição + Playbook de IA</h3>
+        <div class="mod-card-dur">Entrada do programa · Inicio imediato</div>
+        <div class="mod-card-desc">Estrutura que permite distribuir as licenças com controle real e entregar primeiro resultado tangível em 30 dias.</div>
+        <div class="mod-card-del">
+          <div class="mod-card-del-title">Entrega</div>
+          <ul>
+            <li>Data Request completo por unidade</li>
+            <li>Mapa preliminar de métricas por unidade</li>
+            <li>Playbook de IA do Grupo BSPar</li>
+            <li>Roteiro de treinamento para o parceiro</li>
+            <li>Briefing executivo para o CEO</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="mod-card-top">
+          <div class="mod-card-num">M1 · 4 a 5 meses</div>
+          <span class="mbadge bph">Fase 1</span>
+        </div>
+        <h3>Leitura Estratégica — Identificação e Validação de Valor por Unidade de Negócio</h3>
+        <div class="mod-card-dur">4 a 5 meses · Ondas defasadas por unidade · ~6 a 8 semanas de ciclo por unidade</div>
+        <div class="mod-card-desc">Diagnóstico estruturado por unidade com construção de um Pipeline de Valor econômico validado. Cada unidade percorre quatro fases em ondas defasadas — do baseline operacional à priorização das iniciativas com maior potencial de impacto no negócio. Valor Potencial, Valor Validado e Valor Capturado são conceitos distintos: o M1 identifica o potencial e valida as premissas econômicas. A captura acontece na execução.</div>
+        <div class="mod-card-del">
+          <div class="mod-card-del-title">Entrega</div>
+          <ul>
+            <li>Mapa de Iniciativas por unidade — iniciativas identificadas, problema que resolvem e onde podem gerar valor</li>
+            <li>Registro de Valor por iniciativa — baseline, hipótese de impacto, métrica afetada, premissas e nível de evidência</li>
+            <li>Potencial Econômico por unidade — valor potencial identificado, tratado para evitar sobreposição e dupla contagem</li>
+            <li>Carteira Priorizada de Iniciativas — iniciativas validadas e classificadas entre avançar, adiar ou não fazer, com faixa estimada de investimento, prazo estimado de retorno, dependências e horizonte de captura</li>
+            <li>Visão Consolidada do Grupo BSPar — potencial econômico e carteira priorizada entre as unidades</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="mod-card-top">
+          <div class="mod-card-num">M2 · Permanente</div>
+          <span class="mbadge bct">Estrutura</span>
+        </div>
+        <h3>Governança do Programa de IA — O Comitê</h3>
+        <div class="mod-card-dur">Estruturação no mês 1 · Quinzenal sempre</div>
+        <div class="mod-card-desc">A estrutura de governança que falta. Conecta todos os movimentos existentes e dá direção ao programa de IA. A ELI66 estrutura, facilita e conduz — o Comitê é da BSPar.</div>
+        <div class="mod-card-del">
+          <div class="mod-card-del-title">Entrega</div>
+          <ul>
+            <li>Documento de constituição do Comitê</li>
+            <li>Protocolo de direcionamento de parceiros</li>
+            <li>Memória organizacional acumulada</li>
+            <li>Relatório trimestral para o CEO</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="mod-card-top">
+          <div class="mod-card-num">M3 · 2 meses</div>
+          <span class="mbadge bph">Fase 2</span>
+        </div>
+        <h3>Direção — Roadmap Estratégico</h3>
+        <div class="mod-card-dur">Após as primeiras ondas da Leitura</div>
+        <div class="mod-card-desc">Roadmap de 18 a 24 meses construído a partir dos Pipelines de Valor validados por unidade — com decisões objetivas sobre onde investir, o que adiar, o que descartar e em que sequência capturar.</div>
+        <div class="mod-card-del">
+          <div class="mod-card-del-title">Entrega</div>
+          <ul>
+            <li>Roadmap por unidade e consolidado</li>
+            <li>Curva de captura de valor — investimento acumulado × valor esperado × valor em risco</li>
+            <li>Critérios de decisão validados</li>
+            <li>Apresentação ao CEO</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mod-card">
+        <div class="mod-card-top">
+          <div class="mod-card-num">M4 · Mês 5+</div>
+          <span class="mbadge bph">Fase 3</span>
+        </div>
+        <h3>Condução das Iniciativas</h3>
+        <div class="mod-card-dur">Contínua · Mínimo 12 meses</div>
+        <div class="mod-card-desc">Acompanhamento ativo das iniciativas. Sem PMO: a BSPar designa responsável operacional interno e a ELI66 atua em governança e métricas. Com PMO ELI66: coordenação diária também assumida pela ELI66.</div>
+        <div class="mod-card-del">
+          <div class="mod-card-del-title">Entrega</div>
+          <ul>
+            <li>Kick-off a partir do Registro de Valor validado</li>
+            <li>Relatório quinzenal de progresso</li>
+            <li>Medição de Valor Capturado por iniciativa</li>
+            <li>Relatório trimestral ao CEO</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mod-card optional">
+        <div class="mod-card-top">
+          <div class="mod-card-num" style="color:var(--wa)">M5 · Quinzenal</div>
+          <span class="mbadge bop">Opcional</span>
+        </div>
+        <h3>Board ELI66 — Conselho Estratégico</h3>
+        <div class="mod-card-dur">Produto fixo · Investimento independente</div>
+        <div class="mod-card-desc">Conselho estratégico da empresa — não do programa. Enquanto o M2 pergunta "como governamos as iniciativas?", o M5 pergunta "o que a BSPar deve fazer como negócio diante do que estamos descobrindo?". Modelo de negócio, posicionamento competitivo, investimento, riscos estruturais e agenda CEO/Conselho.</div>
+        <div class="mod-card-del">
+          <div class="mod-card-del-title">Entrega</div>
+          <ul>
+            <li>Registro de sessão (toda sessão)</li>
+            <li>Mapa de maturidade trimestral</li>
+            <li>Relatório anual de evolução</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     S4 — CRONOGRAMA MACRO
+═══════════════════════════════════════ -->
+<div class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">04 &nbsp;·&nbsp; <span>Cronograma</span></div>
+    <span class="rule"></span>
+    <h2>18 a 24 meses de programa.<br><em>Primeiro resultado tangível em 30 dias.</em></h2>
+    <p class="lead">O programa não é infinito — tem início, marcos e fases definidas, com sobreposição intencional entre elas: parte da execução começa antes de a Fundação e Direção se encerrar. Ao final dos 24 meses, o Grupo BSPar tem capacidade própria de evoluir.</p>
+
+    <div class="macro-phases">
+      <div class="macro-phase">
+        <div class="macro-phase-label">Fase 1</div>
+        <div class="macro-phase-period">Fundação e Direção<br><span style="font-size:.75rem;color:var(--mu);font-family:'Inter',sans-serif;font-weight:300">Meses 1–6</span></div>
+        <ul class="macro-phase-items">
+          <li><strong>M0</strong> Playbook + distribuição</li>
+          <li><strong>M2</strong> Estruturação do Comitê</li>
+          <li><strong>M1</strong> Leitura das 3 ondas</li>
+          <li><strong>M3</strong> Roadmap + CEO</li>
+        </ul>
+      </div>
+      <div class="macro-phase">
+        <div class="macro-phase-label">Fase 2</div>
+        <div class="macro-phase-period">Execução<br><span style="font-size:.75rem;color:var(--mu);font-family:'Inter',sans-serif;font-weight:300">Meses 5–12</span></div>
+        <ul class="macro-phase-items">
+          <li><strong>M4</strong> Condução por onda</li>
+          <li>Board quinzenal ativo</li>
+          <li>Letramento por onda</li>
+          <li>Resultados medidos</li>
+        </ul>
+      </div>
+      <div class="macro-phase">
+        <div class="macro-phase-label">Fase 3</div>
+        <div class="macro-phase-period">Consolidação<br><span style="font-size:.75rem;color:var(--mu);font-family:'Inter',sans-serif;font-weight:300">Meses 13–18</span></div>
+        <ul class="macro-phase-items">
+          <li>Escala das iniciativas</li>
+          <li>2º ciclo de Leitura</li>
+          <li>Capacidade interna medida</li>
+          <li>Maturidade do Comitê</li>
+        </ul>
+      </div>
+      <div class="macro-phase">
+        <div class="macro-phase-label">Fase 4</div>
+        <div class="macro-phase-period">Evolução<br><span style="font-size:.75rem;color:var(--mu);font-family:'Inter',sans-serif;font-weight:300">Meses 19–24</span></div>
+        <ul class="macro-phase-items">
+          <li>Autonomia crescente</li>
+          <li>Capacidades e ativos proprietários de IA</li>
+          <li>ELI66 → Conselho de evolução estratégica</li>
+          <li>Vantagem competitiva própria</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="macro-timeline">
+      <div class="macro-tl-title">Visão geral — 24 meses</div>
+      <div class="tl-row">
+        <div class="tl-label">Quick Win / M0<span>Playbook + distribuição</span></div>
+        <div>
+          <div class="tl-bars">
+            <div class="tl-bar g"></div><div class="tl-bar g"></div>
+            <div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
+          </div>
+          <div class="tl-months"><div class="tl-month">1</div><div class="tl-month">2</div><div class="tl-month">3</div><div class="tl-month">4</div><div class="tl-month">5</div><div class="tl-month">6</div><div class="tl-month">7</div><div class="tl-month">8</div><div class="tl-month">9</div><div class="tl-month">10</div><div class="tl-month">11</div><div class="tl-month">12</div><div class="tl-month">13</div><div class="tl-month">14</div><div class="tl-month">15</div><div class="tl-month">16</div><div class="tl-month">17</div><div class="tl-month">18</div><div class="tl-month">19</div><div class="tl-month">20</div><div class="tl-month">21</div><div class="tl-month">22</div><div class="tl-month">23</div><div class="tl-month">24</div></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-label">Comitê / Hub M2<span>Estrutura permanente</span></div>
+        <div><div class="tl-bars">
+          <div class="tl-bar v"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div>
+        </div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-label">Leitura M1<span>3 ondas por unidade</span></div>
+        <div><div class="tl-bars">
+          <div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
+        </div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-label">Roadmap M3<span>CEO + validação</span></div>
+        <div><div class="tl-bars">
+          <div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar w"></div><div class="tl-bar w"></div><div class="tl-bar w"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
+        </div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-label">Condução M4<span>Execução por onda</span></div>
+        <div><div class="tl-bars">
+          <div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
+        </div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-label">Letramento<span>Direcionado pela ELI66</span></div>
+        <div><div class="tl-bars">
+          <div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
+        </div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-label">Evolução<span>Ferramentas próprias</span></div>
+        <div><div class="tl-bars">
+          <div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar g"></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     S5 — EQUIPE
+═══════════════════════════════════════ -->
+<div class="section">
+  <div class="wrap">
+    <div class="eyebrow">05 &nbsp;·&nbsp; <span>Equipe</span></div>
+    <span class="rule"></span>
+    <h2>Quem executa<br><em>em cada momento.</em></h2>
+    <div class="team-row">
+      <div class="team-card">
+        <div class="team-role">Chief AI Officer · Frente Visível</div>
+        <div class="team-name">Thiago Rocco</div>
+        <div class="team-desc">Presente em todas as sessões — sem exceção. Conduz todas as entregas de módulo e está disponível de forma contínua entre sessões.<br><br><strong>20+ anos em transformação e IA aplicada.</strong> Vale, Globo, Arezzo, Vibra, Petrobras. Conduziu programa de letramento estratégico de IA para 101 aceleradores em empresa de grande porte.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-role">Chief Board Officer · Sessões Estratégicas</div>
+        <div class="team-name">André Crepaldi</div>
+        <div class="team-desc">Presente nas sessões que envolvem decisões de alto nível, modelo de negócio e governança do programa.<br><br><strong>25+ anos em estratégia e conselho.</strong> Mais de 2.000 empresas avaliadas. Contratado pelos principais fundos internacionais para avaliar e orientar empresas no Brasil.</div>
+      </div>
+      <div class="team-card" style="border-style:dashed">
+        <div class="team-role">PMO Dedicado · Opcional</div>
+        <div class="team-name">Consultor Sênior</div>
+        <div class="team-desc">Presente no dia a dia da BSPar para tocar o projeto enquanto a equipe de TI sustenta a operação. Gerido por Thiago Rocco.<br><br><strong>Libera a TI da coordenação operacional</strong> — que pode focar em sustentar a operação sem acumular a gestão do projeto.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     S6 — PRÓXIMOS PASSOS
+═══════════════════════════════════════ -->
+<div class="section alt">
+  <div class="wrap">
+    <div class="eyebrow">06 &nbsp;·&nbsp; <span>Próximos Passos</span></div>
+    <span class="rule"></span>
+    <h2>O escopo está na mesa.<br><em>A seleção define a proposta.</em></h2>
+    <p class="lead">Esta é uma sessão de alinhamento — não de fechamento. O objetivo é sair com clareza sobre o que entra agora e quais dúvidas precisam ser respondidas antes da proposta formal.</p>
+    <div class="next-row">
+      <div class="next-card">
+        <div class="diag-label g" style="margin-bottom:.8rem">O que definimos hoje</div>
+        <div class="diag-item"><strong>Quais módulos entram na primeira fase</strong> — M0 é a entrada. O que mais entra junto é escolha do grupo.</div>
+        <div class="diag-item"><strong>Sequência das ondas</strong> — a ordem das unidades pode ser ajustada.</div>
+        <div class="diag-item"><strong>PMO e Board</strong> — opcionais. Definir se entram agora ou numa segunda fase.</div>
+        <div class="diag-item"><strong>Dúvidas sobre o escopo</strong> — respondidas aqui antes de a proposta ser gerada.</div>
+      </div>
+      <div class="next-card">
+        <div class="diag-label v" style="margin-bottom:.8rem">O que vem depois desta conversa</div>
+        <div class="diag-item"><strong>Proposta com investimento</strong> — calculada a partir dos módulos selecionados. Em até 3 dias úteis.</div>
+        <div class="diag-item"><strong>Reunião de fechamento</strong> — com as lideranças que precisam aprovar.</div>
+        <div class="diag-item"><strong>M0 começa em até 5 dias</strong> — primeiro resultado tangível em 30 dias é a promessa que o grupo pode fazer agora.</div>
+        <div class="diag-item"><strong>O que não entra agora não some</strong> — o escopo é reconfigurado quando fizer sentido.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     DIVISOR
+═══════════════════════════════════════ -->
+<div class="divider" id="detalhamento">
+  <div class="divider-inner">
+    <h2>Detalhamento <em>Técnico</em></h2>
+    <p>Escopo completo por módulo — atividades, entregáveis e cronograma detalhado</p>
+    <div class="divider-arrow">↓</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PARTE 2 — DETALHAMENTO
+═══════════════════════════════════════ -->
+<div class="section" style="background:var(--bg)">
+  <div class="wrap">
+    <div class="eyebrow">Escopo &nbsp;·&nbsp; <span>Módulo por Módulo</span></div>
+    <span class="rule"></span>
+    <h2>Cada módulo em detalhe.<br><em>Clique para expandir.</em></h2>
+    <p class="lead">Cada accordion abre o módulo completo com fases, atividades, entregáveis e o que habilita a seguir.</p>
+<div class="acc">
+  <div class="acc-hdr" onclick="toggleAcc(this)">
+    <div class="acc-hdr-l"><div class="acc-num">M0 · 4 semanas · Entrada do Programa</div><div class="acc-title">Aceleração da Distribuição + Playbook de IA</div></div>
+    <span class="mbadge mbadge bqw" style="margin-right:.5rem">Quick Win</span>
+    <span class="acc-arrow">▼</span>
+  </div>
+  <div class="acc-body">
+    <p style="font-size:.88rem;color:var(--ml);font-weight:300;line-height:1.7;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">Estrutura que permite distribuir as licenças com controle real e entregar primeiro resultado tangível em 30 dias. Ponto de partida independente do que mais for contratado — o Data Request gerado aqui serve de base para todo o programa.</p>
+    <div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Semana 1 — Data Request e Inventário</div><div class="ph-time">Dias 1–5</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Formulário estruturado de levantamento enviado às lideranças de cada unidade</li><li>Mapeamento de todas as ferramentas de IA em uso — oficiais, pessoais, contas compartilhadas, por área e unidade</li><li>Inventário de iniciativas espontâneas nas gavetas — quem faz, o quê, com que ferramenta, com qual resultado</li><li>Levantamento de dados disponíveis por unidade — o que existe, onde está, quão confiável, quem acessa</li><li>Levantamento preliminar das principais métricas de negócio por unidade — KPIs operacionais e financeiros, onde estão, disponibilidade e nível de confiabilidade</li><li>Mapeamento de perfis de colaboradores — funções, níveis de acesso desejados, exposição a dados sensíveis</li><li>Entrevistas com TI e lideranças-chave sobre restrições reais e preocupações de segurança</li><li>Análise do programa de letramento atual — conteúdo, fornecedor, público, cadência, o que já foi entregue</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Data Request BSPar completo — documento estruturado com o estado atual por unidade (base de todo o programa)</li><li class="g">Inventário de iniciativas espontâneas — classificadas por unidade, área, ferramenta e maturidade</li><li class="g">Mapa de perfis × exposição a dados sensíveis por área e unidade</li><li class="g">Mapa preliminar de métricas por unidade — KPIs operacionais e financeiros, onde estão, disponibilidade e nível de confiabilidade</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a construção do Playbook na semana 2 com base real — não em suposições. O Data Request não precisa ser refeito nas ondas da Leitura, e o mapa preliminar de métricas é o ponto de partida do baseline econômico e operacional — aqui é levantamento preliminar; o baseline completo é refinado no M1.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Semana 2 — Construção do Playbook</div><div class="ph-time">Dias 6–10</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li><strong>Bloco 1 — Política de Uso:</strong> posição oficial do Grupo BSPar sobre IA, princípios inegociáveis, usos permitidos por categoria e unidade, usos proibidos, dados sensíveis, confidencialidade e ética</li><li><strong>Bloco 2 — Ferramentas Aprovadas:</strong> ferramentas oficiais por perfil de uso, regras para ferramentas não oficiais, orientações de uso seguro</li><li><strong>Bloco 3 — Workflow Operacional:</strong> como solicitar agente ou automação, como usar no dia a dia, o que reportar, gestão de projetos e agentes, encerramento e registro de aprendizado</li><li><strong>Bloco 4 — Dados e Confidencialidade:</strong> o que são dados sensíveis por unidade, quando e como anonimizar, regras específicas (financeiro, obras, atendimento, crédito)</li><li><strong>Bloco 5 — Governança:</strong> o Comitê como guardião do Playbook, processo de atualização, consequências do descumprimento</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Playbook de IA do Grupo BSPar — documento completo com os 5 blocos</li><li class="g">Versão resumida de 1 página — cartão de bolso para distribuição junto com as licenças</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a validação com lideranças na semana 3. O Playbook é o conteúdo central do treinamento de lançamento e o documento fundador do Comitê.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Semana 3 — Validação e Roteiro de Treinamento</div><div class="ph-time">Dias 11–15</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Sessão de revisão do Playbook com lideranças internas — ajustes de linguagem e aderência à realidade operacional</li><li>Alinhamento com o fornecedor de letramento — o que muda no programa atual, o que se mantém, o que é redirecionado</li><li>Construção do roteiro de treinamento de lançamento: objetivos, público por unidade, conteúdo por bloco, dinâmicas e como capturar iniciativas que surgirem</li><li>Construção do processo de captura de iniciativas: formulário, fluxo de triagem, responsável, integração com o Comitê</li><li>Definição das métricas básicas — 5 a 7 KPIs para os primeiros 60 dias pós-distribuição</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Playbook validado e aprovado pelas lideranças</li><li class="g">Roteiro de Treinamento de Lançamento — pronto para o parceiro executar</li><li class="g">Processo de Captura de Iniciativas — formulário + fluxo + responsável</li><li class="g">Dashboard básico de métricas para os primeiros 60 dias</li></ul>
+  <div class="enables"><strong>Habilita:</strong> o treinamento e lançamento na semana 4. A primeira sessão do Comitê já tem o Playbook como documento base aprovado.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Semana 4 — Lançamento e Monitoramento Inicial</div><div class="ph-time">Dias 16–20</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Sessão de treinamento com colaboradores por unidade — conduzida pelo parceiro com roteiro da ELI66</li><li>Distribuição oficial das licenças com Playbook em mãos</li><li>Ativação do processo de captura de iniciativas</li><li>Configuração do dashboard básico de acompanhamento</li><li>Construção do briefing executivo — o que foi feito, o que vem a seguir, resultados esperados nos próximos 60 dias</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Licenças distribuídas com governança real e estrutura ativa</li><li class="g">Processo de captura de iniciativas rodando</li><li class="g">Briefing Executivo de 1 página para a liderança</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a Leitura Estratégica (M1) — Data Request existe, mapa preliminar de métricas levantado, iniciativas sendo capturadas, Comitê se estruturando. A liderança tem o primeiro resultado tangível em 30 dias.</div>
+</div><div style="display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--border)">
+  <div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Prazo total</strong>4 semanas</div>
+  <div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Presencial</strong>Fortaleza nas primeiras semanas (custo por conta do Grupo BSPar)</div>
+  <div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Quem executa</strong>Thiago Rocco — ELI66</div>
+</div>
+  </div>
+</div><div class="acc">
+  <div class="acc-hdr" onclick="toggleAcc(this)">
+    <div class="acc-hdr-l"><div class="acc-num">M1 · 4 a 5 meses · Ondas defasadas · ~6 a 8 semanas de ciclo por unidade</div><div class="acc-title">Leitura Estratégica — Identificação e Validação de Valor por Unidade de Negócio</div></div>
+    <span class="mbadge mbadge bph" style="margin-right:.5rem">Fase 1</span>
+    <span class="acc-arrow">▼</span>
+  </div>
+  <div class="acc-body">
+    <p style="font-size:.88rem;color:var(--ml);font-weight:300;line-height:1.7;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">Diagnóstico estruturado por unidade com construção de um Pipeline de Valor econômico validado. Cada unidade percorre quatro fases em ondas defasadas — do baseline operacional à priorização das iniciativas com maior potencial de impacto no negócio, respeitando complexidade, prontidão de dados e pressão de resultado. <strong>Valor Potencial, Valor Validado e Valor Capturado são conceitos distintos:</strong> o M1 identifica o potencial e valida as premissas econômicas. A captura acontece na execução (M4).</p>
+    <div class="onda-grid">
+  <div class="onda-col">
+    <div class="onda-num">Onda 1 · Mês 1–2</div>
+    <div class="onda-t">BSPar Incorporações + BScash</div>
+    <div class="onda-i"><strong>Incorporações:</strong> controle preditivo de obras, análise de terrenos, cronograma inteligente.</div>
+    <div class="onda-i"><strong>BScash:</strong> escalar base sem escalar equipe. Automação de atendimento, redesenho de jornada.</div>
+    <div class="onda-tempo">Início imediato após M0 · Iniciativas priorizadas e valor validado em 60 dias</div>
+  </div>
+  <div class="onda-col">
+    <div class="onda-num">Onda 2 · Mês 2–3</div>
+    <div class="onda-t">BSPar Finanças</div>
+    <div class="onda-i"><strong>Alto potencial econômico:</strong> análise de risco de crédito, FIDC, previsão de inadimplência, automação de operações estruturadas.</div>
+    <div class="onda-tempo">Início no mês 2 · Iniciativas priorizadas e valor validado previsto para o mês 4</div>
+  </div>
+  <div class="onda-col">
+    <div class="onda-num">Onda 3 · Mês 3–4</div>
+    <div class="onda-t">BSPar Urbanismo</div>
+    <div class="onda-i"><strong>Complexidade contida:</strong> análise de demanda por localização, aprovações agilizadas, planejamento de infraestrutura.</div>
+    <div class="onda-tempo">Início no mês 3 · Iniciativas priorizadas e valor validado previsto para o mês 5</div>
+  </div>
+</div>
+<p style="font-size:.8rem;color:var(--mu);margin:.7rem 0 .5rem">O ciclo abaixo se repete para cada onda:</p><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Fase A — Preparação</div><div class="ph-time">1 semana por unidade</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Data request específico da unidade — complementa o inventário do M0, com foco nas métricas de negócio relevantes para a unidade: financeiras, operacionais, de qualidade e velocidade</li><li>Coleta de documentos estratégicos — planejamento, metas, relatórios de resultado, processos mapeados, organogramas</li><li>Construção do baseline econômico e operacional da unidade a partir do mapa preliminar de métricas gerado no M0 — refinamento e validação de volume, custo, velocidade, qualidade e frequência de falha</li><li>Identificação dos interlocutores certos — quem tem visão do processo, quem sente a dor, quem decide e quem valida premissas econômicas</li><li>Briefing de contexto com TI — sensibilidades da unidade, histórico de iniciativas, restrições operacionais e de dados</li><li>Preparação do guia de entrevistas calibrado para o modelo de negócio da unidade</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Dossiê da unidade — contexto, pessoas-chave, documentos relevantes, restrições</li><li class="g">Baseline econômico e operacional documentado</li><li class="g">Guia de entrevistas validado e calibrado</li><li class="g">Agenda de imersão confirmada com as lideranças</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a Fase B entra com foco — as entrevistas já sabem quais métricas investigar e qual o patamar atual de cada uma. A imersão não é exploração genérica; é investigação direcionada.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Fase B — Imersão</div><div class="ph-time">2 a 3 semanas por unidade · Presencial em Fortaleza</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Entrevistas presenciais com núcleo inicial de 2 a 4 lideranças por unidade, com duração aproximada de 90 minutos cada, ampliado conforme necessidade de validação dos processos e das premissas econômicas, estruturadas em processos críticos, gargalos operacionais, decisões que consomem mais tempo e onde o erro mais custa</li><li>Mapeamento dos processos mais relevantes — fluxo atual, quem faz, tempo, volume, custo de falha e frequência</li><li>Levantamento detalhado dos dados disponíveis — o que existe, onde está, quão confiável, lacunas</li><li>Registro das iniciativas espontâneas da unidade — o que já funciona e pode ser formalizado</li><li>Formulação das primeiras hipóteses no formato: Problema → Baseline → Hipótese → Mecanismo de Valor → Métrica Afetada</li><li>Abertura do Value Register por iniciativa candidata — incluindo também nível de evidência e campo de sobreposição de valor / iniciativa relacionada</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Mapa de processos críticos com gargalos e custo de falha identificados</li><li class="g">Inventário de dados e lacunas por iniciativa candidata</li><li class="g">Value Register inicial por iniciativa</li><li class="g">Registro das iniciativas espontâneas formalizadas</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a Fase C parte de baseline real e hipóteses estruturadas. O campo de sobreposição permite evitar dupla contagem na construção do Value Pool.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Fase C — Análise, Quantificação e Construção do Pipeline</div><div class="ph-time">1 a 2 semanas por unidade</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Completar o Value Register com impacto esperado, faixa ou ordem de grandeza, premissas e nível de evidência</li><li>Calcular o Value Pool da unidade — valor econômico potencial consolidado, com tratamento explícito de sobreposições, interdependências e dupla contagem. O Value Pool não é soma bruta; é valor potencial líquido das redundâncias identificadas</li><li>Construir o Value Pipeline, filtrando o Value Pool por viabilidade técnica e de dados, capacidade de execução, dependências, ordem de grandeza do investimento, payback preliminar com nível de confiança e owner interno</li><li>Priorizar por impacto econômico × viabilidade × prazo de captura × risco × dependências</li><li>Classificar as iniciativas como captura rápida / médio prazo / longo prazo / não fazer agora</li><li>Mapear as lacunas necessárias antes da execução</li><li style="display:block"><strong>Registrar formalmente:</strong> <strong>Valor Potencial</strong> — identificado aqui, na Fase C; <strong>Valor Validado</strong> — confirmado na Fase D; <strong>Valor Capturado</strong> — realizado e comprovado no M4</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Value Register completo</li><li class="g">Value Pool da unidade</li><li class="g">Value Pipeline da unidade</li><li class="g">Classificação por horizonte de captura</li><li class="g">Lista de lacunas</li></ul>
+  <div class="enables"><strong>Nota:</strong> investimento e payback no M1 são estimativas por faixa ou ordem de grandeza. Servem para sustentar priorização e sequenciamento — não para produzir falsa precisão financeira.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Fase D — Validação das Premissas e Consolidação</div><div class="ph-time">1 semana por unidade</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Apresentação do Value Pipeline à liderança</li><li>Validação das premissas econômicas com quem responde pelo resultado</li><li>Ajustes no Value Register e no Pipeline</li><li>Distinção formal entre Valor Potencial e Valor Validado — o Valor Capturado permanece futuro e só existe com evidência de impacto econômico real contra o baseline</li><li>Ganho de eficiência operacional não vira automaticamente Valor Capturado</li><li>Validação final com o Comitê de Governança (M2)</li><li>Consolidação do relatório executivo da onda</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Value Pipeline validado</li><li class="g">Value Register atualizado com premissas confirmadas e ajustadas pela liderança responsável</li><li class="g">Relatório executivo com Value Pool consolidado — valor potencial líquido de sobreposições, Valor Validado, horizonte de captura e próximos passos</li><li class="g">Lista de iniciativas aprovadas para o M3</li></ul>
+  <div class="enables"><strong>Habilita:</strong> o M3 constrói o Roadmap a partir de Pipelines de Valor validados, e não de oportunidades genéricas. Iniciativas de captura rápida podem começar antes do Roadmap estar pronto.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Entregáveis consolidados do M1</div><div class="ph-time">Por unidade e para o Grupo</div></div>
+  <ul class="ph-list"><li class="g">Value Register por iniciativa</li><li class="g">Value Pool por unidade</li><li class="g">Value Pipeline validado por unidade</li><li class="g">Relatório executivo por onda</li><li class="g">Consolidação do Pipeline de Valor do Grupo BSPar</li></ul>
+</div><div style="display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--border)"><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Prazo total</strong>4 a 5 meses (ondas defasadas — ~6 a 8 semanas por unidade)</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Presencial</strong>Visitas em Fortaleza nas imersões (custo por conta do Grupo BSPar)</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Quem executa</strong>Thiago Rocco + equipe ELI66 nos bastidores</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Envolve da BSPar</strong>Lideranças de cada unidade · Comitê como âncora de validação</div></div>
+  </div>
+</div><div class="acc">
+  <div class="acc-hdr" onclick="toggleAcc(this)">
+    <div class="acc-hdr-l"><div class="acc-num">M2 · Permanente · Estruturação no Mês 1</div><div class="acc-title">Governança do Programa de IA — O Comitê</div></div>
+    <span class="mbadge mbadge bct" style="margin-right:.5rem">Contínuo</span>
+    <span class="acc-arrow">▼</span>
+  </div>
+  <div class="acc-body">
+    <p style="font-size:.88rem;color:var(--ml);font-weight:300;line-height:1.7;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">A estrutura de governança do programa. O Comitê é da BSPar — a ELI66 estrutura, facilita, orienta e conduz a governança das iniciativas de IA. Não é o Board da empresa: é o mecanismo que garante que o programa tenha direção, decisão e memória.</p>
+    <div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Semanas 1 e 2 — Desenho do Comitê</div><div class="ph-time">Dias 1–10</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Definição da composição interna — âncora técnico, âncora executivo, representantes por unidade, critérios de escolha</li><li>Mapeamento de alçadas de decisão — o que o Comitê decide sozinho, o que escala para a liderança, o que vai ao CEO</li><li>Definição do escopo de atuação vs. responsabilidades de TI, parceiro de letramento e plataforma de ferramentas</li><li>Mapeamento das relações com parceiros existentes — como o Comitê direciona o fornecedor de letramento e a plataforma</li><li>Definição da cadência interna de reuniões e modelo de registro de decisões</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Rascunho do Documento de Constituição do Comitê</li><li class="g">Mapa de alçadas — o que decide, o que escala, o que vai ao CEO</li><li class="g">Protocolo de relacionamento com parceiros existentes</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a formalização nas semanas 3 e 4 tem base sólida para ser aprovada rapidamente.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Semanas 3 e 4 — Formalização e Primeira Sessão</div><div class="ph-time">Dias 11–20</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Documento de Constituição finalizado e aprovado — missão, composição, atribuições, cadência, alçadas</li><li>Regras de funcionamento documentadas — agenda padrão, fluxo de decisão, escalada, quórum mínimo</li><li>Integração formal com o Playbook do M0 — o Comitê é o guardião e responsável por atualizá-lo</li><li>Protocolo de direcionamento de parceiros — o que o Comitê entrega ao fornecedor de letramento e à plataforma a cada ciclo</li><li>Template de registro de sessão — decisões tomadas, encaminhamentos, contexto, próxima agenda</li><li>Primeira sessão oficial do Comitê BSPar, facilitada pela ELI66 — agenda inaugural, validação das regras, primeiros encaminhamentos</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Documento de Constituição do Comitê — aprovado e distribuído</li><li class="g">Regras de Funcionamento — documentadas e em vigor</li><li class="g">Template de Registro de Sessão em uso desde a primeira sessão</li><li class="g">Ata da primeira sessão oficial</li></ul>
+  <div class="enables"><strong>Habilita:</strong> o Comitê BSPar opera de forma recorrente — sessões quinzenais de governança facilitadas pela ELI66. O programa tem estrutura de decisão interna antes da Leitura terminar.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Mês 2 em diante — Funcionamento Recorrente</div><div class="ph-time">Quinzenal · sempre</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>15 min — revisão do registro anterior e encaminhamentos pendentes do Comitê</li><li>30 min — portfólio de iniciativas: progresso por onda, bloqueadores que precisam de decisão do Comitê, ajustes de prioridade</li><li>20 min — direcionamento dos parceiros: o que o fornecedor de letramento e a plataforma recebem como orientação neste ciclo</li><li>10 min — próximos passos, registro e pauta da próxima sessão</li><li>Facilitado pela ELI66 — a decisão é sempre do Comitê BSPar</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Registro de sessão — decisões tomadas, encaminhamentos e contexto de cada escolha</li><li class="g">Diretriz para o fornecedor de letramento — o que entra na próxima rodada</li><li class="g">Diretriz para a plataforma de ferramentas — o que implementar primeiro e por quê</li><li class="g">Relatório de progresso do programa — consolidado trimestral para a liderança BSPar</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a Condução (M4) tem estrutura de decisão clara — quem decide o quê, quando e com qual informação. O programa não para por falta de governança. O Comitê BSPar cresce em autonomia ao longo do programa.</div>
+</div><div style="display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--border)"><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Estruturação</strong>Mês 1 — primeiras 4 semanas</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Cadência ELI66</strong>Quinzenal — sempre, sem exceção</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">André Crepaldi</strong>Presente nas sessões estratégicas</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">PMO Dedicado</strong>Opcional — gestão diária entre sessões</div></div>
+  </div>
+</div><div class="acc">
+  <div class="acc-hdr" onclick="toggleAcc(this)">
+    <div class="acc-hdr-l"><div class="acc-num">M3 · 2 meses · Após primeiras ondas da Leitura</div><div class="acc-title">Direção — Roadmap Estratégico do Grupo</div></div>
+    <span class="mbadge mbadge bph" style="margin-right:.5rem">Fase 2</span>
+    <span class="acc-arrow">▼</span>
+  </div>
+  <div class="acc-body">
+    <p style="font-size:.88rem;color:var(--ml);font-weight:300;line-height:1.7;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">A partir dos Pipelines de Valor validados por unidade, construímos o Roadmap estratégico de IA do Grupo BSPar com decisões objetivas sobre onde investir, o que adiar, o que descartar e em que sequência capturar valor. O CEO recebe o plano que pediu.</p>
+    <div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Semanas 1 e 2 — Consolidação dos Pipelines de Valor</div><div class="ph-time">Cross-unidades</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Consolidação dos Pipelines de Valor validados das ondas concluídas — visão integrada do grupo a partir do valor validado por iniciativa</li><li>Cruzamento entre unidades — sinergias, conflitos de prioridade e sobreposições de valor entre unidades</li><li>Identificação das iniciativas por horizonte de captura: curto (meses 5–9), médio (10–18) e longo prazo (19–24)</li><li>Consolidação das lacunas das 3 ondas — o que resolver antes de avançar em cada iniciativa</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Pipeline de Valor consolidado do Grupo BSPar — documento cross-unidades com valor validado, sinergias, sobreposições e lacunas</li><li class="g">Lista de iniciativas candidatas ao Roadmap por horizonte de captura</li></ul>
+  <div class="enables"><strong>Habilita:</strong> as sessões de priorização têm insumo completo e estruturado para decisão.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Semanas 3 e 4 — Sessões de Priorização</div><div class="ph-time">3 sessões com o Comitê</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Sessão 1 — apresentação do Pipeline de Valor consolidado + primeira rodada de priorização por valor validado</li><li>Sessão 2 — validação das prioridades + critérios de decisão do grupo (impacto alto, viabilidade alta, risco aceitável)</li><li>Sessão 3 — sequência de captura + capacidades, dependências e owner por iniciativa</li><li>Classificação final: avançar agora / preparar / adiar / não fazer</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Critérios de Decisão do Grupo BSPar — framework validado e documentado</li><li class="g">Portfólio de iniciativas classificadas com sequência de captura aprovada e owner definido</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a construção do Roadmap tem base de decisão sólida — critério acordado pelo grupo, não preferência individual.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Semanas 5 e 6 — Construção do Roadmap</div><div class="ph-time">O plano de 18 a 24 meses</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Roadmap por unidade construído sobre o Pipeline de Valor validado — valor validado por iniciativa, investimento previsto por fase, horizonte de captura, sequência de captura, dependências, owner e valor em risco</li><li>Roadmap consolidado do Grupo BSPar — visão executiva 18 a 24 meses</li><li>Curva de captura de valor — relação entre investimento acumulado × valor esperado por período × valor em risco</li><li>Conexão com o programa de letramento — quem aprende o quê e quando</li><li>Mapeamento de recursos necessários por fase — equipe interna, ELI66, PMO e parceiros</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Roadmap por Unidade — iniciativas, sequência de captura, dependências e owner</li><li class="g">Roadmap Consolidado do Grupo — visão executiva</li><li class="g">Curva de captura de valor — investimento acumulado × valor esperado por período × valor em risco</li><li class="g">Plano de Letramento integrado ao Roadmap</li></ul>
+  <div class="enables"><strong>Habilita:</strong> Essa visão estrutura a conversa financeira com o CEO: não como promessa de ROI garantido, mas como base racional para priorização e sequenciamento dos investimentos.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Semanas 7 e 8 — Validação e Apresentação ao CEO</div><div class="ph-time">Marco principal do programa</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Revisão do Roadmap com o Comitê e lideranças — ajustes finais</li><li>Preparação da apresentação executiva para o CEO — narrativa de valor, cronograma, investimento, resultado esperado</li><li>Sessão de apresentação ao CEO com Thiago Rocco presente como âncora estratégico</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Roadmap aprovado pelo Comitê e validado com a liderança</li><li class="g">Apresentação ao CEO — o plano que foi pedido, com datas e resultados</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a Condução (M4) começa com aprovação e visibilidade do CEO. O programa passa a ter mandato formal da liderança máxima.</div>
+</div><div style="display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--border)"><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Prazo</strong>2 meses após as primeiras ondas da Leitura</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Formato</strong>3–4 sessões de trabalho com o Comitê + apresentação ao CEO</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Quem executa</strong>Thiago Rocco + André Crepaldi (sessões estratégicas) + Comitê BSPar</div></div>
+  </div>
+</div><div class="acc">
+  <div class="acc-hdr" onclick="toggleAcc(this)">
+    <div class="acc-hdr-l"><div class="acc-num">M4 · Mês 5 em diante · Contínuo</div><div class="acc-title">Condução — Execução das Iniciativas Prioritárias</div></div>
+    <span class="mbadge mbadge bph" style="margin-right:.5rem">Fase 3</span>
+    <span class="acc-arrow">▼</span>
+  </div>
+  <div class="acc-body">
+    <p style="font-size:.88rem;color:var(--ml);font-weight:300;line-height:1.7;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">Acompanhamento ativo das iniciativas priorizadas por onda. A ELI66 não entrega o plano e vai embora — fica junto durante a execução, identificando bloqueadores, conduzindo sua resolução pelo Comitê e garantindo que o resultado seja medido. <strong>Sem PMO ELI66:</strong> a BSPar designa um responsável operacional interno; a ELI66 atua em governança, direcionamento, challenge e métricas. <strong>Com PMO ELI66:</strong> a ELI66 também assume coordenação diária, cobrança de responsáveis e controle de cronograma.</p>
+    <div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Por iniciativa — Kick-off</div><div class="ph-time">Antes de começar, tudo definido</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Partida do Value Register validado no M1 — baseline, KPIs e premissas econômicas já definidos são reutilizados, não reconstruídos do zero</li><li>Definição do objetivo específico — resultado esperado, prazo e recursos</li><li>Confirmação do mecanismo de valor e da métrica afetada — as 3 camadas já estimadas no M1</li><li>Confirmação dos KPIs e do critério de comprovação do Valor Capturado da iniciativa</li><li>Mapeamento das pessoas — quem executa, quem decide, quem é impactado</li><li>Cronograma com marcos intermediários — não só data de fim</li><li>Identificação de riscos e dependências — o que pode travar e como mitigar</li><li>Revalidação do baseline herdado do M1 — ajustado apenas se houver mudança material no processo</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Documento de Kick-off — objetivo, KPIs, pessoas, cronograma, valor esperado, riscos</li><li class="g">Baseline confirmado a partir do M1 — estado atual antes de começar</li><li class="g">Critério de comprovação de Valor Capturado acordado com o responsável de negócio ou financeiro</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a execução tem direção clara — todos sabem o que sucesso significa antes de começar, e sob o mesmo critério definido no M1.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Recorrente — Execução Acompanhada</div><div class="ph-time">Quinzenal com o Comitê</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Revisão de progresso contra cronograma e KPIs — o que avançou, o que travou, o que mudou</li><li>Identificação de bloqueadores — técnicos, operacionais, de capacidade, de decisão pendente</li><li>Remoção de bloqueadores com o Comitê — decisão tomada na sessão, não adiada</li><li>Ajuste de rota quando a evidência indica que a hipótese precisa ser revisada</li><li>Registro de aprendizados — o que está funcionando, o que não está e por quê</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Relatório quinzenal de progresso por iniciativa ativa</li><li class="g">Atualização do portfólio — o que avança, trava ou muda de prioridade</li><li class="g">Registro de aprendizados acumulado no Comitê</li></ul>
+  <div class="enables"><strong>Habilita:</strong> o CEO recebe relatório trimestral com dados reais. O programa não morre no meio do caminho.</div>
+</div><div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Por iniciativa — Encerramento</div><div class="ph-time">Resultado medido, decisão tomada</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>Medição de resultado contra os KPIs e o baseline do kick-off — o que foi alcançado nas 3 camadas</li><li>Medição formal do <strong>Valor Capturado</strong> — o benefício efetivamente realizado, comprovado contra o baseline e validado pelo responsável de negócio ou financeiro da BSPar, segundo o critério previamente definido para a iniciativa</li><li>Ganho de eficiência só é registrado como Valor Capturado quando houver evidência de capacidade efetivamente realocada, custo reduzido, receita gerada ou outro benefício econômico mensurável previamente definido</li><li>Análise do desvio — o que foi subestimado, o que foi superado, o que aprendemos</li><li>Documentação para a memória organizacional do Comitê</li><li>Decisão: encerrar / escalar para outras unidades / transformar em capacidade permanente</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Relatório de Encerramento — resultado medido vs. esperado, desvios e aprendizados</li><li class="g">Registro de Valor Capturado — validado contra o baseline pelo responsável de negócio ou financeiro</li><li class="g">Atualização da memória organizacional</li><li class="g">Relatório Trimestral CEO — resultado econômico documentado</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a próxima rodada começa com aprendizado acumulado. O CEO vê resultado econômico documentado e comparável.</div>
+</div><div style="display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--border)"><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Início</strong>A partir do mês 5 — por onda, após validação das iniciativas prioritárias. O Roadmap consolidado pode ser concluído em paralelo.</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Duração</strong>Contínua — mínimo 12 meses de condução ativa</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Condução ELI66</strong>Thiago Rocco + equipe ELI66 + PMO, quando contratado</div></div>
+  </div>
+</div><div class="acc">
+  <div class="acc-hdr" onclick="toggleAcc(this)">
+    <div class="acc-hdr-l"><div class="acc-num">M5 · Quinzenal · Sempre · Opcional</div><div class="acc-title">Board ELI66 — Conselho Estratégico Recorrente</div></div>
+    <span class="mbadge mbadge bop" style="margin-right:.5rem">Opcional</span>
+    <span class="acc-arrow">▼</span>
+  </div>
+  <div class="acc-body">
+    <p style="font-size:.88rem;color:var(--ml);font-weight:300;line-height:1.7;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">Produto separado do programa. Enquanto o M2 governa as iniciativas de IA, o Board ELI66 atua numa camada acima: modelo de negócio, posicionamento competitivo, decisões de investimento, capacidades proprietárias, riscos estruturais e agenda CEO/Conselho. É o conselho estratégico da empresa — não o gestor do programa.</p>
+    <div class="ph-block">
+  <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Estrutura de cada sessão quinzenal</div><div class="ph-time">90 minutos · Thiago Rocco sempre presente</div></div>
+  <div class="ph-sub-t">O que engloba</div><ul class="ph-list"><li>15 min — leitura do contexto: o que mudou no negócio, no mercado e no programa desde a última sessão</li><li>50 min — tema estratégico da sessão: pode ser posicionamento competitivo, decisão de investimento, mudança organizacional habilitada pela IA, risco estrutural identificado, nova oportunidade de negócio, agenda para o CEO ou Conselho</li><li>10 min — encaminhamentos e pauta da próxima sessão</li><li>10 min — registro da decisão: contexto, alternativas consideradas e raciocínio da escolha</li><li>Thiago Rocco em todas as sessões · André Crepaldi em todas — este é o produto deles</li></ul>
+  <div class="ph-sub-t v">O que sai</div><ul class="ph-list"><li class="g">Registro acumulado de todas as decisões — contexto, alternativas e raciocínio</li><li class="g">Histórico de iniciativas — o que funcionou, o que não funcionou e por quê</li><li class="g">Mapa de maturidade do Grupo BSPar em IA — medido trimestralmente</li><li class="g">Relatório Anual de Evolução — para o CEO e o board da empresa</li><li class="g">Nos meses 19–24: direcionamento para capacidades e ativos proprietários de IA</li></ul>
+  <div class="enables"><strong>Habilita:</strong> a BSPar tem um conselho que olha para fora do programa — para o negócio, o mercado e as decisões que nenhum comitê operacional consegue tomar. A diferença entre executar um programa de IA e transformar a empresa ao redor da IA.</div>
+</div><div style="display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--border)"><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Cadência</strong>Quinzenal — sempre, sem exceção</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Modelo</strong>Produto fixo com investimento independente</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">Presença</strong>Thiago Rocco em todas · André Crepaldi nas sessões estratégicas</div><div style="font-size:.78rem;color:var(--mu)"><strong style="color:var(--dark);display:block;margin-bottom:.1rem">PMO</strong>Opcional — presente no dia a dia entre sessões</div></div>
+  </div>
+</div>
+  </div>
+</div>
+
+<div class="section alt" id="cronograma-detalhe">
+  <div class="wrap">
+    <div class="eyebrow">Cronograma &nbsp;·&nbsp; <span>Detalhado</span></div>
+    <span class="rule"></span>
+    <h2>Linha por linha.<br><em>Atividade por atividade.</em></h2>
+    <p class="lead">Cada faixa representa uma atividade real. Role horizontalmente para ver os meses completos.</p>
+    <div class="det-gantt-section">M0 — Aceleração da Distribuição + Playbook</div><div class="det-gantt"><table class="dgt"><thead><tr><th>Atividade</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th></tr></thead><tbody><tr><td><strong>Sem 1 — Data Request e Inventário</strong><span>Ferramentas, dados, iniciativas, perfis, métricas</span></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Sem 2 — Construção do Playbook</strong><span>5 blocos: política, ferramentas, workflow, dados, governança</span></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Sem 3 — Validação e Roteiro</strong><span>Playbook aprovado, roteiro para o parceiro, processo de captura</span></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:50%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Sem 4 — Lançamento</strong><span>Distribuição das licenças · Captura ativa · Briefing CEO</span></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:50%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr></tbody></table></div><div class="det-gantt-section">M2 — Governança do Programa de IA — Comitê BSPar</div><div class="det-gantt"><table class="dgt"><thead><tr><th>Atividade</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th><th>M13</th><th>M14</th><th>M15</th><th>M16</th><th>M17</th><th>M18</th><th>M19</th><th>M20</th><th>M21</th><th>M22</th><th>M23</th><th>M24</th></tr></thead><tbody><tr><td><strong>Sem 1–2 — Desenho do Comitê</strong><span>Composição, alçadas, escopo, cadência</span></td><td class="gc"><div class="gb bv" style="left:0;width:50%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Sem 3–4 — Formalização e 1ª Sessão</strong><span>Constituição aprovada · Ata inaugural</span></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Sessões Quinzenais de Governança do Comitê</strong><span>Portfólio · Decisões · Bloqueadores · Métricas · Registro</span></td><td class="gc"></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td></tr><tr><td><strong>Relatório Trimestral CEO</strong><span>Resultado consolidado a cada 3 meses</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gms gm" style="left:50%;transform:translateX(-50%) translateY(-50%) rotate(45deg)"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gms gm" style="left:50%;transform:translateX(-50%) translateY(-50%) rotate(45deg)"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gms gm" style="left:50%;transform:translateX(-50%) translateY(-50%) rotate(45deg)"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gms gm" style="left:50%;transform:translateX(-50%) translateY(-50%) rotate(45deg)"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gms gm" style="left:50%;transform:translateX(-50%) translateY(-50%) rotate(45deg)"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gms gm" style="left:50%;transform:translateX(-50%) translateY(-50%) rotate(45deg)"></div></td><tr><td><strong>Board Estratégico ELI66</strong><span>Opcional · Sessões quinzenais · Camada acima do programa</span></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td></tr></tr></tbody></table></div><div class="det-gantt-section">M1 — Leitura Estratégica (Ondas por Unidade)</div><div class="det-gantt"><table class="dgt"><thead><tr><th>Atividade</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th></tr></thead><tbody><tr class="sub-row g"><td>Onda 1 · BSPar Incorporações + BScash</td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase A — Preparação Onda 1</strong><span>Data request, baseline econômico, interlocutores, guia</span></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase B — Imersão Onda 1</strong><span>Entrevistas, processos, dados, abertura do Value Register</span></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:55%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase C — Análise e Pipeline Onda 1</strong><span>Value Register, Value Pool, Value Pipeline, priorização</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:55%;width:45%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:55%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase D — Validação Onda 1</strong><span>Validação de premissas, Valor Validado, aprovação Comitê</span></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:45%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr class="sub-row g"><td>Onda 2 · BSPar Finanças</td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase A — Preparação Onda 2</strong><span>Data request, baseline econômico, interlocutores, guia</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase B — Imersão Onda 2</strong><span>Entrevistas, crédito, FIDC, Value Register</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:55%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase C — Análise e Pipeline Onda 2</strong><span>Value Register, Value Pool, Value Pipeline financeiro</span></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:55%;width:45%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:55%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase D — Validação Onda 2</strong><span>Validação de premissas, Valor Validado, aprovação Comitê</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:45%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr class="sub-row g"><td>Onda 3 · BSPar Urbanismo</td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase A — Preparação Onda 3</strong><span>Data request, baseline econômico, interlocutores, guia</span></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase B — Imersão Onda 3</strong><span>Entrevistas, loteamentos, aprovações, Value Register</span></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:55%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase C — Análise e Pipeline Onda 3</strong><span>Value Register, Value Pool, Value Pipeline urbanismo</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:55%;width:45%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:55%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Fase D — Validação Onda 3</strong><span>Validação de premissas, Valor Validado, aprovação Comitê</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:45%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr></tbody></table></div><div class="det-gantt-section">M3 — Direção e Roadmap Estratégico</div><div class="det-gantt"><table class="dgt"><thead><tr><th>Atividade</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th></tr></thead><tbody><tr><td><strong>Sem 1–2 — Consolidação dos Pipelines de Valor</strong><span>Cross-unidades, sinergias, sobreposições, lacunas</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:50%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Sem 3–4 — Sessões de Priorização</strong><span>3 sessões · Critérios de decisão validados</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:50%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:35%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Sem 5–6 — Construção do Roadmap</strong><span>Por unidade e consolidado · Curva de captura de valor</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:65%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:50%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Sem 7–8 — Validação e Apresentação CEO</strong><span>Roadmap aprovado · CEO recebe o plano</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:50%"></div><div class="gms gw" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr></tbody></table></div><div class="det-gantt-section">M4 — Condução das Iniciativas (por Onda)</div><div class="det-gantt"><table class="dgt"><thead><tr><th>Atividade</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th><th>M13</th><th>M14</th><th>M15</th><th>M16</th><th>M17</th><th>M18</th></tr></thead><tbody><tr class="sub-row g"><td>Onda 1 · BSPar Incorporações + BScash</td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Kick-off Iniciativas Onda 1</strong><span>Value Register validado, KPIs, baseline, cronograma</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Execução Acompanhada Onda 1</strong><span>Quinzenal · Progresso · Bloqueadores · Ajuste de rota</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:50%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr class="sub-row g"><td>Onda 2 · BSPar Finanças</td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Kick-off Iniciativas Onda 2</strong><span>Value Register validado, KPIs, baseline, cronograma</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Execução Acompanhada Onda 2</strong><span>Quinzenal · Crédito e FIDC · Modelos preditivos</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:50%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr class="sub-row g"><td>Onda 3 · BSPar Urbanismo</td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Kick-off Iniciativas Onda 3</strong><span>Value Register validado, KPIs, baseline, cronograma</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Execução Acompanhada Onda 3</strong><span>Quinzenal · Loteamentos · Análise de demanda</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:50%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr></tbody></table></div><div class="det-gantt-section">Letramento Estratégico (Direcionado pela ELI66)</div><div class="det-gantt"><table class="dgt"><thead><tr><th>Atividade</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th></tr></thead><tbody><tr><td><strong>Redirecionamento do Programa Atual</strong><span>Conteúdo alinhado ao Playbook e às ondas</span></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:50%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Letramento Onda 1</strong><span>Incorporações + BScash · Conectado às iniciativas</span></td><td class="gc"></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Letramento Onda 2</strong><span>BSPar Finanças · Crédito, dados, modelos</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Letramento Onda 3</strong><span>BSPar Urbanismo · Demanda, aprovações</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr></tbody></table></div><div class="det-gantt-section">Consolidação e Evolução (Meses 13–24)</div><div class="det-gantt"><table class="dgt"><thead><tr><th>Atividade (mês relativo 13–24)</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th></tr></thead><tbody><tr><td><strong>2º Ciclo de Leitura</strong><span>Novas oportunidades · Segundo nível de maturidade</span></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:50%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Escala das Iniciativas Bem-sucedidas</strong><span>O que funcionou replica para as demais</span></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr><tr><td><strong>Estratégia para Capacidades e Ativos Proprietários de IA</strong><span>Direcionamento para construção de capacidades proprietárias</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:70%"></div><div class="gms gm" style="right:-4px"></div></td></tr><tr><td><strong>Relatório Anual de Evolução</strong><span>Para o CEO e o board da empresa</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gms gw" style="left:50%;transform:translateX(-50%) translateY(-50%) rotate(45deg)"></div></td></tr></tbody></table></div><div class="gleg">
+  <div class="gli"><div class="gld" style="background:var(--gr)"></div>Quick Win / Condução / Evolução</div>
+  <div class="gli"><div class="gld" style="background:var(--vt)"></div>Leitura / Módulos</div>
+  <div class="gli"><div class="gld" style="background:#B89FFF;opacity:.55"></div>Governança / Comitê / Contínuo</div>
+  <div class="gli"><div class="gld" style="background:var(--wa)"></div>Direção / Roadmap</div>
+  <div class="gli"><div class="gld" style="background:var(--border2)"></div>Letramento</div>
+  <div class="gli"><div class="glms"></div>Marco de entrega</div>
+  <div class="gli"><div class="glms gm"></div>Marco de resultado</div>
+  <div class="gli"><div class="glms gw"></div>Marco estratégico (CEO)</div>
+</div>
+  </div>
+</div>
+
+<footer>
+  <span>eli66.com</span> &nbsp;·&nbsp; Maturidade organizacional · Estratégia · IA &nbsp;·&nbsp; Setembro 2026
+</footer>
+
+<script>
+function toggleAcc(hdr) {
+  const acc = hdr.parentElement;
+  acc.classList.toggle('open');
+}
+</script>
+</body>
 </html>
