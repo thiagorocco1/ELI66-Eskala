@@ -1,9 +1,1007 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>ELI66-Eskala</title>
-  </head>
-  <body>
-    <h1>ELI66 Eskala</h1>
-  </body>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#F5F3EF">
+<title>ELI66 × Eskala — Programa de Inteligência para Planejamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#F5F3EF;
+  --bg2:#EDEAE4;
+  --bg3:#E4E0D8;
+  --dark:#1A1714;
+  --dark2:#2E2B27;
+  --surf:#FFFFFF;
+  --border:#D6D1C8;
+  --border2:#C4BDB2;
+  --vt:#7C3AED;
+  --vl:#9D5FFF;
+  --vd:rgba(124,58,237,0.10);
+  --vd2:rgba(124,58,237,0.05);
+  --mu:#7A7469;
+  --ml:#5A5550;
+  --re:#C0392B;
+  --wa:#A0620A;
+  --gr:#1E7A46;
+  --gd:rgba(30,122,70,0.09);
+  --gd2:rgba(30,122,70,0.05);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--dark);font-family:'Inter',sans-serif;line-height:1.6;font-size:17px;overflow-x:hidden}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(245,243,239,0.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:.9rem 5vw;display:flex;align-items:center;justify-content:flex-end}
+.nav-logo img{height:28px;width:auto}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--vt)}
+.nav-links a.active{color:var(--vt)}
+
+/* LAYOUT */
+.wrap{max-width:1020px;margin:0 auto;padding:0 5vw}
+
+/* COVER */
+.cover{min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0;position:relative;overflow:hidden;background:#0B0D10}
+.cover::before{content:'';position:absolute;top:-40%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,0.18) 0%,transparent 70%);pointer-events:none}
+.cover-inner{max-width:1020px;margin:0 auto;width:100%;position:relative;z-index:1}
+.cover img.cover-logo{height:52px;width:auto;margin-bottom:3rem;display:block}
+.cover-tag{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:.28rem .75rem;border-radius:2px;background:rgba(124,58,237,0.15);color:#B89FFF;border:1px solid rgba(124,58,237,0.3);margin-bottom:2rem}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:#F5F3EF;margin-bottom:1.5rem}
+.cover h1 em{font-style:italic;color:#B89FFF}
+.cover-meta{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1)}
+.cover-meta-item{font-size:.78rem;color:rgba(245,243,239,0.5);letter-spacing:.06em;text-transform:uppercase}
+.cover-meta-item strong{display:block;font-size:1rem;color:rgba(245,243,239,0.9);font-weight:400;letter-spacing:0;text-transform:none;margin-bottom:.15rem;font-family:'Playfair Display',serif}
+
+/* SECTIONS */
+.section{padding:5rem 0;border-bottom:1px solid var(--border)}
+.section:last-of-type{border-bottom:none}
+.section.alt{background:var(--bg2)}
+.section.dark{background:var(--dark2);color:#F5F3EF}
+.section.dark .eyebrow span{color:#B89FFF}
+.section.dark h2 em{color:#B89FFF}
+.section.dark .lead{color:rgba(245,243,239,0.65)}
+.section.dark .lead strong{color:#F5F3EF}
+
+/* TYPE */
+.eyebrow{font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);margin-bottom:1.2rem}
+.eyebrow span{color:var(--vt)}
+.rule{display:block;width:32px;height:2px;background:var(--vt);margin-bottom:1.4rem;border-radius:1px}
+h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;line-height:1.2;letter-spacing:-.01em;margin-bottom:1rem}
+h2 em{font-style:italic;color:var(--vt)}
+h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:400;line-height:1.25;margin-bottom:.5rem}
+.lead{font-size:1rem;line-height:1.8;color:var(--ml);font-weight:300;max-width:680px;margin-bottom:1.4rem}
+.lead strong{color:var(--dark);font-weight:500}
+.lead em{color:var(--vt);font-style:italic}
+
+/* DIAG CARDS */
+.diag{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.8rem}
+.diag-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.6rem}
+.diag-label{font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.9rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.diag-label.v{color:var(--vt)}.diag-label.r{color:var(--re)}.diag-label.g{color:var(--gr)}.diag-label.w{color:var(--wa)}
+.diag-item{font-size:.88rem;color:var(--ml);line-height:1.6;padding:.4rem 0;border-bottom:1px solid var(--border2)}
+.diag-item:last-child{border-bottom:none}
+.diag-item strong{color:var(--dark);font-weight:500}
+
+/* VALOR CARDS */
+.valor-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.8rem}
+.valor-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.6rem;position:relative;overflow:hidden}
+.valor-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--vt)}
+.valor-n{font-size:3rem;font-family:'Playfair Display',serif;color:var(--vt);opacity:.2;line-height:1;margin-bottom:.5rem}
+.valor-t{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;margin-bottom:.5rem;color:var(--dark)}
+.valor-d{font-size:.85rem;color:var(--ml);line-height:1.65;font-weight:300;margin-bottom:.8rem}
+.valor-ex{font-size:.78rem;color:var(--mu);font-style:italic;line-height:1.5;padding-top:.7rem;border-top:1px solid var(--border)}
+
+/* MODULE CARDS — PART 1 EXECUTIVE */
+.mod-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.8rem}
+.mod-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.5rem;display:flex;flex-direction:column;gap:.5rem}
+.mod-card.optional{border-style:dashed;background:var(--bg)}
+.mod-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem}
+.mod-card-num{font-size:.62rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--vt)}
+.mbadge{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .55rem;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.bqw{background:var(--gd);color:var(--gr);border:1px solid rgba(30,122,70,.25)}
+.bph{background:rgba(160,98,10,.08);color:var(--wa);border:1px solid rgba(160,98,10,.25)}
+.bct{background:var(--vd);color:var(--vt);border:1px solid rgba(124,58,237,.25)}
+.bop{background:var(--bg2);color:var(--mu);border:1px solid var(--border)}
+.mod-card h3{font-size:1rem;color:var(--dark)}
+.mod-card-dur{font-size:.75rem;color:var(--mu);font-weight:400}
+.mod-card-desc{font-size:.85rem;color:var(--ml);line-height:1.6;font-weight:300}
+.mod-card-del{margin-top:.5rem;padding-top:.7rem;border-top:1px solid var(--border)}
+.mod-card-del-title{font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);margin-bottom:.4rem}
+.mod-card-del ul{list-style:none;padding:0}
+.mod-card-del ul li{font-size:.78rem;color:var(--ml);padding:.18rem 0;display:flex;gap:.4rem;align-items:flex-start;font-weight:300}
+.mod-card-del ul li::before{content:'→';color:var(--vt);flex-shrink:0;font-size:.7rem}
+
+/* MACRO GANTT */
+.macro-phases{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.8rem}
+.macro-phase{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.3rem}
+.macro-phase-label{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:.3rem}
+.macro-phase-period{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--dark);margin-bottom:.6rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.macro-phase-items{list-style:none;padding:0}
+.macro-phase-items li{font-size:.78rem;color:var(--ml);padding:.22rem 0;border-bottom:1px solid var(--border2);line-height:1.4;font-weight:300}
+.macro-phase-items li:last-child{border-bottom:none}
+.macro-phase-items li strong{color:var(--dark);font-weight:500}
+
+.macro-timeline{margin-top:2rem;background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.6rem}
+.macro-tl-title{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:1.2rem}
+.tl-row{display:grid;grid-template-columns:160px 1fr;gap:1.2rem;align-items:center;margin-bottom:.9rem}
+.tl-row:last-child{margin-bottom:0}
+.tl-label{font-size:.8rem;font-weight:500;color:var(--dark)}
+.tl-label span{display:block;font-size:.68rem;font-weight:300;color:var(--mu)}
+.tl-bars{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;height:10px}
+.tl-bar{border-radius:2px;height:100%}
+.tl-bar.v{background:var(--vt);opacity:.8}
+.tl-bar.g{background:var(--gr);opacity:.8}
+.tl-bar.w{background:var(--wa);opacity:.8}
+.tl-bar.vl{background:#B89FFF;opacity:.6}
+.tl-bar.empty{background:var(--bg2)}
+.tl-months{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;margin-top:.5rem}
+.tl-month{font-size:.46rem;color:var(--mu);text-align:center}
+
+/* TEAM */
+.team-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.8rem}
+.team-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
+.team-role{font-size:.62rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--vt);margin-bottom:.3rem}
+.team-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;color:var(--dark);margin-bottom:.5rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.team-desc{font-size:.85rem;color:var(--ml);line-height:1.65;font-weight:300}
+.team-desc strong{color:var(--dark);font-weight:500}
+
+/* NEXT */
+.next-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.8rem}
+.next-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
+
+/* DIVIDER */
+.divider{background:var(--dark);padding:4rem 5vw;text-align:center}
+.divider-inner{max-width:1020px;margin:0 auto}
+.divider h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:400;color:#F5F3EF;margin-bottom:.5rem}
+.divider h2 em{color:#B89FFF;font-style:italic}
+.divider p{font-size:.88rem;color:rgba(245,243,239,0.5);font-weight:300}
+.divider-arrow{display:inline-block;margin-top:1.5rem;font-size:1.5rem;color:rgba(245,243,239,.3)}
+
+/* PART 2 — DETAIL */
+.detail-section{padding:4rem 0;border-bottom:1px solid var(--border)}
+.detail-section:last-of-type{border-bottom:none}
+
+/* ACCORDION */
+.acc{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:1rem}
+.acc-hdr{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.4rem;background:var(--surf);cursor:pointer;user-select:none;transition:background .15s}
+.acc-hdr:hover{background:var(--bg2)}
+.acc-hdr-l{flex:1}
+.acc-num{font-size:.6rem;font-weight:600;letter-spacing:.14em;color:var(--vt);text-transform:uppercase;margin-bottom:.18rem}
+.acc-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:400;color:var(--dark)}
+.acc-arrow{font-size:.9rem;color:var(--mu);transition:transform .25s;flex-shrink:0}
+.acc.open .acc-arrow{transform:rotate(180deg)}
+.acc-body{display:none;padding:1.4rem;border-top:1px solid var(--border);background:var(--bg)}
+.acc.open .acc-body{display:block}
+
+/* PHASE BLOCKS */
+.ph-block{margin:1.1rem 0;padding:1.1rem;background:var(--surf);border:1px solid var(--border);border-radius:6px}
+.ph-block:first-child{margin-top:0}
+.ph-top{display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.ph-dot{width:8px;height:8px;border-radius:50%;background:var(--vt);flex-shrink:0}
+.ph-name{font-size:.82rem;font-weight:600;color:var(--dark);flex:1}
+.ph-time{font-size:.7rem;color:var(--mu);font-weight:300}
+.ph-sub-t{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin:.7rem 0 .35rem}
+.ph-sub-t.v{color:var(--vt)}.ph-sub-t.g{color:var(--gr)}
+.ph-list{list-style:none;padding:0}
+.ph-list li{font-size:.83rem;color:var(--ml);padding:.28rem 0;border-bottom:1px solid var(--border2);line-height:1.55;font-weight:300;display:flex;gap:.45rem;align-items:flex-start}
+.ph-list li:last-child{border-bottom:none}
+.ph-list li::before{content:'→';color:var(--vt);flex-shrink:0;font-size:.7rem;margin-top:.08rem}
+.ph-list li.g::before{color:var(--gr)}
+.enables{background:var(--vd2);border-left:3px solid var(--vt);padding:.6rem .9rem;margin-top:.7rem;border-radius:0 4px 4px 0;font-size:.8rem;color:var(--ml);font-weight:300;line-height:1.55}
+.enables strong{color:var(--vt);font-weight:500}
+
+/* DETAIL GANTT */
+.det-gantt{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.4rem}
+.det-gantt-section{font-size:.65rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--vt);margin:1.6rem 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)}
+table.dgt{width:100%;border-collapse:collapse;min-width:700px}
+table.dgt th{font-size:.5rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mu);padding:.3rem .3rem;border-bottom:1px solid var(--border);text-align:center;white-space:nowrap;min-width:28px;background:var(--bg2)}
+table.dgt th:first-child{text-align:left;min-width:180px;background:var(--bg2)}
+table.dgt td{padding:.2rem .2rem;border-bottom:1px solid var(--border2);vertical-align:middle;background:var(--surf)}
+table.dgt td:first-child{font-size:.75rem;color:var(--ml);font-weight:300;padding:.3rem .5rem .3rem 0;line-height:1.3;background:var(--bg)}
+table.dgt td:first-child strong{display:block;color:var(--dark);font-weight:500;font-size:.76rem}
+table.dgt td:first-child span{font-size:.65rem;color:var(--mu)}
+table.dgt tr:last-child td{border-bottom:none}
+table.dgt .sub-row td{font-size:.65rem;font-weight:600;color:var(--gr);padding:.35rem 0;border-bottom:1px solid var(--border);letter-spacing:.05em;background:var(--gd2)}
+.gc{min-width:28px;height:22px;position:relative}
+.gb{position:absolute;top:50%;transform:translateY(-50%);height:10px;border-radius:3px;min-width:3px}
+.bv{background:var(--vt);opacity:.75}.bvl{background:#B89FFF;opacity:.55}.bgb{background:var(--gr);opacity:.8}.bwb{background:var(--wa);opacity:.8}.bsb{background:var(--border2);opacity:.9}
+.gms{position:absolute;top:50%;transform:translateY(-50%) rotate(45deg);width:8px;height:8px;border:2px solid var(--vt)}
+.gms.gm{border-color:var(--gr)}.gms.gw{border-color:var(--wa)}
+.gleg{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1.2rem;padding-top:.8rem;border-top:1px solid var(--border)}
+.gli{display:flex;align-items:center;gap:.4rem;font-size:.7rem;color:var(--ml)}
+.gld{width:14px;height:8px;border-radius:3px;flex-shrink:0}
+.glms{width:8px;height:8px;border:2px solid var(--vt);rotate:45deg;flex-shrink:0}.glms.gm{border-color:var(--gr)}.glms.gw{border-color:var(--wa)}
+
+/* QUOTE */
+.quote{border-left:3px solid var(--vt);padding:1rem 1.4rem;background:var(--vd2);border-radius:0 6px 6px 0;margin-top:1.4rem;max-width:680px}
+.quote p{font-size:.92rem;font-style:italic;color:var(--dark);line-height:1.7;font-weight:300}
+.quote cite{display:block;margin-top:.5rem;font-size:.65rem;color:var(--mu);letter-spacing:.1em;font-style:normal;text-transform:uppercase}
+
+/* ONDA GRID */
+.onda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:.9rem 0}
+.onda-col{background:var(--surf);border:1px solid var(--border);border-radius:6px;padding:1.1rem}
+.onda-num{font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--vt);margin-bottom:.3rem}
+.onda-t{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--dark);margin-bottom:.55rem;padding-bottom:.55rem;border-bottom:1px solid var(--border)}
+.onda-i{font-size:.8rem;color:var(--ml);padding:.3rem 0;border-bottom:1px solid var(--border2);line-height:1.5;font-weight:300}
+.onda-i:last-of-type{border-bottom:none}
+.onda-i strong{color:var(--dark);font-weight:500}
+.onda-tempo{margin-top:.55rem;font-size:.65rem;color:var(--vt);font-weight:500}
+
+/* SUMMARY TABLE */
+.sum-table{width:100%;border-collapse:collapse;margin-top:1.2rem}
+.sum-table th{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);padding:.5rem .8rem;border-bottom:2px solid var(--border);text-align:left;background:var(--bg2)}
+.sum-table td{font-size:.85rem;color:var(--ml);padding:.55rem .8rem;border-bottom:1px solid var(--border2);line-height:1.4;font-weight:300;vertical-align:top}
+.sum-table td:first-child{color:var(--dark);font-weight:500;font-family:'Playfair Display',serif;font-size:.92rem}
+.sum-table tr:last-child td{border-bottom:none}
+.sum-table tr:hover td{background:var(--bg2)}
+.opt-c{color:var(--wa);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.req-c{color:var(--gr);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+
+/* FOOTER */
+footer{text-align:center;padding:3rem 5vw;background:var(--dark);color:rgba(245,243,239,0.4);font-size:.72rem;letter-spacing:.08em}
+footer span{color:rgba(245,243,239,0.8)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  body{font-size:16px}
+  .diag,.valor-row,.team-row,.next-row,.onda-grid{grid-template-columns:1fr}
+  .mod-grid{grid-template-columns:1fr}
+  .macro-phases{grid-template-columns:1fr 1fr}
+  .tl-row{grid-template-columns:1fr;gap:.5rem}
+  .cover h1{font-size:2rem}
+}
+@media(max-width:480px){
+  .macro-phases{grid-template-columns:1fr}
+  nav .nav-links{display:none}
+}
+
+.cover-logo-strip { display: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-links">
+    <a href="#executivo" class="active">Visão Executiva</a>
+    <a href="#detalhamento">Detalhamento</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     CAPA
+═══════════════════════════════════════ -->
+<div class="cover" id="executivo" style="min-height:92vh;display:flex;flex-direction:column;padding:0;position:relative;overflow:hidden;background:#0B0D10">
+
+  <!-- FOTO — fundo, lado direito, não dominante -->
+  <div style="position:absolute;top:0;right:0;width:52%;height:100%;z-index:0">
+    <img src="https://checklistengenharia.com.br/assets/img/projects/eskala-volta-redonda-modernizacao-e-transf-1.jpeg" alt="Loja Eskala"
+         style="width:100%;height:100%;object-fit:cover;object-position:48% center;display:block">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,#0B0D10 0%,rgba(11,13,16,0.75) 35%,rgba(11,13,16,0.25) 100%)"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(11,13,16,0.85) 0%,transparent 50%)"></div>
+  </div>
+  <!-- Fundo sólido lado esquerdo -->
+  <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(to right,#0B0D10 38%,transparent 62%)"></div>
+
+  <!-- FAIXA DE MARCAS -->
+  <div style="position:relative;z-index:10;padding:2rem 5vw 1.8rem;display:flex;align-items:center;gap:0;border-bottom:1px solid rgba(255,255,255,0.07)">
+    <svg height="36" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block">
+      <rect x="0" y="1" width="28" height="5" rx="0.5" fill="#F5F3EF"/>
+      <rect x="0" y="13" width="20" height="5" rx="0.5" fill="#7C3AED"/>
+      <rect x="0" y="25" width="28" height="5" rx="0.5" fill="#F5F3EF"/>
+      <text x="37" y="28" font-family="Georgia,'Times New Roman',serif" font-size="24" font-weight="400" fill="#F5F3EF" letter-spacing="0.5">ELI66</text>
+    </svg>
+    <div style="width:1px;height:46px;background:rgba(255,255,255,0.15);margin:0 1.4rem;flex-shrink:0"></div>
+    <img src="https://lojaseskala.vtexassets.com/arquivos/logo-eskala.png" alt="Eskala" style="height:44px;width:auto;display:block;flex-shrink:0;object-fit:contain">
+  </div>
+
+  <div style="position:relative;z-index:5;flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 5vw 4rem;max-width:1020px;margin:0 auto;width:100%">
+    <div class="cover-tag" style="margin-bottom:3rem;align-self:flex-start">Escopo Estratégico · Exclusivo · Setembro 2026</div>
+
+    <h1 style="max-width:620px;margin-bottom:0">
+      Planejamento com IA<br>começa pela decisão,<br><em>não pela ferramenta.</em>
+    </h1>
+
+    <p style="margin-top:1.8rem;font-size:.76rem;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,243,239,0.78);max-width:540px;line-height:1.65">
+      Diagnóstico, captura de valor e roadmap para ampliar a capacidade de Planejamento da Eskala.
+    </p>
+
+    <div style="width:40px;height:1px;background:rgba(255,255,255,0.15);margin:2rem 0"></div>
+
+    <div class="cover-meta" style="margin-top:0;padding-top:0">
+      <div class="cover-meta-item"><strong>12 semanas</strong>Primeiro ciclo estratégico</div>
+      <div class="cover-meta-item"><strong>4 frentes</strong>Planejamento · BI · Alocação · Comercial</div>
+      <div class="cover-meta-item"><strong>2 interfaces</strong>Compras · Estilo</div>
+      <div class="cover-meta-item"><strong>2 semanas</strong>Baseline inicial</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     S1 — PONTO DE PARTIDA
+═══════════════════════════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow"><span>01</span> · Ponto de partida</div>
+    <span class="rule"></span>
+    <h2>O que a Eskala já construiu —<br>e o que ainda <em>precisa conectar.</em></h2>
+    <p class="lead">A Eskala não parte do zero. Já existem dados, sistemas, ferramentas, práticas de BI, Copilot, uma solução de Alocação e um Comitê de IA. O desafio é transformar esses ativos em uma <strong>capacidade integrada de Planejamento e decisão.</strong></p>
+
+    <div class="diag">
+      <div class="diag-card">
+        <div class="diag-label g">Ativos existentes</div>
+        <div class="diag-item"><strong>42 lojas, 3 CDs e escritório corporativo</strong> — escala suficiente para que pequenas melhorias de decisão tenham efeito relevante.</div>
+        <div class="diag-item"><strong>Base transacional + data lake</strong> — os dados já existem e precisam ser avaliados pela utilidade decisória.</div>
+        <div class="diag-item"><strong>ERP estruturante e integração com PDV</strong> — base operacional importante para análises de Planejamento.</div>
+        <div class="diag-item"><strong>BI + Copilot + ferramenta de Alocação</strong> — capacidades já em uso, com níveis diferentes de maturidade.</div>
+        <div class="diag-item"><strong>Comitê de IA</strong> — fórum existente que pode evoluir conforme a necessidade real do programa.</div>
+      </div>
+
+      <div class="diag-card">
+        <div class="diag-label r">Gap percebido</div>
+        <div class="diag-item"><strong>Ferramenta antes da pergunta</strong> — agentes e soluções começaram a ser discutidos antes da definição completa da dor.</div>
+        <div class="diag-item"><strong>Planejamento com capacidade limitada</strong> — uso concentrado em Copilot e análises ainda aquém da necessidade.</div>
+        <div class="diag-item"><strong>Dados ainda precisam ser lidos como capacidade</strong> — disponibilidade não significa automaticamente decisão melhor.</div>
+        <div class="diag-item"><strong>Usos pontuais de IA</strong> — ganhos individuais não necessariamente viraram capacidade institucional.</div>
+        <div class="diag-item"><strong>Valor ainda não dimensionado</strong> — antes da execução é preciso saber onde e quanto capturar.</div>
+      </div>
+
+      <div class="diag-card">
+        <div class="diag-label v">Perímetro do programa</div>
+        <div class="diag-item"><strong>Planejamento Corporativo</strong> — núcleo analítico e principal dor identificada.</div>
+        <div class="diag-item"><strong>BI</strong> — materiais, análises recorrentes e revisão de códigos já apoiados por IA.</div>
+        <div class="diag-item"><strong>Alocação</strong> — ferramenta dedicada que deve ser entendida, não automaticamente substituída.</div>
+        <div class="diag-item"><strong>Comercial</strong> — consumidor relevante das análises e ponto importante de materialização de valor.</div>
+        <div class="diag-item"><strong>Compras + Estilo</strong> — interfaces necessárias para compreender o fluxo de decisão ponta a ponta.</div>
+      </div>
+
+      <div class="diag-card">
+        <div class="diag-label w">Princípio de trabalho</div>
+        <div class="diag-item"><strong>Dor antes da solução.</strong></div>
+        <div class="diag-item"><strong>Decisão antes da tecnologia.</strong></div>
+        <div class="diag-item"><strong>Baseline antes do ROI.</strong></div>
+        <div class="diag-item"><strong>Valor antes da execução.</strong></div>
+        <div class="diag-item"><strong>Execução em ondas</strong> somente depois de evidência suficiente para priorizar investimento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S2 — METODOLOGIA DE VALOR
+═══════════════════════════════════════ -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="eyebrow"><span>02</span> · Método de valor</div>
+    <span class="rule"></span>
+    <h2>IA não gera apenas eficiência.<br>Ela precisa ampliar a <em>capacidade de decidir.</em></h2>
+    <p class="lead">Toda oportunidade encontrada será ligada a uma decisão, uma baseline e um indicador de valor. Horas economizadas, por exemplo, só serão consideradas captura financeira quando existir uma forma objetiva de converter essa capacidade liberada em resultado.</p>
+
+    <div class="valor-row">
+      <div class="valor-card">
+        <div class="valor-n">01</div>
+        <div class="valor-t">Decisão</div>
+        <div class="valor-d">Reduzir o tempo entre dado, análise, recomendação e ação. Aumentar profundidade, confiabilidade e capacidade de antecipação.</div>
+        <div class="valor-ex">Ex.: identificar desvio antes de ele se transformar em perda de venda, excesso ou decisão tardia.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-n">02</div>
+        <div class="valor-t">Captura econômica</div>
+        <div class="valor-d">Conectar iniciativas a receita, margem, estoque, ruptura, markdown, custo, produtividade ou risco — sempre com premissa explícita.</div>
+        <div class="valor-ex">Potencial → validado → executado → capturado.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-n">03</div>
+        <div class="valor-t">Capacidade</div>
+        <div class="valor-d">Transformar usos individuais de ferramentas em processos reutilizáveis, governados e incorporados ao trabalho.</div>
+        <div class="valor-ex">O objetivo não é aumentar o número de agentes. É aumentar a capacidade da organização.</div>
+      </div>
+    </div>
+
+    <div class="quote">
+      <p>Para que precisamos de um agente? Qual é a dor? Para, volta.</p>
+      <cite>Princípio validado na conversa com a Eskala</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S3 — MÓDULOS EXECUTIVO
+═══════════════════════════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow"><span>03</span> · Arquitetura do programa</div>
+    <span class="rule"></span>
+    <h2>Seis módulos.<br>Primeiro <em>entender e valorar.</em></h2>
+    <p class="lead">Os quatro primeiros módulos formam o <strong>primeiro ciclo estratégico de 12 semanas</strong>. A execução é ativada depois, em ondas, com base no valor potencial, maturidade, dados, dependências e orçamento.</p>
+
+    <div class="mod-grid">
+      <div class="mod-card">
+        <div class="mod-card-top"><div class="mod-card-num">M0 · Fundação</div><span class="mbadge bqw">1º ciclo</span></div>
+        <h3>Baseline e organização do ponto de partida</h3>
+        <div class="mod-card-dur">Semanas 1–2</div>
+        <div class="mod-card-desc">Inventário de dados, sistemas, ferramentas, IA atual, papéis, decisões e governança.</div>
+        <div class="mod-card-del"><div class="mod-card-del-title">Entrega</div><ul>
+          <li>Mapa do ecossistema atual</li><li>Baseline de maturidade</li><li>Mapa inicial de decisões</li><li>Value Register inicial</li>
+        </ul></div>
+      </div>
+
+      <div class="mod-card">
+        <div class="mod-card-top"><div class="mod-card-num">M1 · Leitura estratégica</div><span class="mbadge bct">1º ciclo</span></div>
+        <h3>Diagnóstico do ecossistema de Planejamento</h3>
+        <div class="mod-card-dur">Semanas 2–8 · em ondas</div>
+        <div class="mod-card-desc">Planejamento, BI, Alocação e Comercial, com Compras e Estilo como interfaces do fluxo.</div>
+        <div class="mod-card-del"><div class="mod-card-del-title">Entrega</div><ul>
+          <li>Mapa processo → decisão → dado → tecnologia</li><li>Gaps e oportunidades</li><li>Baselines e hipóteses de valor</li>
+        </ul></div>
+      </div>
+
+      <div class="mod-card">
+        <div class="mod-card-top"><div class="mod-card-num">M2 · Governança</div><span class="mbadge bph">Transversal</span></div>
+        <h3>Comitê, alçadas e critérios de decisão</h3>
+        <div class="mod-card-dur">Semanas 4–8 · sobreposto ao diagnóstico</div>
+        <div class="mod-card-desc">Avaliar se a estrutura atual suporta as necessidades identificadas e ajustar apenas o que for necessário.</div>
+        <div class="mod-card-del"><div class="mod-card-del-title">Entrega</div><ul>
+          <li>Modelo de governança</li><li>Papéis e responsabilidades</li><li>Critérios para iniciativas, agentes e ferramentas</li>
+        </ul></div>
+      </div>
+
+      <div class="mod-card">
+        <div class="mod-card-top"><div class="mod-card-num">M3 · Direção</div><span class="mbadge bct">1º ciclo</span></div>
+        <h3>Modelo Operacional Futuro + Roadmap</h3>
+        <div class="mod-card-dur">Semanas 8–12</div>
+        <div class="mod-card-desc">Desenho futuro, priorização, arquitetura de capacidades, tecnologia adequada e sequência de execução.</div>
+        <div class="mod-card-del"><div class="mod-card-del-title">Entrega</div><ul>
+          <li>Value Register validado</li><li>Modelo Operacional Futuro</li><li>Roadmap por ondas</li><li>Plano de execução</li>
+        </ul></div>
+      </div>
+
+      <div class="mod-card">
+        <div class="mod-card-top"><div class="mod-card-num">M4 · Execução</div><span class="mbadge bqw">2º ciclo</span></div>
+        <h3>Condução ativa e captura de valor</h3>
+        <div class="mod-card-dur">Referência inicial: 6–12 meses</div>
+        <div class="mod-card-desc">Execução das iniciativas priorizadas, com baseline, KPI, responsável, critério de sucesso e medição de captura.</div>
+        <div class="mod-card-del"><div class="mod-card-del-title">Entrega</div><ul>
+          <li>Ondas de implementação</li><li>Acompanhamento ativo</li><li>Medição de valor</li><li>Ajuste de rota</li>
+        </ul></div>
+      </div>
+
+      <div class="mod-card">
+        <div class="mod-card-top"><div class="mod-card-num">M5 · Consolidação</div><span class="mbadge bop">Evolução</span></div>
+        <h3>Autonomia e capacidade interna</h3>
+        <div class="mod-card-dur">Progressivo durante a execução</div>
+        <div class="mod-card-desc">Transferir conhecimento, padrões, governança e métricas para que a Eskala sustente a evolução.</div>
+        <div class="mod-card-del"><div class="mod-card-del-title">Entrega</div><ul>
+          <li>Playbooks e padrões</li><li>Catálogo de capacidades</li><li>Transferência de conhecimento</li><li>Nova leitura de maturidade</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S4 — CRONOGRAMA MACRO
+═══════════════════════════════════════ -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="eyebrow"><span>04</span> · Horizonte</div>
+    <span class="rule"></span>
+    <h2>12 semanas para decidir com evidência.<br>Depois, <em>execução em ondas.</em></h2>
+    <p class="lead">A primeira contratação cria evidência suficiente para a Eskala saber <strong>o que executar, por quê, quanto pode capturar e quanto faz sentido investir.</strong> Isso reduz o risco de aprovar uma execução ampla antes de dimensionar valor.</p>
+
+    <div class="macro-phases">
+      <div class="macro-phase">
+        <div class="macro-phase-label">Fase 1</div>
+        <div class="macro-phase-period">Semanas 1–2</div>
+        <ul class="macro-phase-items">
+          <li><strong>Fundação</strong></li>
+          <li>Data request</li>
+          <li>Baseline</li>
+          <li>Inventário</li>
+        </ul>
+      </div>
+      <div class="macro-phase">
+        <div class="macro-phase-label">Fase 2</div>
+        <div class="macro-phase-period">Semanas 2–8</div>
+        <ul class="macro-phase-items">
+          <li><strong>Leitura + Valor</strong></li>
+          <li>Planejamento + BI</li>
+          <li>Alocação + Comercial</li>
+          <li>Compras + Estilo</li>
+        </ul>
+      </div>
+      <div class="macro-phase">
+        <div class="macro-phase-label">Fase 3</div>
+        <div class="macro-phase-period">Semanas 8–12</div>
+        <ul class="macro-phase-items">
+          <li><strong>Direção</strong></li>
+          <li>Modelo futuro</li>
+          <li>Priorização</li>
+          <li>Roadmap</li>
+        </ul>
+      </div>
+      <div class="macro-phase">
+        <div class="macro-phase-label">Fase 4</div>
+        <div class="macro-phase-period">6–12 meses</div>
+        <ul class="macro-phase-items">
+          <li><strong>Execução</strong></li>
+          <li>Ondas priorizadas</li>
+          <li>Captura de valor</li>
+          <li>Autonomia</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="macro-timeline">
+      <div class="macro-tl-title">Primeiro ciclo · 12 semanas</div>
+      <div class="tl-row">
+        <div class="tl-label">M0 · Fundação<span>Baseline e inventário</span></div>
+        <div class="tl-bars" style="grid-template-columns:repeat(12,1fr)">
+          <div class="tl-bar g"></div><div class="tl-bar g"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-label">M1 · Leitura<span>Frentes + interfaces</span></div>
+        <div class="tl-bars" style="grid-template-columns:repeat(12,1fr)">
+          <div class="tl-bar empty"></div><div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-label">M2 · Governança<span>Comitê, alçadas e critérios</span></div>
+        <div class="tl-bars" style="grid-template-columns:repeat(12,1fr)">
+          <div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-label">M3 · Direção<span>Modelo futuro + Roadmap</span></div>
+        <div class="tl-bars" style="grid-template-columns:repeat(12,1fr)">
+          <div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar w"></div><div class="tl-bar w"></div><div class="tl-bar w"></div><div class="tl-bar w"></div><div class="tl-bar w"></div>
+        </div>
+      </div>
+      <div class="tl-months" style="grid-template-columns:repeat(12,1fr)">
+        <div class="tl-month">S1</div><div class="tl-month">S2</div><div class="tl-month">S3</div><div class="tl-month">S4</div><div class="tl-month">S5</div><div class="tl-month">S6</div><div class="tl-month">S7</div><div class="tl-month">S8</div><div class="tl-month">S9</div><div class="tl-month">S10</div><div class="tl-month">S11</div><div class="tl-month">S12</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S5 — EQUIPE
+═══════════════════════════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow"><span>05</span> · Condução</div>
+    <span class="rule"></span>
+    <h2>Estratégia, tecnologia e governança<br><em>na mesma mesa.</em></h2>
+    <p class="lead">A composição acompanha o momento do programa. O primeiro ciclo exige leitura de negócio e decisão; especialistas adicionais entram conforme as oportunidades identificadas.</p>
+
+    <div class="team-row">
+      <div class="team-card">
+        <div class="team-role">Estratégia e IA</div>
+        <div class="team-name">Thiago Rocco</div>
+        <div class="team-desc">Condução do diagnóstico, desenho de capacidade, priorização, Value Register e conexão entre <strong>decisão, processo, dados, IA e valor.</strong></div>
+      </div>
+      <div class="team-card">
+        <div class="team-role">Tecnologia e arquitetura</div>
+        <div class="team-name">André Navarro</div>
+        <div class="team-desc">Arquitetura, integrações, critérios tecnológicos, alternativas de solução e decisões de <strong>comprar, construir, integrar ou manter.</strong></div>
+      </div>
+      <div class="team-card">
+        <div class="team-role">Governança e evolução</div>
+        <div class="team-name">André Crepaldi</div>
+        <div class="team-desc">Estrutura de governança, alçadas, fóruns, decisões executivas e conexão do programa com a <strong>evolução organizacional.</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S6 — PRÓXIMOS PASSOS
+═══════════════════════════════════════ -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="eyebrow"><span>06</span> · Próximo passo</div>
+    <span class="rule"></span>
+    <h2>O escopo está estruturado.<br>Agora precisamos <em>validar o detalhe.</em></h2>
+    <p class="lead">A próxima conversa deve fechar as frentes, entregáveis e interlocutores de Planejamento para transformar este desenho em proposta final de contratação.</p>
+
+    <div class="next-row">
+      <div class="next-card">
+        <div class="diag-label v">Eskala</div>
+        <div class="diag-item">Validar o mapa das quatro frentes e duas interfaces.</div>
+        <div class="diag-item">Trazer as pessoas de negócio que conhecem o fluxo real de Planejamento.</div>
+        <div class="diag-item">Compartilhar principais entregáveis, análises recorrentes e ferramentas utilizadas.</div>
+        <div class="diag-item">Indicar dados e indicadores já disponíveis para construção de baseline.</div>
+      </div>
+      <div class="next-card">
+        <div class="diag-label g">ELI66</div>
+        <div class="diag-item">Refinar plano de entrevistas e workshops.</div>
+        <div class="diag-item">Fechar cronograma e esforço do primeiro ciclo.</div>
+        <div class="diag-item">Estruturar proposta financeira faseada.</div>
+        <div class="diag-item">Preparar início do M0 sem comprometer antecipadamente a execução posterior.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     DIVISOR
+═══════════════════════════════════════ -->
+<div class="divider" id="detalhamento">
+  <div class="divider-inner">
+    <h2>Do escopo executivo para <em>como o trabalho acontece.</em></h2>
+    <p>Atividades, entregáveis, ondas e cronograma do primeiro ciclo.</p>
+    <div class="divider-arrow">↓</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PARTE 2 — DETALHAMENTO
+═══════════════════════════════════════ -->
+<section class="detail-section">
+  <div class="wrap">
+    <div class="eyebrow"><span>PARTE 2</span> · Detalhamento</div>
+    <span class="rule"></span>
+    <h2>Detalhamento <em>Técnico</em></h2>
+    <p class="lead">O programa mantém uma arquitetura única, mas cada módulo tem função, atividade, saída e marco de decisão próprios.</p>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="wrap">
+    <div class="eyebrow"><span>A</span> · Módulos</div>
+    <span class="rule"></span>
+    <h2>Cada módulo em detalhe.<br><em>Clique para expandir.</em></h2>
+
+    <div class="acc open">
+      <div class="acc-hdr" onclick="toggleAcc(this)">
+        <div class="acc-hdr-l"><div class="acc-num">M0 · Fundação</div><div class="acc-title">Baseline e organização do ponto de partida</div></div>
+        <div class="acc-arrow">⌄</div>
+      </div>
+      <div class="acc-body">
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Fase A — Data request e estrutura</div><div class="ph-time">Semana 1</div></div>
+          <div class="ph-sub-t v">Atividades</div>
+          <ul class="ph-list">
+            <li>Estrutura das equipes, papéis, alçadas e principais consumidores das análises.</li>
+            <li>Inventário de Copilot, BI, ferramenta de Alocação, assistentes, sistemas e soluções em avaliação.</li>
+            <li>Principais fontes de dados, data lake, acessos, integrações e responsáveis.</li>
+            <li>Levantamento do Comitê de IA: participantes, papel, critérios e cadência atual.</li>
+            <li>Lista inicial das análises e decisões mais relevantes do ecossistema de Planejamento.</li>
+          </ul>
+        </div>
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Fase B — Baseline e planejamento da imersão</div><div class="ph-time">Semana 2</div></div>
+          <div class="ph-sub-t v">Atividades</div>
+          <ul class="ph-list">
+            <li>Baseline inicial de maturidade nas dimensões estratégia, dados, tecnologia, processo, pessoas, governança e valor.</li>
+            <li>Mapa inicial de stakeholders e decisões.</li>
+            <li>Definição das entrevistas e workshops por onda.</li>
+            <li>Estrutura inicial do Value Register.</li>
+          </ul>
+          <div class="ph-sub-t g">Entregáveis</div>
+          <ul class="ph-list">
+            <li class="g">Mapa do ecossistema atual.</li>
+            <li class="g">Inventário de ferramentas e IA.</li>
+            <li class="g">Baseline de maturidade.</li>
+            <li class="g">Plano detalhado da leitura.</li>
+          </ul>
+          <div class="enables"><strong>Habilita:</strong> começar o diagnóstico sem assumir que uma ferramenta nova é necessária e sem duplicar capacidades já existentes.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-hdr" onclick="toggleAcc(this)">
+        <div class="acc-hdr-l"><div class="acc-num">M1 · Leitura estratégica</div><div class="acc-title">Diagnóstico do ecossistema de Planejamento</div></div>
+        <div class="acc-arrow">⌄</div>
+      </div>
+      <div class="acc-body">
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Onda 1 — Planejamento Corporativo + BI</div><div class="ph-time">Semanas 2–5</div></div>
+          <div class="ph-sub-t v">Planejamento</div>
+          <ul class="ph-list">
+            <li>Análises recorrentes e complexas, materiais, apresentações e consolidação de dados.</li>
+            <li>Uso real do Copilot, limitações, atividades manuais e análises que hoje não são possíveis.</li>
+            <li>Decisões suportadas, periodicidade, tempo de ciclo, qualidade e dependências.</li>
+            <li>Hipóteses de assistentes, monitoramento de exceções, análise de causa, recomendação e capacidade preditiva.</li>
+          </ul>
+          <div class="ph-sub-t v">BI</div>
+          <ul class="ph-list">
+            <li>Como funcionam os assistentes atuais e quais análises foram incorporadas.</li>
+            <li>Produção de materiais, revisão de códigos, confiabilidade e reutilização.</li>
+            <li>Separação entre produtividade individual e capacidade institucional.</li>
+          </ul>
+        </div>
+
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Onda 2 — Alocação + Comercial</div><div class="ph-time">Semanas 4–7</div></div>
+          <div class="ph-sub-t v">Alocação</div>
+          <ul class="ph-list">
+            <li>Objetivo da ferramenta, entradas, outputs e decisões suportadas.</li>
+            <li>Integrações, exceções, trabalho manual periférico e limitações.</li>
+            <li>Relação com Planejamento, Compras e Comercial.</li>
+            <li>Hipóteses de complementação, recomendação assistida e antecipação.</li>
+          </ul>
+          <div class="ph-sub-t v">Comercial</div>
+          <ul class="ph-list">
+            <li>Quais análises recebe, quando recebe e para quais decisões.</li>
+            <li>Informações faltantes, reação a desvios, tempo entre análise e ação.</li>
+            <li>Como o resultado retorna para Planejamento e vira aprendizado.</li>
+          </ul>
+        </div>
+
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Interfaces — Compras + Estilo</div><div class="ph-time">Semanas 5–8</div></div>
+          <div class="ph-sub-t v">Compras</div>
+          <ul class="ph-list">
+            <li>Uso real do Copilot, análises pontuais, apresentações e decisões recorrentes.</li>
+            <li>Relação com demanda, estoque, Alocação e informações recebidas de Planejamento.</li>
+            <li>Hipóteses de análise assistida, explicação de desvios e apoio à decisão.</li>
+          </ul>
+          <div class="ph-sub-t v">Estilo</div>
+          <ul class="ph-list">
+            <li>Pesquisa, fontes, consolidação, produção de materiais e recorrência.</li>
+            <li>Reutilização do conhecimento e relação com decisões de produto e Planejamento.</li>
+          </ul>
+          <div class="ph-sub-t g">Entregáveis M1</div>
+          <ul class="ph-list">
+            <li class="g">Mapa processo → decisão → dado → tecnologia → resultado.</li>
+            <li class="g">Mapa de gaps, gargalos, dependências e limitações.</li>
+            <li class="g">Value Register com hipóteses e baseline disponível.</li>
+            <li class="g">Mapa de oportunidades e Ganhos rápidos candidatos.</li>
+          </ul>
+          <div class="enables"><strong>Habilita:</strong> separar necessidade real de tecnologia de necessidade de processo, dado, integração, capacidade ou governança.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-hdr" onclick="toggleAcc(this)">
+        <div class="acc-hdr-l"><div class="acc-num">M2 · Governança</div><div class="acc-title">Comitê, alçadas e critérios de decisão</div></div>
+        <div class="acc-arrow">⌄</div>
+      </div>
+      <div class="acc-body">
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Diagnóstico da estrutura atual</div><div class="ph-time">Semanas 4–6</div></div>
+          <ul class="ph-list">
+            <li>Papel do Comitê de IA, participantes e representação de negócio.</li>
+            <li>Alçadas e nível de decisão.</li>
+            <li>Critérios de entrada, priorização e aprovação.</li>
+            <li>Acompanhamento de iniciativas, ferramentas, agentes, parceiros e resultados.</li>
+            <li>Relação com dados, segurança, TI, Planejamento e liderança.</li>
+          </ul>
+        </div>
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Modelo recomendado</div><div class="ph-time">Semanas 6–8</div></div>
+          <ul class="ph-list">
+            <li>Papéis e responsabilidades.</li>
+            <li>Critérios para avaliar agentes, ferramentas e desenvolvimento interno.</li>
+            <li>Critérios de passagem entre descoberta, experimento, execução e escala.</li>
+            <li>Governança do Value Register e acompanhamento da captura.</li>
+            <li>Cadência de decisão e memória das decisões.</li>
+          </ul>
+          <div class="ph-sub-t g">Entregáveis</div>
+          <ul class="ph-list">
+            <li class="g">Diagnóstico da governança atual.</li>
+            <li class="g">Modelo recomendado e responsabilidades.</li>
+            <li class="g">Critérios de entrada, decisão e acompanhamento.</li>
+            <li class="g">Plano de letramento e gestão da mudança direcionado pelo diagnóstico.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-hdr" onclick="toggleAcc(this)">
+        <div class="acc-hdr-l"><div class="acc-num">M3 · Direção</div><div class="acc-title">Modelo Operacional Futuro + Roadmap</div></div>
+        <div class="acc-arrow">⌄</div>
+      </div>
+      <div class="acc-body">
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Fase A — Valoração e priorização</div><div class="ph-time">Semanas 8–9</div></div>
+          <ul class="ph-list">
+            <li>Consolidação do Value Register e das premissas de captura.</li>
+            <li>Impacto financeiro, operacional, decisório, risco e capacidade.</li>
+            <li>Classificação por valor, viabilidade, dados, esforço, dependências e maturidade.</li>
+            <li>Identificação das oportunidades que precisam de experimento antes de execução.</li>
+          </ul>
+        </div>
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Fase B — Modelo Operacional Futuro</div><div class="ph-time">Semanas 9–11</div></div>
+          <ul class="ph-list">
+            <li>Desenho futuro integrando pessoas, processos, dados, decisões, BI, Alocação, Copilot e novas capacidades.</li>
+            <li>Definição de onde automação, assistentes ou agentes fazem sentido.</li>
+            <li>Critérios de comprar, construir, integrar ou manter.</li>
+            <li>Necessidades de dados, integrações e arquitetura para as iniciativas priorizadas.</li>
+          </ul>
+        </div>
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Fase C — Roadmap executivo</div><div class="ph-time">Semanas 11–12</div></div>
+          <ul class="ph-list">
+            <li>Avançar agora, preparar capacidade, experimentar, aguardar ou não executar.</li>
+            <li>Ondas de implementação e dependências.</li>
+            <li>Investimento estimado por iniciativa/onda quando houver informação suficiente.</li>
+            <li>Curva esperada de captura e marcos executivos.</li>
+          </ul>
+          <div class="ph-sub-t g">Entregáveis</div>
+          <ul class="ph-list">
+            <li class="g">Value Register validado.</li>
+            <li class="g">Modelo Operacional Futuro.</li>
+            <li class="g">Arquitetura de capacidades.</li>
+            <li class="g">Roadmap e plano de execução.</li>
+          </ul>
+          <div class="enables"><strong>Habilita:</strong> tomar a decisão de investimento da execução com uma visão de valor, risco e dependências — e não apenas com uma lista de ferramentas.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-hdr" onclick="toggleAcc(this)">
+        <div class="acc-hdr-l"><div class="acc-num">M4 · Execução</div><div class="acc-title">Condução ativa e captura de valor</div></div>
+        <div class="acc-arrow">⌄</div>
+      </div>
+      <div class="acc-body">
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Onda A — Ganhos rápidos e experimentos</div><div class="ph-time">Meses 1–3 do 2º ciclo</div></div>
+          <ul class="ph-list">
+            <li>Iniciativas de alta relação valor/esforço e hipóteses que precisam ser testadas.</li>
+            <li>Kickoff com responsável, baseline, KPI, critério de sucesso e critério de interrupção.</li>
+          </ul>
+        </div>
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Onda B — Capacidades estruturantes</div><div class="ph-time">Meses 2–8</div></div>
+          <ul class="ph-list">
+            <li>Integrações, capacidades analíticas, assistentes ou soluções de maior profundidade.</li>
+            <li>Acompanhamento de parceiros, dependências, adoção e mudança.</li>
+          </ul>
+        </div>
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Onda C — Escala e evolução</div><div class="ph-time">Meses 6–12</div></div>
+          <ul class="ph-list">
+            <li>Escala das iniciativas comprovadas.</li>
+            <li>Revisão da captura, novas oportunidades e ajuste do roadmap.</li>
+          </ul>
+          <div class="ph-sub-t g">Métrica central</div>
+          <ul class="ph-list">
+            <li class="g">Potencial → validado → executado → capturado.</li>
+            <li class="g">Sucesso medido por valor e capacidade construída, não por quantidade de ferramentas.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc">
+      <div class="acc-hdr" onclick="toggleAcc(this)">
+        <div class="acc-hdr-l"><div class="acc-num">M5 · Consolidação</div><div class="acc-title">Autonomia e capacidade interna</div></div>
+        <div class="acc-arrow">⌄</div>
+      </div>
+      <div class="acc-body">
+        <div class="ph-block">
+          <div class="ph-top"><div class="ph-dot"></div><div class="ph-name">Transferência progressiva</div><div class="ph-time">Durante a execução</div></div>
+          <ul class="ph-list">
+            <li>Playbooks, padrões, documentação e catálogo de capacidades.</li>
+            <li>Biblioteca de assistentes/agentes que tenham sido validados.</li>
+            <li>Treinamento dos responsáveis internos de acordo com o papel real de cada grupo.</li>
+            <li>Indicadores permanentes e processo contínuo de entrada de novas oportunidades.</li>
+            <li>Nova leitura de maturidade para medir evolução.</li>
+          </ul>
+          <div class="enables"><strong>Objetivo final:</strong> a Eskala continuar evoluindo sem dependência permanente da ELI66.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="wrap">
+    <div class="eyebrow"><span>B</span> · Cronograma detalhado</div>
+    <span class="rule"></span>
+    <h2>Linha por linha.<br><em>Atividade por atividade.</em></h2>
+    <p class="lead">Cronograma indicativo do primeiro ciclo. A distribuição final depende da disponibilidade dos interlocutores e do volume de processos levantados.</p>
+
+    <div class="det-gantt-section">M0 — Fundação e Baseline</div>
+    <div class="det-gantt">
+      <table class="dgt">
+        <thead><tr><th>Atividade</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S5</th><th>S6</th><th>S7</th><th>S8</th><th>S9</th><th>S10</th><th>S11</th><th>S12</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Data request e inventário</strong><span>Estrutura, ferramentas, dados, IA atual, Comitê</span></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Baseline de maturidade</strong><span>Estratégia, dados, processo, tecnologia, pessoas, governança, valor</span></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Plano de imersão</strong><span>Interlocutores, agenda, ondas e Value Register inicial</span></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="det-gantt-section">M1 — Leitura Estratégica</div>
+    <div class="det-gantt">
+      <table class="dgt">
+        <thead><tr><th>Atividade</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S5</th><th>S6</th><th>S7</th><th>S8</th><th>S9</th><th>S10</th><th>S11</th><th>S12</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Onda 1 — Planejamento Corporativo</strong><span>Processos, análises, decisões, Copilot, limitações</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Onda 1 — BI</strong><span>Assistentes, materiais, código, confiabilidade, reutilização</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Onda 2 — Alocação</strong><span>Ferramenta, dados, outputs, exceções, integrações</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Onda 2 — Comercial</strong><span>Consumo das análises, decisão, ação, feedback</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Interface — Compras</strong><span>Copilot, análises, decisão, demanda, estoque</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Interface — Estilo</strong><span>Pesquisa, materiais, conhecimento e conexão com produto</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Value Register</strong><span>Problema, baseline, KPI, valor, confiança, dependências</span></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="det-gantt-section">M2 — Governança e Capacidade</div>
+    <div class="det-gantt">
+      <table class="dgt">
+        <thead><tr><th>Atividade</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S5</th><th>S6</th><th>S7</th><th>S8</th><th>S9</th><th>S10</th><th>S11</th><th>S12</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Leitura do Comitê atual</strong><span>Papel, participantes, alçadas, critérios e cadência</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Modelo recomendado</strong><span>Papéis, critérios de passagem, ferramentas, agentes, parceiros</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Letramento e mudança</strong><span>Necessidades por público conectadas ao trabalho</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="det-gantt-section">M3 — Modelo Operacional Futuro e Roadmap</div>
+    <div class="det-gantt">
+      <table class="dgt">
+        <thead><tr><th>Atividade</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S5</th><th>S6</th><th>S7</th><th>S8</th><th>S9</th><th>S10</th><th>S11</th><th>S12</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Valoração e priorização</strong><span>Value Register, impacto, viabilidade, dados e risco</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Modelo Operacional Futuro</strong><span>Pessoas, processo, dados, decisão e tecnologia</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"></td></tr>
+          <tr><td><strong>Arquitetura de capacidades</strong><span>Copilot, BI, automação, assistentes, agentes, integrações</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"></td></tr>
+          <tr><td><strong>Roadmap executivo</strong><span>Ondas, dependências, investimento e curva de captura</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div><div class="gms gw" style="right:-4px"></div></td></tr>
+          <tr><td><strong>Apresentação executiva</strong><span>Validação do primeiro ciclo e decisão sobre execução</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div><div class="gms gw" style="right:-4px"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="gleg">
+      <div class="gli"><div class="gld" style="background:var(--gr)"></div>Fundação</div>
+      <div class="gli"><div class="gld" style="background:var(--vt)"></div>Leitura</div>
+      <div class="gli"><div class="gld" style="background:#B89FFF;opacity:.55"></div>Governança / Valor</div>
+      <div class="gli"><div class="gld" style="background:var(--wa)"></div>Direção / Roadmap</div>
+      <div class="gli"><div class="gld" style="background:var(--border2)"></div>Letramento</div>
+      <div class="gli"><div class="glms gm"></div>Marco de resultado</div>
+      <div class="gli"><div class="glms gw"></div>Marco executivo</div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="wrap">
+    <div class="eyebrow"><span>C</span> · Segundo ciclo</div>
+    <span class="rule"></span>
+    <h2>Execução em ondas.<br><em>Investimento ativado com evidência.</em></h2>
+    <p class="lead">A referência abaixo mostra a lógica de execução, não um compromisso antecipado com todas as iniciativas. O volume real nasce do Roadmap.</p>
+
+    <div class="det-gantt">
+      <table class="dgt">
+        <thead><tr><th>Atividade</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Onda A — Ganhos rápidos e experimentos</strong><span>Alta relação valor/esforço e hipóteses a validar</span></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Onda B — Capacidades estruturantes</strong><span>Integrações, análises, assistentes e soluções priorizadas</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Onda C — Escala e evolução</strong><span>Escala do que funcionou e novas oportunidades</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td></tr>
+          <tr><td><strong>Governança e Value Register</strong><span>Cadência, priorização, captura e ajuste do roadmap</span></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td></tr>
+          <tr><td><strong>Letramento e mudança</strong><span>Capacitação direcionada pelas iniciativas</span></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td></tr>
+          <tr><td><strong>Consolidação e autonomia</strong><span>Playbooks, transferência e nova leitura de maturidade</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div><div class="gms gw" style="right:-4px"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>eli66.com</span> &nbsp;·&nbsp; Evidência antes de execução · Estratégia antes de tecnologia &nbsp;·&nbsp; Setembro 2026
+</footer>
+
+<script>
+function toggleAcc(hdr) {
+  const acc = hdr.parentElement;
+  acc.classList.toggle('open');
+}
+</script>
+</body>
 </html>
