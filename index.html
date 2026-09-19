@@ -260,6 +260,112 @@ footer span{color:rgba(245,243,239,0.8)}
 }
 
 .cover-logo-strip { display: none; }
+
+/* ═══════════════════════════════════════
+   ALAVANCAS + DASHBOARD DE VALOR
+   Modelo visual inspirado na proposta final BSPAR;
+   conteúdo e evidências específicos da Eskala.
+═══════════════════════════════════════ */
+.value-tax{display:flex;flex-wrap:wrap;align-items:stretch;gap:.5rem;margin:.5rem 0 1rem}
+.value-tax-i{background:var(--surf);border:1px solid var(--border);border-radius:6px;padding:.6rem .9rem;display:flex;flex-direction:column;min-width:150px}
+.value-tax-i b{font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;color:var(--dark);line-height:1.2}
+.value-tax-i span{font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mu)}
+.value-tax-a{align-self:center;color:var(--vt)}
+.value-note{font-size:.82rem;color:var(--ml);font-weight:300;line-height:1.6;margin:.7rem 0 1.5rem}
+
+.bench-panel,.value-panel{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-top:1rem}
+.panel-tag{display:inline-block;font-size:.56rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ml);background:var(--bg2);border-radius:2px;padding:.15rem .45rem;margin-bottom:.45rem}
+.panel-title{font-size:.66rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dark);margin-bottom:.3rem}
+.panel-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.05rem,2vw,1.3rem);color:var(--vt);line-height:1.35;margin-bottom:1rem}
+.panel-note{font-size:.72rem;color:var(--mu);font-weight:300;line-height:1.55;margin-top:1rem;padding-top:.7rem;border-top:1px solid var(--border)}
+.panel-note strong{color:var(--dark);font-weight:500}
+
+.bench-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.bench-col{min-width:0}
+.bench-group{font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--vt);margin:.8rem 0 .3rem}
+.bench{padding:.45rem 0;border-bottom:1px solid var(--border2)}
+.bench-top{display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.bench-name{font-size:.8rem;color:var(--dark);font-weight:500;line-height:1.35}
+.bench-val{font-family:'Playfair Display',serif;font-size:1.08rem;color:var(--vt);white-space:nowrap}
+.bench-track{height:6px;background:var(--bg2);border-radius:3px;margin:.3rem 0 .2rem;overflow:hidden}
+.bench-bar{height:100%;background:var(--vt);border-radius:3px}
+.bench-bar.g{background:var(--gr)}
+.bench-src{font-size:.63rem;color:var(--mu);line-height:1.4}
+.bench-src a{color:var(--mu);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
+
+.lever-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.lever{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.35rem 1.45rem;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:.6rem}
+.lever::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--vt)}
+.lever-head{display:flex;justify-content:space-between;gap:.7rem;align-items:flex-start;flex-wrap:wrap}
+.lever-n{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--vt)}
+.lever-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.evidence-tag{font-size:.54rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.18rem .45rem;border-radius:2px;border:1px solid var(--border);background:var(--bg);color:var(--ml)}
+.evidence-tag.es::before,.evidence-tag.mk::before{content:'';display:inline-block;width:6px;height:6px;margin-right:.3rem}
+.evidence-tag.es::before{background:var(--dark2)}
+.evidence-tag.mk::before{background:var(--vt)}
+.lever h3{font-size:1.25rem;margin:0}
+.lever-areas{font-size:.68rem;color:var(--mu);line-height:1.5}
+.hyp-list{display:flex;flex-direction:column}
+.hyp{padding:.55rem 0;border-bottom:1px solid var(--border2)}
+.hyp:last-child{border-bottom:none}
+.hyp-title{font-size:.82rem;color:var(--dark);line-height:1.4}
+.hyp-title b{font-size:.62rem;color:var(--mu);margin-right:.35rem}
+.hyp-bench{font-size:.72rem;color:var(--vt);line-height:1.5;margin-top:.18rem}
+.hyp-bench.neutral{color:var(--mu)}
+.phase-value{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:.25rem}
+.phase-box{background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:.65rem .75rem}
+.phase-k{font-size:.55rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--vt);margin-bottom:.25rem}
+.phase-box:nth-child(2) .phase-k{color:var(--gr)}
+.phase-t{font-size:.74rem;color:var(--ml);line-height:1.5}
+.formula{font-size:.68rem;color:var(--dark);line-height:1.45;padding-top:.5rem;border-top:1px solid var(--border)}
+.formula strong{font-weight:600;color:var(--dark)}
+
+.refs-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:.8rem}
+.ref-card{background:var(--surf);border:1px solid var(--border);border-radius:6px;padding:.8rem .95rem}
+.ref-name{font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dark)}
+.ref-result{font-size:.76rem;color:var(--ml);line-height:1.45;margin:.22rem 0}
+.ref-meta{font-size:.62rem;color:var(--mu);line-height:1.45}
+.ref-meta a{color:var(--mu);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
+
+.capture-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:1.15rem;margin-top:1rem}
+.capture-step{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:1rem .85rem;position:relative;display:flex;flex-direction:column}
+.capture-step:first-child{background:var(--surf);border-top:3px solid var(--vt)}
+.capture-step:last-child{background:var(--surf);border-top:3px solid var(--gr)}
+.capture-step:not(:last-child)::after{content:'→';position:absolute;right:-.9rem;top:50%;transform:translateY(-50%);color:var(--vt)}
+.capture-k{font-size:.54rem;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--mu);margin-bottom:.3rem}
+.capture-t{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--dark);line-height:1.25}
+.capture-d{font-size:.72rem;color:var(--ml);line-height:1.5;margin-top:.35rem;flex:1}
+.capture-phase{font-size:.58rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--vt);margin-top:.6rem;padding-top:.45rem;border-top:1px solid var(--border)}
+.capture-step:last-child .capture-phase{color:var(--gr)}
+
+.dash-head2{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)}
+.dash-title2{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--dark)}
+.dash-badge{font-size:.56rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;padding:.2rem .55rem;border-radius:20px;background:var(--bg2);border:1px solid var(--border);color:var(--mu)}
+.dash-kpis2{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
+.dash-kpi2{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.05rem 1.15rem;position:relative;overflow:hidden}
+.dash-kpi2::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--vt)}
+.dash-kpi2.cap::before{background:var(--gr)}
+.dash-kpi2 .n{font-family:'Playfair Display',serif;font-size:2rem;line-height:1;color:var(--dark);margin-bottom:.45rem}
+.dash-kpi2.cap .n{font-size:1.4rem;color:var(--gr);line-height:1.3}
+.dash-kpi2 .l{font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);line-height:1.45}
+.value-map-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1rem}
+.value-map{min-width:760px}
+.value-map td,.value-map th{text-align:center}
+.value-map td:first-child,.value-map th:first-child{text-align:left}
+.dot-on{color:var(--vt);font-size:1rem}.dot-off{color:var(--border2);font-size:1rem}
+
+@media(max-width:768px){
+  .bench-grid,.lever-grid,.refs-grid,.phase-value{grid-template-columns:1fr}
+  .capture-flow{grid-template-columns:1fr}
+  .capture-step:not(:last-child)::after{content:'↓';right:auto;left:50%;top:auto;bottom:-1.05rem;transform:translateX(-50%)}
+  .dash-kpis2{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .value-tax-a{display:none}
+  .value-tax-i{flex:1 1 100%}
+  .dash-kpis2{grid-template-columns:1fr}
+}
+
 </style>
 </head>
 <body>
@@ -269,6 +375,8 @@ footer span{color:rgba(245,243,239,0.8)}
   <div class="nav-links">
     <a href="#executivo" class="active">Visão Executiva</a>
     <a href="#detalhamento">Detalhamento</a>
+    <a href="#alavancas">Valor</a>
+    <a href="#dashboard">Dashboard</a>
   </div>
 </nav>
 
@@ -1164,6 +1272,269 @@ footer span{color:rgba(245,243,239,0.8)}
         </tbody>
       </table>
     </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     ALAVANCAS INICIAIS DE VALOR
+═══════════════════════════════════════ -->
+<section class="section alt" id="alavancas">
+  <div class="wrap">
+    <div class="eyebrow">Proposta · <span>Alavancas iniciais de valor</span></div>
+    <span class="rule"></span>
+    <h2>Poucas hipóteses.<br><em>Base suficiente para começar a medir.</em></h2>
+    <p class="lead">As alavancas abaixo não são um portfólio fechado nem uma promessa de resultado. São hipóteses iniciais sustentadas pelo que a Eskala já informou, por sinais públicos do próprio desenho de Planejamento e por referências documentadas de varejo de moda. A Fase 1 existe para estabelecer a linha de base, eliminar hipóteses sem evidência, descobrir novas oportunidades e validar economicamente as que merecem investimento.</p>
+
+    <div class="value-tax">
+      <div class="value-tax-i"><b>Alavanca</b><span>onde pode existir valor</span></div>
+      <div class="value-tax-a">→</div>
+      <div class="value-tax-i"><b>Hipótese</b><span>mecanismo específico</span></div>
+      <div class="value-tax-a">→</div>
+      <div class="value-tax-i"><b>Baseline</b><span>quanto acontece hoje</span></div>
+      <div class="value-tax-a">→</div>
+      <div class="value-tax-i"><b>Iniciativa</b><span>se o valor for validado</span></div>
+      <div class="value-tax-a">→</div>
+      <div class="value-tax-i"><b>Captura</b><span>resultado comprovado</span></div>
+    </div>
+    <p class="value-note">Nenhum percentual abaixo é meta da Eskala. Os números são resultados observados em outras operações de moda e servem apenas como referência de mecanismo e ordem de grandeza. O valor Eskala só nasce dos dados e baselines da própria empresa.</p>
+
+    <div class="bench-panel">
+      <div class="panel-tag">Referências externas · varejo de moda</div>
+      <div class="panel-title">Mecanismos que já produziram resultado mensurável</div>
+      <div class="panel-sub">O benchmark mostra que existe valor possível. A Fase 1 mostra se ele existe na Eskala.</div>
+      <div class="bench-grid">
+        <div class="bench-col">
+          <div class="bench-group">Planejamento e BI</div>
+          <div class="bench">
+            <div class="bench-top"><span class="bench-name">Preparação do planejamento de sortimento</span><span class="bench-val">semanas → 1–2 dias</span></div>
+            <div class="bench-track"><div class="bench-bar" style="width:86%"></div></div>
+            <div class="bench-src">Hibbett · varejo de moda · Oracle. Referência operacional; não representa meta Eskala.</div>
+          </div>
+          <div class="bench">
+            <div class="bench-top"><span class="bench-name">Tempo de geração de relatórios</span><span class="bench-val">18 h → minutos</span></div>
+            <div class="bench-track"><div class="bench-bar" style="width:94%"></div></div>
+            <div class="bench-src">Monsoon Accessorize · 150+ lojas · Exasol. Referência de capacidade analítica.</div>
+          </div>
+
+          <div class="bench-group">Alocação e disponibilidade</div>
+          <div class="bench">
+            <div class="bench-top"><span class="bench-name">Venda no piloto de nova alocação</span><span class="bench-val">+3–4%</span></div>
+            <div class="bench-track"><div class="bench-bar g" style="width:40%"></div></div>
+            <div class="bench-src">Zara · experimento controlado publicado em Operations Research.</div>
+          </div>
+          <div class="bench">
+            <div class="bench-top"><span class="bench-name">Saúde de estoque</span><span class="bench-val">+13%</span></div>
+            <div class="bench-track"><div class="bench-bar g" style="width:65%"></div></div>
+            <div class="bench-src">Marca casual masculina · ~120 lojas · Increff.</div>
+          </div>
+        </div>
+
+        <div class="bench-col">
+          <div class="bench-group">Sell-through e markdown</div>
+          <div class="bench">
+            <div class="bench-top"><span class="bench-name">Sell-through</span><span class="bench-val">+6,9%</span></div>
+            <div class="bench-track"><div class="bench-bar" style="width:69%"></div></div>
+            <div class="bench-src">Varejista europeu de apparel · 400+ lojas · invent.ai.</div>
+          </div>
+          <div class="bench">
+            <div class="bench-top"><span class="bench-name">Perda por markdown</span><span class="bench-val">−2%</span></div>
+            <div class="bench-track"><div class="bench-bar g" style="width:20%"></div></div>
+            <div class="bench-src">Mesmo case · resultado observado após otimização de markdown.</div>
+          </div>
+
+          <div class="bench-group">Sortimento e demanda</div>
+          <div class="bench">
+            <div class="bench-top"><span class="bench-name">Full-price sell-through</span><span class="bench-val">+13%</span></div>
+            <div class="bench-track"><div class="bench-bar" style="width:65%"></div></div>
+            <div class="bench-src">Marca de moda · 200+ lojas · Increff.</div>
+          </div>
+          <div class="bench">
+            <div class="bench-top"><span class="bench-name">Disponibilidade de top sellers</span><span class="bench-val">+13%</span></div>
+            <div class="bench-track"><div class="bench-bar" style="width:65%"></div></div>
+            <div class="bench-src">Marca de sportswear · Increff · distribuição por tamanho.</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-note"><strong>Não somar os percentuais.</strong> São métricas, empresas, contextos e soluções diferentes. O painel serve apenas para mostrar mecanismos que já foram mensurados no setor.</div>
+    </div>
+
+    <div class="det-gantt-section">4 alavancas · 8 hipóteses iniciais</div>
+    <div class="lever-grid">
+
+      <div class="lever">
+        <div class="lever-head">
+          <div class="lever-n">Alavanca 01</div>
+          <div class="lever-tags"><span class="evidence-tag es">Evidência Eskala</span><span class="evidence-tag mk">Benchmark</span></div>
+        </div>
+        <h3>Capacidade de Planejamento e BI</h3>
+        <div class="lever-areas">Planejamento · Corporativo · BI</div>
+        <div class="hyp-list">
+          <div class="hyp">
+            <div class="hyp-title"><b>H01</b>Reduzir esforço e tempo em análises recorrentes, materiais e reporting.</div>
+            <div class="hyp-bench">Referência externa: planejamento de sortimento de semanas para 1–2 dias; reporting de horas para minutos em varejistas de moda.</div>
+          </div>
+          <div class="hyp">
+            <div class="hyp-title"><b>H02</b>Aumentar profundidade analítica: cenários, exceções, causas e análises que hoje são limitadas ou inviáveis.</div>
+            <div class="hyp-bench neutral">Sem percentual atribuído. A própria Valeska apontou limitação analítica no Planejamento; impacto econômico depende de quais decisões são afetadas.</div>
+          </div>
+        </div>
+        <div class="phase-value">
+          <div class="phase-box"><div class="phase-k">Fase 1 · valor gerado</div><div class="phase-t">Baseline de horas, ciclos e decisões; capacidade potencial identificada; investimento em ferramenta/assistente evitado quando não houver caso de uso ou retorno.</div></div>
+          <div class="phase-box"><div class="phase-k">Fase 2 · valor capturado</div><div class="phase-t">Tempo efetivamente reduzido, capacidade realocada e decisões mais rápidas/profundas. Horas só viram R$ quando houver destino econômico comprovado.</div></div>
+        </div>
+        <div class="formula"><strong>Como medir:</strong> horas recorrentes × frequência × pessoas + tempo análise→decisão. Monetização somente sobre custo evitado, capacidade realocada ou resultado econômico da decisão.</div>
+      </div>
+
+      <div class="lever">
+        <div class="lever-head">
+          <div class="lever-n">Alavanca 02</div>
+          <div class="lever-tags"><span class="evidence-tag es">Evidência Eskala</span><span class="evidence-tag mk">Benchmark</span></div>
+        </div>
+        <h3>Alocação, Disponibilidade e Estoque</h3>
+        <div class="lever-areas">Ferramenta de Alocação · Planejamento · Lojas · Comercial</div>
+        <div class="hyp-list">
+          <div class="hyp">
+            <div class="hyp-title"><b>H03</b>Melhorar disponibilidade de produto/grade no ponto de venda e reduzir venda perdida por alocação inadequada.</div>
+            <div class="hyp-bench">Referência externa: piloto controlado da Zara registrou +3–4% em vendas com novo processo de distribuição; outro case de sportswear reportou +13% em disponibilidade de top sellers.</div>
+          </div>
+          <div class="hyp">
+            <div class="hyp-title"><b>H04</b>Reduzir excesso, desequilíbrio entre lojas e transferências de baixo retorno.</div>
+            <div class="hyp-bench">Referências externas mostram melhora de saúde de estoque e redução de excesso; na Eskala a própria função de Alocação é orientada a ruptura, transferências, sell-through e remarcação.</div>
+          </div>
+        </div>
+        <div class="phase-value">
+          <div class="phase-box"><div class="phase-k">Fase 1 · valor gerado</div><div class="phase-t">Quantificação de venda potencialmente perdida, excesso, cobertura, custo de transferências e oportunidade de redistribuição; avaliação da ferramenta atual sem presumir substituição.</div></div>
+          <div class="phase-box"><div class="phase-k">Fase 2 · valor capturado</div><div class="phase-t">Venda recuperada, menor ruptura/excesso, melhor sell-through, menos capital parado e menor custo de transferências — somente nas iniciativas executadas.</div></div>
+        </div>
+        <div class="formula"><strong>Como medir:</strong> venda recuperável por disponibilidade + custo/markdown do excesso + custo de transferências evitáveis − custos incrementais da nova operação.</div>
+      </div>
+
+      <div class="lever">
+        <div class="lever-head">
+          <div class="lever-n">Alavanca 03</div>
+          <div class="lever-tags"><span class="evidence-tag es">Evidência Eskala</span><span class="evidence-tag mk">Benchmark</span></div>
+        </div>
+        <h3>Sell-through, Markdown e Ação Comercial</h3>
+        <div class="lever-areas">Planejamento · Comercial · Alocação · BI</div>
+        <div class="hyp-list">
+          <div class="hyp">
+            <div class="hyp-title"><b>H05</b>Melhorar sell-through a preço cheio e reduzir perda de margem por remarcação inadequada ou tardia.</div>
+            <div class="hyp-bench">Referência externa: varejista europeu de apparel reportou +6,9% sell-through, −2% markdown loss e +2,4% receita; outro case de moda reportou +13% full-price sell-through.</div>
+          </div>
+          <div class="hyp">
+            <div class="hyp-title"><b>H06</b>Reduzir o tempo entre desvio identificado por Planejamento e ação do Comercial.</div>
+            <div class="hyp-bench neutral">Sem faixa percentual atribuída. A hipótese será medida pelo ciclo desvio→análise→decisão→ação e pelo resultado da ação contra o baseline.</div>
+          </div>
+        </div>
+        <div class="phase-value">
+          <div class="phase-box"><div class="phase-k">Fase 1 · valor gerado</div><div class="phase-t">Baseline de sell-through, markdown, margem e tempo de reação; identificação de decisões onde atraso ou baixa granularidade podem estar destruindo valor.</div></div>
+          <div class="phase-box"><div class="phase-k">Fase 2 · valor capturado</div><div class="phase-t">Margem preservada, venda recuperada e redução de markdown efetivamente observadas após a mudança de decisão/processo.</div></div>
+        </div>
+        <div class="formula"><strong>Como medir:</strong> unidades afetadas × diferença de preço/margem + vendas recuperadas por ação antecipada, comparadas ao baseline e a grupos/períodos equivalentes quando possível.</div>
+      </div>
+
+      <div class="lever">
+        <div class="lever-head">
+          <div class="lever-n">Alavanca 04</div>
+          <div class="lever-tags"><span class="evidence-tag es">Evidência Eskala</span><span class="evidence-tag mk">Benchmark setorial</span></div>
+        </div>
+        <h3>Demanda, Compras, Sortimento e Sinais de Produto</h3>
+        <div class="lever-areas">Compras · Planejamento · Estilo · Comercial</div>
+        <div class="hyp-list">
+          <div class="hyp">
+            <div class="hyp-title"><b>H07</b>Melhorar aderência entre demanda, compra e sortimento por loja/perfil.</div>
+            <div class="hyp-bench">Referências externas: marca de ~120 lojas reportou +28% em velocidade de vendas e +13% em saúde de estoque; outra, com 200+ lojas, reportou +13% em full-price sell-through.</div>
+          </div>
+          <div class="hyp">
+            <div class="hyp-title"><b>H08</b>Transformar pesquisa e sinais de Estilo em inputs reutilizáveis para decisões de produto, recompra e Planejamento.</div>
+            <div class="hyp-bench neutral">Sem percentual atribuído. No Brasil, a Renner descreve Data/AI conectando captura de tendências, análise regional/tamanho e recompra a giro, conversão, remarcação e ruptura; a aplicabilidade à Eskala será validada.</div>
+          </div>
+        </div>
+        <div class="phase-value">
+          <div class="phase-box"><div class="phase-k">Fase 1 · valor gerado</div><div class="phase-t">Baseline de acurácia/erro, overbuy/underbuy, cobertura, desempenho de sortimento, tempo de pesquisa e uso real dos sinais de Estilo na decisão.</div></div>
+          <div class="phase-box"><div class="phase-k">Fase 2 · valor capturado</div><div class="phase-t">Menor excesso/ruptura, melhor giro e full-price sell-through, capital liberado e, se comprovado, redução do ciclo tendência→decisão→produto.</div></div>
+        </div>
+        <div class="formula"><strong>Como medir:</strong> custo do excesso + margem perdida por falta + impacto de sortimento/compra corrigidos. Estilo só recebe valor econômico quando houver relação causal validada com uma decisão.</div>
+      </div>
+
+    </div>
+
+    <div class="det-gantt-section">Referências que sustentam as hipóteses</div>
+    <div class="refs-grid">
+      <div class="ref-card"><div class="ref-name">Eskala · Planejamento e Alocação</div><div class="ref-result">A própria empresa descreve responsabilidades ligadas a OTB, faturamento, margem, giro, cobertura, sell-through, markdown, ruptura, grades, transferências e abastecimento.</div><div class="ref-meta"><a href="https://br.linkedin.com/jobs/view/analista-de-planejamento-aloca%C3%A7%C3%A3o-at-lojas-eskala-4412175872" target="_blank" rel="noopener">Fonte pública · vaga de Alocação ↗</a> · <a href="https://www.glassdoor.com.br/job-listing/coordenador-de-planejamento-lojas-eskala-JV_IC2479061_KO0%2C27_KE28%2C40.htm?jl=1010128150294" target="_blank" rel="noopener">Coordenação de Planejamento ↗</a></div></div>
+      <div class="ref-card"><div class="ref-name">Eskala · Dados</div><div class="ref-result">Performance por loja/produto, sell-through, investigação de causas em preço/estoque/sortimento, dashboards e recomendações para produto, abastecimento e Comercial.</div><div class="ref-meta"><a href="https://br.linkedin.com/jobs/view/analista-de-dados-at-lojas-eskala-4411253981" target="_blank" rel="noopener">Fonte pública · Analista de Dados ↗</a></div></div>
+      <div class="ref-card"><div class="ref-name">Zara · Allocation</div><div class="ref-result">Experimento controlado: novo processo de distribuição elevou vendas em 3–4% e reduziu transshipments.</div><div class="ref-meta"><a href="https://pubsonline.informs.org/doi/10.1287/opre.1090.0698" target="_blank" rel="noopener">Operations Research · estudo acadêmico ↗</a></div></div>
+      <div class="ref-card"><div class="ref-name">Hibbett · Planejamento</div><div class="ref-result">Preparação de assortment planning caiu de semanas para 1–2 dias; reporting mensal caiu de horas para minutos.</div><div class="ref-meta"><a href="https://wwwcmsapi.oracle.com/customers/hibbett/" target="_blank" rel="noopener">Oracle customer story ↗</a></div></div>
+      <div class="ref-card"><div class="ref-name">Monsoon Accessorize · BI</div><div class="ref-result">Tempo de execução de relatórios caiu de 18 horas para minutos, acelerando acesso a informação e decisão.</div><div class="ref-meta"><a href="https://www.exasol.com/customer-stories/monsoon/" target="_blank" rel="noopener">Exasol customer story ↗</a></div></div>
+      <div class="ref-card"><div class="ref-name">Apparel retailer · Markdown</div><div class="ref-result">Case publicado: +2,4% receita, +6,9% sell-through e −2% markdown loss.</div><div class="ref-meta"><a href="https://www.invent.ai/case-study/markdown-optimization-solutions-case-study" target="_blank" rel="noopener">invent.ai · case de 400+ lojas ↗</a></div></div>
+      <div class="ref-card"><div class="ref-name">Casual wear · ~120 lojas</div><div class="ref-result">Case publicado: +28% velocidade de vendas e +13% saúde de estoque após mudanças em assortment/replenishment.</div><div class="ref-meta"><a href="https://www.increff.com/case-studies/how-increff-helped-a-casual-wear-brand-increase-sales-velocity-by-28-with-assortment-planning" target="_blank" rel="noopener">Increff ↗</a></div></div>
+      <div class="ref-card"><div class="ref-name">Renner · Brasil</div><div class="ref-result">Relatório anual conecta Data/AI, tendências, análise regional/tamanho e recompra a conversão, vendas, giro, remarcação, margem e ruptura.</div><div class="ref-meta"><a href="https://www.lojasrennersa.com.br/relatorio-anual-2025/" target="_blank" rel="noopener">Relatório Anual 2025 ↗</a></div></div>
+    </div>
+
+    <div class="value-panel">
+      <div class="panel-title">Mecanismo de captura</div>
+      <div class="panel-sub">Fase 1 transforma hipótese em decisão. Fase 2 transforma decisão em resultado comprovado.</div>
+      <div class="capture-flow">
+        <div class="capture-step"><div class="capture-k">Etapa 1</div><div class="capture-t">Hipótese</div><div class="capture-d">Onde os sinais atuais indicam que pode existir valor.</div><div class="capture-phase">Agora</div></div>
+        <div class="capture-step"><div class="capture-k">Etapa 2</div><div class="capture-t">Baseline</div><div class="capture-d">Quanto acontece hoje, com qual frequência e impacto.</div><div class="capture-phase">Fase 1</div></div>
+        <div class="capture-step"><div class="capture-k">Etapa 3</div><div class="capture-t">Valor potencial</div><div class="capture-d">Fórmula, premissas, sobreposições e ordem de grandeza.</div><div class="capture-phase">Fase 1</div></div>
+        <div class="capture-step"><div class="capture-k">Etapa 4</div><div class="capture-t">Valor validado</div><div class="capture-d">Hipótese confirmada com negócio, dados e viabilidade.</div><div class="capture-phase">Fase 1</div></div>
+        <div class="capture-step"><div class="capture-k">Etapa 5</div><div class="capture-t">Execução</div><div class="capture-d">Iniciativa priorizada, KPI e critério de sucesso definidos.</div><div class="capture-phase">Fase 2</div></div>
+        <div class="capture-step"><div class="capture-k">Etapa 6</div><div class="capture-t">Valor capturado</div><div class="capture-d">Resultado comprovado contra o baseline e validado pelo negócio.</div><div class="capture-phase">Fase 2</div></div>
+      </div>
+      <div class="panel-note"><strong>Regra:</strong> eficiência não vira automaticamente valor financeiro. Redução de horas, por exemplo, só é monetizada quando houver custo evitado, capacidade realocada ou efeito econômico comprovado.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     DASHBOARD EXECUTIVO DE VALOR
+═══════════════════════════════════════ -->
+<section class="section" id="dashboard">
+  <div class="wrap">
+    <div class="eyebrow">Proposta · <span>Dashboard Executivo de Valor</span></div>
+    <span class="rule"></span>
+    <h2>O painel começa vazio.<br><em>E ganha números conforme a evidência aparece.</em></h2>
+    <p class="lead">Prévia do instrumento que acompanha a transição entre hipótese, valor potencial, valor validado e valor capturado. Neste momento existem hipóteses iniciais — não existe ainda baseline Eskala suficiente para preencher resultado econômico.</p>
+
+    <div class="dash-head2">
+      <div class="dash-title2">Painel Executivo de Valor · Eskala</div>
+      <div><span class="dash-badge">Prévia</span> <span class="dash-badge">Situação: pré-Fase 1</span></div>
+    </div>
+
+    <div class="dash-kpis2">
+      <div class="dash-kpi2"><div class="n">4</div><div class="l">Alavancas iniciais</div></div>
+      <div class="dash-kpi2"><div class="n">8</div><div class="l">Hipóteses iniciais</div></div>
+      <div class="dash-kpi2"><div class="n">A medir</div><div class="l">Valor potencial · Fase 1</div></div>
+      <div class="dash-kpi2 cap"><div class="n">A medir</div><div class="l">Valor capturado · Fase 2</div></div>
+    </div>
+
+    <div class="value-panel">
+      <div class="panel-title">Mapa de valor das alavancas</div>
+      <div class="panel-note" style="margin-top:0;padding-top:0;border-top:none">● dimensão diretamente relacionada · ○ dimensão secundária/condicional. A classificação será revista com os dados da Fase 1.</div>
+      <div class="value-map-wrap">
+        <table class="sum-table value-map">
+          <thead><tr><th>Alavanca</th><th>Monetário</th><th>Operacional</th><th>Decisão</th><th>Risco</th><th>Capacidade</th><th>Fase 1</th><th>Fase 2</th></tr></thead>
+          <tbody>
+            <tr><td>Capacidade de Planejamento e BI</td><td class="dot-off">○</td><td class="dot-on">●</td><td class="dot-on">●</td><td class="dot-on">●</td><td class="dot-on">●</td><td>Baseline + valor potencial</td><td>Capacidade + decisão</td></tr>
+            <tr><td>Alocação, Disponibilidade e Estoque</td><td class="dot-on">●</td><td class="dot-on">●</td><td class="dot-on">●</td><td class="dot-on">●</td><td class="dot-off">○</td><td>Potencial em venda/estoque</td><td>Venda + capital + margem</td></tr>
+            <tr><td>Sell-through, Markdown e Ação Comercial</td><td class="dot-on">●</td><td class="dot-on">●</td><td class="dot-on">●</td><td class="dot-off">○</td><td class="dot-off">○</td><td>Baseline + hipótese econômica</td><td>Margem + venda recuperada</td></tr>
+            <tr><td>Demanda, Compras, Sortimento e Sinais</td><td class="dot-on">●</td><td class="dot-on">●</td><td class="dot-on">●</td><td class="dot-on">●</td><td class="dot-on">●</td><td>Erro, excesso, falta e ciclo</td><td>Giro + margem + capital</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="value-panel">
+      <div class="panel-title">O que muda entre as fases</div>
+      <div class="phase-value">
+        <div class="phase-box"><div class="phase-k">Fase 1 · Diagnóstico, Valor e Direção</div><div class="phase-t"><strong>Identifica e protege valor.</strong><br>Baselines, fórmulas, premissas, valor potencial, valor validado, investimento evitado/redirecionado e priorização. A saída é uma decisão de investimento defensável.</div></div>
+        <div class="phase-box"><div class="phase-k">Fase 2 · Execução, Captura e Autonomia</div><div class="phase-t"><strong>Executa e comprova valor.</strong><br>Iniciativas aprovadas, KPIs, comparação com baseline, valor capturado, escala do que funciona e descarte do que não produz evidência.</div></div>
+      </div>
+    </div>
+
+    <div class="enables"><strong>As 8 hipóteses são ponto de partida.</strong> A Fase 1 pode adicionar novas alavancas, combinar hipóteses, descartar as que não se sustentam ou concluir que parte do valor não justifica execução. Esse é o objetivo do diagnóstico.</div>
   </div>
 </section>
 
