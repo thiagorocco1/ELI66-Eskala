@@ -142,7 +142,7 @@ h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:400;line-h
 .tl-month{font-size:.46rem;color:var(--mu);text-align:center}
 
 /* TEAM */
-.team-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1.8rem}
+.team-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:1.8rem}
 .team-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
 .team-role{font-size:.62rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--vt);margin-bottom:.3rem}
 .team-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;color:var(--dark);margin-bottom:.5rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
@@ -241,6 +241,20 @@ table.dgt .sub-row td{font-size:.65rem;font-weight:600;color:var(--gr);padding:.
 .opt-c{color:var(--wa);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
 .req-c{color:var(--gr);font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
 
+/* PROPOSTA COMERCIAL — estrutura visual BSPAR */
+.price-ref{margin-top:1.8rem;background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.6rem;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:end}
+.price-ref::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--dark)}
+.price-l{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:.5rem}
+.price-big{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:400;line-height:1;color:var(--dark)}
+.price-s{font-size:.85rem;color:var(--ml);font-weight:300;margin-top:.6rem;line-height:1.6}
+.price-ref .meta-strip{margin-top:0;padding-top:0;border-top:none;gap:1.8rem}
+.price-v{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--dark);line-height:1.1;margin-bottom:.35rem}
+.price-u{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--vt);margin-bottom:.6rem}
+.phase-price{margin-top:1.2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.phase-price-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.4rem}
+.phase-price-card .price-v{margin-top:.45rem}
+.commercial-note{margin-top:1rem;font-size:.76rem;color:var(--mu);line-height:1.6}
+
 /* FOOTER */
 footer{text-align:center;padding:3rem 5vw;background:var(--dark);color:rgba(245,243,239,0.4);font-size:.72rem;letter-spacing:.08em}
 footer span{color:rgba(245,243,239,0.8)}
@@ -248,7 +262,7 @@ footer span{color:rgba(245,243,239,0.8)}
 /* RESPONSIVE */
 @media(max-width:768px){
   body{font-size:16px}
-  .diag,.valor-row,.team-row,.next-row,.onda-grid{grid-template-columns:1fr}
+  .diag,.valor-row,.team-row,.next-row,.onda-grid,.phase-price,.price-ref{grid-template-columns:1fr}
   .mod-grid{grid-template-columns:1fr}
   .macro-phases{grid-template-columns:1fr 1fr}
   .tl-row{grid-template-columns:1fr;gap:.5rem}
@@ -377,6 +391,7 @@ footer span{color:rgba(245,243,239,0.8)}
     <a href="#detalhamento">Detalhamento</a>
     <a href="#alavancas">Valor</a>
     <a href="#dashboard">Dashboard</a>
+    <a href="#investimento">Investimento</a>
   </div>
 </nav>
 
@@ -408,7 +423,7 @@ footer span{color:rgba(245,243,239,0.8)}
   </div>
 
   <div style="position:relative;z-index:5;flex:1;display:flex;flex-direction:column;justify-content:center;padding:3rem 5vw 4rem;max-width:1020px;margin:0 auto;width:100%">
-    <div class="cover-tag" style="margin-bottom:3rem;align-self:flex-start">Escopo Estratégico · Exclusivo · Setembro 2026</div>
+    <div class="cover-tag" style="margin-bottom:3rem;align-self:flex-start">Proposta Comercial · Exclusivo · Setembro 2026</div>
 
     <h1 style="max-width:620px;margin-bottom:0">
       Planejamento com IA<br>começa pela decisão,<br><em>não pela ferramenta.</em>
@@ -421,10 +436,10 @@ footer span{color:rgba(245,243,239,0.8)}
     <div style="width:40px;height:1px;background:rgba(255,255,255,0.15);margin:2rem 0"></div>
 
     <div class="cover-meta" style="margin-top:0;padding-top:0">
-      <div class="cover-meta-item"><strong>5 a 6 meses</strong>Fase 1 · Diagnóstico, Valor e Direção</div>
-      <div class="cover-meta-item"><strong>6 a 12 meses</strong>Fase 2 · Execução, Captura e Autonomia</div>
+      <div class="cover-meta-item"><strong>4 meses</strong>Fase 1 · Diagnóstico, Valor e Direção</div>
+      <div class="cover-meta-item"><strong>5 a 8 meses</strong>Fase 2 · Execução, Captura e Autonomia</div>
+      <div class="cover-meta-item"><strong>9 a 12 meses</strong>Programa completo</div>
       <div class="cover-meta-item"><strong>1 ecossistema</strong>Planejamento · BI · Alocação · Comercial</div>
-      <div class="cover-meta-item"><strong>Interfaces</strong>Compras · Estilo · negócio</div>
     </div>
   </div>
 </div>
@@ -532,8 +547,8 @@ footer span{color:rgba(245,243,239,0.8)}
       <thead>
         <tr>
           <th style="width:16%">Componente</th>
-          <th style="width:35%">Fase 1 · 5–6 meses<br><span style="font-weight:300;text-transform:none;letter-spacing:0">O que identificamos / validamos</span></th>
-          <th style="width:35%">Fase 2 · 6–12 meses<br><span style="font-weight:300;text-transform:none;letter-spacing:0">O que pode ser executado / capturado</span></th>
+          <th style="width:35%">Fase 1 · 4 meses<br><span style="font-weight:300;text-transform:none;letter-spacing:0">O que identificamos / validamos</span></th>
+          <th style="width:35%">Fase 2 · 5–8 meses<br><span style="font-weight:300;text-transform:none;letter-spacing:0">O que pode ser executado / capturado</span></th>
           <th style="width:14%">Indicadores candidatos</th>
         </tr>
       </thead>
@@ -590,36 +605,36 @@ footer span{color:rgba(245,243,239,0.8)}
 </section>
 
 <!-- ═══════════════════════════════════════
-     S3 — MÓDULOS EXECUTIVO
+     S3 — ARQUITETURA DO PROGRAMA
 ═══════════════════════════════════════ -->
 <section class="section">
   <div class="wrap">
     <div class="eyebrow"><span>03</span> · Arquitetura do programa</div>
     <span class="rule"></span>
-    <h2>Seis módulos.<br>Duas <em>fases de contratação.</em></h2>
-    <p class="lead">O programa foi organizado em dois momentos independentes de investimento. A <strong>Fase 1</strong> constrói evidência, quantifica valor e define a direção. A <strong>Fase 2</strong> só é ativada depois da decisão executiva ao final da Fase 1, com escopo e investimento definidos a partir do Roadmap aprovado.</p>
+    <h2>Um programa completo.<br>Duas <em>fases separáveis.</em></h2>
+    <p class="lead">A proposta apresenta o trabalho de ponta a ponta — da evidência à captura — e discrimina o investimento por fase. A <strong>Fase 1</strong> fecha em 4 meses e constrói baseline, valor, governança, Modelo Operacional Futuro e Roadmap. A <strong>Fase 2</strong> usa esse Roadmap para executar, medir e consolidar as iniciativas ao longo de 5 a 8 meses. As fases podem ser contratadas separadamente; o programa completo tem horizonte de 9 a 12 meses.</p>
 
     <div class="macro-phases" style="grid-template-columns:repeat(2,1fr);margin-bottom:2rem">
       <div class="macro-phase">
-        <div class="macro-phase-label">FASE 1 · 1º MOMENTO DE INVESTIMENTO</div>
-        <div class="macro-phase-period">Diagnóstico, Valor e Direção<br><span style="font-size:.75rem;color:var(--mu);font-family:'Inter',sans-serif;font-weight:300">5 a 6 meses</span></div>
+        <div class="macro-phase-label">FASE 1 · DIAGNÓSTICO, VALOR E DIREÇÃO</div>
+        <div class="macro-phase-period">4 meses<br><span style="font-size:.75rem;color:var(--mu);font-family:'Inter',sans-serif;font-weight:300">Produto fechado com decisão executiva ao final</span></div>
         <ul class="macro-phase-items">
           <li><strong>M0</strong> Fundação e baseline</li>
           <li><strong>M1</strong> Leitura estratégica</li>
           <li><strong>M2</strong> Estruturação da governança</li>
           <li><strong>M3</strong> Modelo Operacional Futuro + Roadmap</li>
-          <li><strong>Marco final:</strong> Roadmap aprovado e decisão executiva sobre a Fase 2</li>
+          <li><strong>Marco final:</strong> escopo executivo da Fase 2 confirmado</li>
         </ul>
       </div>
       <div class="macro-phase">
-        <div class="macro-phase-label">FASE 2 · 2º MOMENTO DE INVESTIMENTO</div>
-        <div class="macro-phase-period">Execução, Captura e Autonomia<br><span style="font-size:.75rem;color:var(--mu);font-family:'Inter',sans-serif;font-weight:300">Referência inicial: 6–12 meses</span></div>
+        <div class="macro-phase-label">FASE 2 · EXECUÇÃO, CAPTURA E AUTONOMIA</div>
+        <div class="macro-phase-period">5 a 8 meses<br><span style="font-size:.75rem;color:var(--mu);font-family:'Inter',sans-serif;font-weight:300">Execução em ondas sobre a capacidade contratada</span></div>
         <ul class="macro-phase-items">
           <li><strong>M4</strong> Execução das iniciativas priorizadas</li>
-          <li><strong>M2</strong> Governança em operação contínua</li>
+          <li><strong>M2 contínuo</strong> Governança, priorização e captura</li>
           <li><strong>M5</strong> Consolidação e autonomia</li>
-          <li><strong>Ativação:</strong> somente após aprovação do Roadmap</li>
-          <li><strong>Escopo:</strong> dimensionado pela evidência da Fase 1</li>
+          <li><strong>Início:</strong> após o marco executivo da Fase 1</li>
+          <li><strong>Escopo:</strong> refinado pelo Roadmap dentro do envelope contratado</li>
         </ul>
       </div>
     </div>
@@ -638,7 +653,7 @@ footer span{color:rgba(245,243,239,0.8)}
       <div class="mod-card">
         <div class="mod-card-top"><div class="mod-card-num">M1 · Leitura estratégica</div><span class="mbadge bct">Fase 1</span></div>
         <h3>Diagnóstico do ecossistema de Planejamento</h3>
-        <div class="mod-card-dur">Meses 1–3 · em ondas sobrepostas</div>
+        <div class="mod-card-dur">Meses 1–3 · ondas sobrepostas</div>
         <div class="mod-card-desc">Leitura do núcleo de Planejamento — incluindo o recorte Corporativo a validar — e das capacidades/interfaces que sustentam a decisão: BI, ferramenta de Alocação, Comercial, Compras e Estilo.</div>
         <div class="mod-card-del"><div class="mod-card-del-title">Entrega</div><ul>
           <li>Mapa decisão → análise → dado → capacidade → ação</li><li>Gaps e oportunidades por componente do fluxo</li><li>Baselines e hipóteses de valor</li><li>Registro de Valor por oportunidade</li>
@@ -648,8 +663,8 @@ footer span{color:rgba(245,243,239,0.8)}
       <div class="mod-card">
         <div class="mod-card-top"><div class="mod-card-num">M2 · Governança</div><span class="mbadge bph">Fase 1 → 2</span></div>
         <h3>Comitê, alçadas e critérios de decisão</h3>
-        <div class="mod-card-dur">Estruturado nos meses 2–3 · operado na Fase 2</div>
-        <div class="mod-card-desc">Na Fase 1, avaliamos e desenhamos a estrutura necessária. Na Fase 2, a governança passa a acompanhar execução, decisões e captura de valor.</div>
+        <div class="mod-card-dur">Desenho nos meses 2–3 · operação na Fase 2</div>
+        <div class="mod-card-desc">Na Fase 1, avaliamos e desenhamos a estrutura necessária. Na Fase 2, a governança acompanha execução, decisões, investimentos e captura de valor.</div>
         <div class="mod-card-del"><div class="mod-card-del-title">Entrega</div><ul>
           <li>Modelo de governança</li><li>Papéis e responsabilidades</li><li>Critérios para iniciativas, agentes e ferramentas</li><li>Cadência de acompanhamento da Fase 2</li>
         </ul></div>
@@ -658,17 +673,17 @@ footer span{color:rgba(245,243,239,0.8)}
       <div class="mod-card">
         <div class="mod-card-top"><div class="mod-card-num">M3 · Direção</div><span class="mbadge bct">Fase 1</span></div>
         <h3>Modelo Operacional Futuro + Roadmap</h3>
-        <div class="mod-card-dur">Meses 3–5/6</div>
+        <div class="mod-card-dur">Meses 3–4</div>
         <div class="mod-card-desc">Desenho futuro, priorização, arquitetura de capacidades, tecnologia adequada e sequência de execução.</div>
         <div class="mod-card-del"><div class="mod-card-del-title">Entrega</div><ul>
-          <li>Registro de Valor validado</li><li>Modelo Operacional Futuro</li><li>Roadmap por ondas</li><li>Escopo recomendado da Fase 2</li>
+          <li>Registro de Valor validado</li><li>Modelo Operacional Futuro</li><li>Roadmap por ondas</li><li>Escopo executivo da Fase 2</li>
         </ul></div>
       </div>
 
       <div class="mod-card">
         <div class="mod-card-top"><div class="mod-card-num">M4 · Execução</div><span class="mbadge bqw">Fase 2</span></div>
         <h3>Condução ativa e captura de valor</h3>
-        <div class="mod-card-dur">Referência inicial: 6–12 meses</div>
+        <div class="mod-card-dur">5 a 8 meses</div>
         <div class="mod-card-desc">Execução das iniciativas priorizadas, com baseline, KPI, responsável, critério de sucesso e medição de captura.</div>
         <div class="mod-card-del"><div class="mod-card-del-title">Entrega</div><ul>
           <li>Ondas de implementação</li><li>Acompanhamento ativo</li><li>Medição de valor</li><li>Ajuste de rota</li>
@@ -695,125 +710,232 @@ footer span{color:rgba(245,243,239,0.8)}
   <div class="wrap">
     <div class="eyebrow"><span>04</span> · Fases e horizonte</div>
     <span class="rule"></span>
-    <h2>Primeiro, decidir o investimento.<br>Depois, <em>executar o que se provou prioritário.</em></h2>
-    <p class="lead">As duas fases têm objetivos, entregáveis e decisões de contratação distintos. <strong>A Fase 1 tem prazo de referência de 5 a 6 meses.</strong> A Fase 2 não é assumida antecipadamente: ela é dimensionada e contratada a partir do Roadmap, do potencial de captura e das prioridades aprovadas. O prazo da Fase 1 considera disponibilidade razoável de dados, documentos, interlocutores e validações da Eskala; atrasos nessas dependências podem deslocar os marcos sem alterar o escopo contratado.</p>
+    <h2>9 a 12 meses de programa.<br><em>4 meses para decidir; 5 a 8 para capturar.</em></h2>
+    <p class="lead">A <strong>Fase 1</strong> é comprimida em 4 meses pela sobreposição das leituras e pela presença de um profissional dedicado. A <strong>Fase 2</strong> mantém um horizonte de 5 a 8 meses para execução, captura e transferência. O programa pode ser contratado inteiro ou faseado, sem misturar os objetivos e entregáveis de cada momento.</p>
 
     <div class="macro-phases" style="grid-template-columns:repeat(2,1fr)">
       <div class="macro-phase">
-        <div class="macro-phase-label">FASE 1 · 5 A 6 MESES</div>
+        <div class="macro-phase-label">FASE 1 · 4 MESES</div>
         <div class="macro-phase-period">Diagnóstico, Valor e Direção</div>
         <ul class="macro-phase-items">
           <li><strong>Mês 1 · M0</strong> Fundação, Data Request e baseline</li>
           <li><strong>Meses 1–3 · M1</strong> Leitura das frentes e interfaces</li>
           <li><strong>Meses 2–3 · M2</strong> Estruturação da governança</li>
-          <li><strong>Meses 3–5 · M3</strong> Valoração, modelo futuro e Roadmap</li>
-          <li><strong>Meses 5–6</strong> Validações finais, escopo e decisão executiva da Fase 2</li>
+          <li><strong>Meses 3–4 · M3</strong> Valoração, modelo futuro e Roadmap</li>
+          <li><strong>Mês 4</strong> decisão executiva e confirmação da Fase 2</li>
         </ul>
       </div>
       <div class="macro-phase">
-        <div class="macro-phase-label">FASE 2 · 6–12 MESES</div>
+        <div class="macro-phase-label">FASE 2 · 5 A 8 MESES</div>
         <div class="macro-phase-period">Execução, Captura e Autonomia</div>
         <ul class="macro-phase-items">
           <li><strong>M4</strong> Execução em ondas</li>
           <li><strong>M2 contínuo</strong> Governança, priorização e captura</li>
           <li><strong>M5</strong> Transferência de capacidade e consolidação</li>
-          <li><strong>Investimento</strong> definido pelo escopo aprovado</li>
+          <li><strong>Horizonte</strong> ajustado entre 5, 6 ou 8 meses</li>
           <li><strong>Fim</strong> autonomia crescente da Eskala</li>
         </ul>
       </div>
     </div>
 
     <div class="macro-timeline">
-      <div class="macro-tl-title">FASE 1 · referência de 5–6 meses · 1º momento de investimento</div>
+      <div class="macro-tl-title">FASE 1 · 4 meses · atividades sobrepostas</div>
       <div class="tl-row">
         <div class="tl-label">M0 · Fundação<span>Data Request, baseline e estrutura</span></div>
-        <div class="tl-bars" style="grid-template-columns:repeat(6,1fr)">
-          <div class="tl-bar g"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
+        <div class="tl-bars" style="grid-template-columns:repeat(4,1fr)">
+          <div class="tl-bar g"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
         </div>
       </div>
       <div class="tl-row">
         <div class="tl-label">M1 · Leitura<span>Núcleo + capacidades + interfaces</span></div>
-        <div class="tl-bars" style="grid-template-columns:repeat(6,1fr)">
-          <div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
+        <div class="tl-bars" style="grid-template-columns:repeat(4,1fr)">
+          <div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar v"></div><div class="tl-bar empty"></div>
         </div>
       </div>
       <div class="tl-row">
         <div class="tl-label">M2 · Governança<span>Leitura e desenho do modelo</span></div>
-        <div class="tl-bars" style="grid-template-columns:repeat(6,1fr)">
-          <div class="tl-bar empty"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar empty"></div><div class="tl-bar empty"></div>
+        <div class="tl-bars" style="grid-template-columns:repeat(4,1fr)">
+          <div class="tl-bar empty"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div><div class="tl-bar vl"></div>
         </div>
       </div>
       <div class="tl-row">
         <div class="tl-label">M3 · Direção<span>Valoração, modelo futuro e Roadmap</span></div>
-        <div class="tl-bars" style="grid-template-columns:repeat(6,1fr)">
-          <div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar w"></div><div class="tl-bar w"></div><div class="tl-bar w"></div><div class="tl-bar w"></div>
+        <div class="tl-bars" style="grid-template-columns:repeat(4,1fr)">
+          <div class="tl-bar empty"></div><div class="tl-bar empty"></div><div class="tl-bar w"></div><div class="tl-bar w"></div>
         </div>
       </div>
-      <div class="tl-months" style="grid-template-columns:repeat(6,1fr)">
-        <div class="tl-month">M1</div><div class="tl-month">M2</div><div class="tl-month">M3</div><div class="tl-month">M4</div><div class="tl-month">M5</div><div class="tl-month">M6</div>
+      <div class="tl-months" style="grid-template-columns:repeat(4,1fr)">
+        <div class="tl-month">M1</div><div class="tl-month">M2</div><div class="tl-month">M3</div><div class="tl-month">M4</div>
       </div>
     </div>
 
     <div class="quote">
-      <p><strong>Marco de decisão — final da Fase 1:</strong> o ciclo encerra com o Roadmap, o Registro de Valor validado e o escopo recomendado da execução. A partir desse ponto, a Eskala decide quais ondas ativar na Fase 2 e como distribuir o investimento no ciclo orçamentário.</p>
+      <p><strong>Condição do cronograma de 4 meses:</strong> disponibilidade de dados, documentos, interlocutores e validações dentro das janelas acordadas. A pessoa dedicada mantém o trabalho diário; o núcleo sênior entra nas sínteses, decisões, arquitetura, priorização e marcos executivos.</p>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     S5 — EQUIPE
+     S5 — PROPOSTA COMERCIAL
 ═══════════════════════════════════════ -->
-<section class="section">
+<section class="section" id="investimento">
   <div class="wrap">
-    <div class="eyebrow"><span>05</span> · Condução</div>
+    <div class="eyebrow">Proposta &nbsp;·&nbsp; <span>Proposta Comercial</span></div>
     <span class="rule"></span>
-    <h2>Estratégia, tecnologia e governança<br><em>na mesma mesa.</em></h2>
-    <p class="lead">A composição acompanha o momento do programa. O primeiro ciclo exige leitura de negócio e decisão; especialistas adicionais entram conforme as oportunidades identificadas.</p>
+    <h2>Investimento —<br><em>Programa de Inteligência para Planejamento.</em></h2>
+    <p class="lead">O programa é apresentado completo e também discriminado por fase. O cenário-base considera <strong>10 meses</strong>: 4 meses de Diagnóstico, Valor e Direção + 6 meses de Execução, Captura e Autonomia. Impostos incluídos.</p>
+
+    <div class="price-ref">
+      <div>
+        <div class="price-l">Programa-base · 10 meses</div>
+        <div class="price-big">R$ 1.095.004</div>
+        <div class="price-s">Fase 1 + Fase 2. Valor de referência com a estrutura e capacidade atualmente dimensionadas.</div>
+      </div>
+      <div class="meta-strip">
+        <div><strong>Horizonte</strong>10 meses</div>
+        <div><strong>Fase 1</strong>4 meses</div>
+        <div><strong>Fase 2</strong>6 meses</div>
+        <div><strong>Impostos</strong>Incluídos</div>
+      </div>
+    </div>
+
+    <div class="det-gantt-section">Investimento por fase</div>
+    <div class="phase-price">
+      <div class="phase-price-card">
+        <div class="price-l">Fase 1 · Diagnóstico, Valor e Direção</div>
+        <div class="price-v">R$ 438.002</div>
+        <div class="price-u">4 meses</div>
+        <div class="valor-d">Produto completo: diagnóstico, baselines, Registro de Valor, governança, Modelo Operacional Futuro e Roadmap.</div>
+      </div>
+      <div class="phase-price-card">
+        <div class="price-l">Fase 2 · Execução, Captura e Autonomia</div>
+        <div class="price-v">R$ 547.502 · R$ 657.003 · R$ 876.003</div>
+        <div class="price-u">5 · 6 · 8 meses</div>
+        <div class="valor-d">O horizonte é escolhido entre os três cenários. As ondas e iniciativas são refinadas pelo Roadmap produzido na Fase 1.</div>
+      </div>
+    </div>
+
+    <div class="det-gantt-section">Cenários do programa completo</div>
+    <div class="valor-row" style="margin-top:1rem">
+      <div class="valor-card">
+        <div class="valor-n">01</div>
+        <div class="valor-t">Programa · 9 meses</div>
+        <div class="price-v">R$ 985.504</div>
+        <div class="price-u">Fase 1 · 4m + Fase 2 · 5m</div>
+        <div class="valor-d">Cenário mais concentrado de execução.</div>
+        <div class="valor-ex">Mantém a mesma estrutura-base, com menor janela para ondas e consolidação.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-n">02</div>
+        <div class="valor-t">Programa-base · 10 meses</div>
+        <div class="price-v">R$ 1.095.004</div>
+        <div class="price-u">Fase 1 · 4m + Fase 2 · 6m</div>
+        <div class="valor-d">Cenário de referência para contratação.</div>
+        <div class="valor-ex">Equilibra diagnóstico comprimido, execução e tempo de captura sem estender o programa desnecessariamente.</div>
+      </div>
+      <div class="valor-card">
+        <div class="valor-n">03</div>
+        <div class="valor-t">Programa · 12 meses</div>
+        <div class="price-v">R$ 1.314.005</div>
+        <div class="price-u">Fase 1 · 4m + Fase 2 · 8m</div>
+        <div class="valor-d">Maior janela para execução, escala e autonomia.</div>
+        <div class="valor-ex">Adequado quando o Roadmap exigir mais ondas ou maior tempo de consolidação.</div>
+      </div>
+    </div>
+
+    <div class="diag">
+      <div class="diag-card">
+        <div class="diag-label g">Incluído</div>
+        <div class="diag-item"><strong>Profissional sênior dedicado full time</strong> durante o período contratado.</div>
+        <div class="diag-item"><strong>Núcleo sênior ELI66</strong> nos marcos, decisões, arquitetura, priorização e captura de valor.</div>
+        <div class="diag-item"><strong>Fase 1 completa</strong> — M0, M1, M2 e M3.</div>
+        <div class="diag-item"><strong>Fase 2</strong> — condução das ondas priorizadas, governança, acompanhamento de KPIs e consolidação.</div>
+        <div class="diag-item"><strong>Impostos</strong> incluídos nos valores apresentados.</div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-label v">Lógica de contratação</div>
+        <div class="diag-item"><strong>Programa completo primeiro:</strong> visão econômica de 9, 10 ou 12 meses.</div>
+        <div class="diag-item"><strong>Fases discriminadas:</strong> a Fase 1 pode ser contratada separadamente; a Fase 2 possui valor próprio por horizonte.</div>
+        <div class="diag-item"><strong>Roadmap refina a execução:</strong> iniciativas, sequência e KPIs são confirmados na Fase 1.</div>
+        <div class="diag-item"><strong>Redimensionamento:</strong> somente se o perímetro contratado mudar materialmente.</div>
+      </div>
+    </div>
+
+    <div class="enables"><strong>Presença e viagens da liderança ELI66:</strong> a provisão de deslocamentos ainda será fechada com a Eskala conforme a cadência presencial acordada. Os valores acima refletem a estrutura-base atualmente dimensionada e não incorporam essa provisão.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S6 — EQUIPE RESPONSÁVEL
+═══════════════════════════════════════ -->
+<section class="section alt" id="equipe">
+  <div class="wrap">
+    <div class="eyebrow">Proposta &nbsp;·&nbsp; <span>Equipe Responsável</span></div>
+    <span class="rule"></span>
+    <h2>Núcleo sênior.<br><em>Presença dedicada no dia a dia.</em></h2>
+    <p class="lead">A Eskala terá um profissional sênior dedicado full time e acesso ao núcleo sênior da ELI66 nos momentos em que decisão, arquitetura, priorização e governança exigirem maior senioridade.</p>
 
     <div class="team-row">
       <div class="team-card">
-        <div class="team-role">Estratégia e IA</div>
+        <div class="team-role">Direção do programa · Estratégia e IA</div>
         <div class="team-name">Thiago Rocco</div>
-        <div class="team-desc">Condução do diagnóstico, desenho de capacidade, priorização, Registro de Valor e conexão entre <strong>decisão, processo, dados, IA e valor.</strong></div>
+        <div class="team-desc">Dirige o programa e conecta decisão, processo, dados, IA e valor. Atua nas sínteses, hipóteses, priorização, Modelo Operacional Futuro, Roadmap e marcos executivos.</div>
+        <div class="mod-card-del"><div class="mod-card-del-title">Atuação</div><ul>
+          <li>Direção e método</li><li>Hipóteses e Registro de Valor</li><li>Priorização e Roadmap</li><li>Interação executiva</li>
+        </ul></div>
       </div>
       <div class="team-card">
-        <div class="team-role">Tecnologia e arquitetura</div>
+        <div class="team-role">Presença operacional · Full time</div>
+        <div class="team-name">Consultor Sênior Dedicado</div>
+        <div class="team-desc">Profissional de transformação e planejamento alocado no dia a dia da Eskala para sustentar entrevistas, workshops, baselines, documentação, backlog, indicadores e acompanhamento das áreas.</div>
+        <div class="mod-card-del"><div class="mod-card-del-title">Atuação</div><ul>
+          <li>Coleta de evidências e dados</li><li>Mapeamento de processos e decisões</li><li>Baselines, KPIs e backlog</li><li>Acompanhamento diário das frentes</li>
+        </ul></div>
+      </div>
+      <div class="team-card">
+        <div class="team-role">Núcleo sênior · Tecnologia e arquitetura</div>
         <div class="team-name">André Navarro</div>
-        <div class="team-desc">Arquitetura, integrações, critérios tecnológicos, alternativas de solução e decisões de <strong>comprar, construir, integrar ou manter.</strong></div>
+        <div class="team-desc">Apoia decisões de arquitetura, integrações, alternativas tecnológicas e critérios para comprar, construir, integrar, manter ou descartar soluções.</div>
+        <div class="mod-card-del"><div class="mod-card-del-title">Atuação</div><ul>
+          <li>Arquitetura de capacidades</li><li>Integrações e viabilidade</li><li>Critérios tecnológicos</li><li>Revisão de soluções priorizadas</li>
+        </ul></div>
       </div>
       <div class="team-card">
-        <div class="team-role">Governança e evolução</div>
+        <div class="team-role">Núcleo sênior · Governança e evolução</div>
         <div class="team-name">André Crepaldi</div>
-        <div class="team-desc">Estrutura de governança, alçadas, fóruns, decisões executivas e conexão do programa com a <strong>evolução organizacional.</strong></div>
+        <div class="team-desc">Apoia estrutura de governança, papéis, alçadas, fóruns e conexão do programa com a evolução organizacional e os marcos de decisão.</div>
+        <div class="mod-card-del"><div class="mod-card-del-title">Atuação</div><ul>
+          <li>Governança e fóruns</li><li>Papéis e alçadas</li><li>Critérios de decisão</li><li>Consolidação organizacional</li>
+        </ul></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     S6 — PRÓXIMOS PASSOS
+     S7 — PRÓXIMOS PASSOS
 ═══════════════════════════════════════ -->
-<section class="section alt">
+<section class="section">
   <div class="wrap">
-    <div class="eyebrow"><span>06</span> · Próximo passo</div>
+    <div class="eyebrow"><span>07</span> · Próximo passo</div>
     <span class="rule"></span>
-    <h2>O escopo está estruturado.<br>Agora precisamos <em>validar o detalhe.</em></h2>
-    <p class="lead">A próxima conversa deve fechar as frentes, entregáveis e interlocutores de Planejamento para transformar este desenho em proposta final de contratação.</p>
+    <h2>Escopo e investimento estruturados.<br>O próximo passo é <em>fechar o modelo de contratação.</em></h2>
+    <p class="lead">A decisão comercial define o horizonte do programa, a separação contratual entre as fases e a cadência presencial da liderança ELI66. A partir daí, o M0 pode começar com Data Request, agenda e profissional dedicado.</p>
 
     <div class="next-row">
       <div class="next-card">
         <div class="diag-label v">Eskala</div>
-        <div class="diag-item">Validar a relação entre Planejamento e o recorte Corporativo e confirmar os responsáveis por BI, Alocação, Comercial, Compras e Estilo.</div>
-        <div class="diag-item">Trazer as pessoas de negócio que conhecem o fluxo real de Planejamento.</div>
-        <div class="diag-item">Compartilhar principais entregáveis, análises recorrentes e ferramentas utilizadas.</div>
-        <div class="diag-item">Indicar dados e indicadores já disponíveis para construção de baseline.</div>
+        <div class="diag-item">Selecionar o horizonte de referência: 9, 10 ou 12 meses — ou contratação inicial apenas da Fase 1.</div>
+        <div class="diag-item">Confirmar patrocinador, interlocutores e responsáveis por Planejamento, BI, Alocação, Comercial, Compras e Estilo.</div>
+        <div class="diag-item">Alinhar a cadência presencial da liderança ELI66 para fechamento da provisão de viagens.</div>
+        <div class="diag-item">Liberar os primeiros dados, documentos e agendas do M0.</div>
       </div>
       <div class="next-card">
         <div class="diag-label g">ELI66</div>
-        <div class="diag-item">Refinar plano de entrevistas e workshops.</div>
-        <div class="diag-item">Fechar cronograma e esforço do primeiro ciclo.</div>
-        <div class="diag-item">Estruturar proposta financeira faseada.</div>
-        <div class="diag-item">Preparar início do M0 sem comprometer antecipadamente a execução posterior.</div>
+        <div class="diag-item">Formalizar contratação e condições de pagamento.</div>
+        <div class="diag-item">Alocar o consultor sênior dedicado.</div>
+        <div class="diag-item">Fechar calendário de entrevistas, workshops e marcos executivos.</div>
+        <div class="diag-item">Iniciar M0 com baseline, Data Request e Registro de Valor.</div>
       </div>
     </div>
   </div>
@@ -1212,27 +1334,27 @@ footer span{color:rgba(245,243,239,0.8)}
   <div class="wrap">
     <div class="eyebrow"><span>B</span> · Cronograma detalhado · Fase 1</div>
     <span class="rule"></span>
-    <h2>5 a 6 meses.<br><em>Com dependências explícitas.</em></h2>
-    <p class="lead">Cronograma de referência da <strong>Fase 1 — Diagnóstico, Valor e Direção</strong>. As atividades se sobrepõem intencionalmente. O prazo considera disponibilidade razoável de dados, documentos, stakeholders e validações da Eskala; atrasos nessas dependências deslocam marcos sem alterar o escopo contratado.</p>
+    <h2>4 meses.<br><em>Com atividades deliberadamente sobrepostas.</em></h2>
+    <p class="lead">Cronograma de referência da <strong>Fase 1 — Diagnóstico, Valor e Direção</strong>. A compressão depende da disponibilidade de dados, documentos, interlocutores e validações da Eskala; atrasos nessas dependências deslocam marcos sem alterar o escopo contratado.</p>
 
     <div class="det-gantt-section">FASE 1 — M0 a M3</div>
     <div class="det-gantt">
       <table class="dgt">
-        <thead><tr><th>Atividade</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th></tr></thead>
+        <thead><tr><th>Atividade</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th></tr></thead>
         <tbody>
-          <tr><td><strong>M0 · Data Request e estrutura</strong><span>Dados, sistemas, IA atual, papéis, stakeholders</span></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>M0 · Baseline e plano de imersão</strong><span>Maturidade, decisões, entrevistas e Registro de Valor inicial</span></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>M1 · Planejamento + Corporativo</strong><span>Análises, decisões, Copilot, capacidades e limitações</span></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>M1 · BI</strong><span>Materiais, assistentes, código, reutilização e governança</span></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>M1 · Alocação + Comercial</strong><span>Ferramenta, decisão, ação, feedback e indicadores</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>M1 · Compras + Estilo</strong><span>Interfaces de entrada e influência</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>M1 · Registro de Valor</strong><span>Hipóteses, baselines, mecanismos e evidência</span></td><td class="gc"></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>M2 · Governança atual</strong><span>Comitê, papéis, alçadas, critérios e fluxo</span></td><td class="gc"></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>M2 · Modelo recomendado</strong><span>Governança da execução e captura</span></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>M3 · Valoração e priorização</strong><span>Validação econômica e decisão sobre oportunidades</span></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>M3 · Modelo Operacional Futuro</strong><span>Processo, pessoas, dados, tecnologia e capacidades</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"></td></tr>
-          <tr><td><strong>M3 · Roadmap + business case</strong><span>Ondas, investimento, captura e escopo da Fase 2</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div><div class="gms gw" style="right:-4px"></div></td></tr>
-          <tr><td><strong>Decisão executiva</strong><span>Encerramento da Fase 1 e decisão sobre contratação da Fase 2</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div><div class="gms gw" style="right:-4px"></div></td></tr>
+          <tr><td><strong>M0 · Data Request e estrutura</strong><span>Dados, sistemas, IA atual, papéis, stakeholders</span></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>M0 · Baseline e plano de imersão</strong><span>Maturidade, decisões, entrevistas e Registro de Valor inicial</span></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>M1 · Planejamento + Corporativo</strong><span>Análises, decisões, Copilot, capacidades e limitações</span></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>M1 · BI</strong><span>Materiais, assistentes, código, reutilização e governança</span></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td></tr>
+          <tr><td><strong>M1 · Alocação + Comercial</strong><span>Ferramenta, decisão, ação, feedback e indicadores</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td></tr>
+          <tr><td><strong>M1 · Compras + Estilo</strong><span>Interfaces de entrada e influência</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"></td></tr>
+          <tr><td><strong>M1 · Registro de Valor</strong><span>Hipóteses, baselines, mecanismos e evidência</span></td><td class="gc"></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td></tr>
+          <tr><td><strong>M2 · Governança atual</strong><span>Comitê, papéis, alçadas, critérios e fluxo</span></td><td class="gc"></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"></td></tr>
+          <tr><td><strong>M2 · Modelo recomendado</strong><span>Governança da execução e captura</span></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td></tr>
+          <tr><td><strong>M3 · Valoração e priorização</strong><span>Validação econômica e decisão sobre oportunidades</span></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td></tr>
+          <tr><td><strong>M3 · Modelo Operacional Futuro</strong><span>Processo, pessoas, dados, tecnologia e capacidades</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td></tr>
+          <tr><td><strong>M3 · Roadmap + business case</strong><span>Ondas, investimento, captura e escopo executivo da Fase 2</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div><div class="gms gw" style="right:-4px"></div></td></tr>
+          <tr><td><strong>Decisão executiva</strong><span>Encerramento da Fase 1 e confirmação do início da Fase 2</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div><div class="gms gw" style="right:-4px"></div></td></tr>
         </tbody>
       </table>
     </div>
@@ -1245,10 +1367,6 @@ footer span{color:rgba(245,243,239,0.8)}
       <div class="gli"><div class="glms gm"></div>Marco de entrega</div>
       <div class="gli"><div class="glms gw"></div>Marco executivo</div>
     </div>
-
-    <div class="quote">
-      <p><strong>Dependência não é atraso da ELI66:</strong> documentos, dados, acessos, agendas e validações da Eskala são insumos do cronograma. O acompanhamento registrará explicitamente itens aguardando cliente para distinguir tempo de execução de tempo de dependência.</p>
-    </div>
   </div>
 </section>
 
@@ -1256,19 +1374,19 @@ footer span{color:rgba(245,243,239,0.8)}
   <div class="wrap">
     <div class="eyebrow"><span>C</span> · Cronograma detalhado · Fase 2</div>
     <span class="rule"></span>
-    <h2>Execução em ondas.<br><em>Investimento ativado com evidência.</em></h2>
-    <p class="lead">Referência de <strong>6 a 12 meses</strong>. A Fase 2 é uma contratação independente e opcional: o volume real, as ondas e o investimento só são definidos pelo Roadmap aprovado ao final da Fase 1.</p>
+    <h2>5 a 8 meses.<br><em>Execução em ondas, com captura medida.</em></h2>
+    <p class="lead">O desenho abaixo mostra a janela máxima de 8 meses. Nos cenários de 5 ou 6 meses, as ondas são concentradas e a amplitude da execução é ajustada ao Roadmap aprovado, preservando governança, medição e transferência.</p>
 
     <div class="det-gantt">
       <table class="dgt">
-        <thead><tr><th>Atividade</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th></tr></thead>
+        <thead><tr><th>Atividade</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th></tr></thead>
         <tbody>
-          <tr><td><strong>Onda A — Quick wins e experimentos</strong><span>Alta relação valor/esforço e hipóteses a validar</span></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>Onda B — Capacidades estruturantes</strong><span>Integrações, análises, assistentes e soluções priorizadas</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
-          <tr><td><strong>Onda C — Escala e evolução</strong><span>Escala do que funcionou e novas oportunidades</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td></tr>
-          <tr><td><strong>Governança e Registro de Valor</strong><span>Cadência, priorização, captura e ajuste do roadmap</span></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td></tr>
-          <tr><td><strong>Letramento e mudança</strong><span>Capacitação direcionada pelas iniciativas</span></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td></tr>
-          <tr><td><strong>Consolidação e autonomia</strong><span>Playbooks, transferência e nova leitura de maturidade</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div><div class="gms gw" style="right:-4px"></div></td></tr>
+          <tr><td><strong>Onda A — Quick wins e experimentos</strong><span>Alta relação valor/esforço e hipóteses a validar</span></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Onda B — Capacidades estruturantes</strong><span>Integrações, análises, assistentes e soluções priorizadas</span></td><td class="gc"></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bv" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td><td class="gc"></td><td class="gc"></td></tr>
+          <tr><td><strong>Onda C — Escala e evolução</strong><span>Escala do que funcionou e novas oportunidades</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bgb" style="left:0;width:100%"></div><div class="gms gm" style="right:-4px"></div></td></tr>
+          <tr><td><strong>Governança e Registro de Valor</strong><span>Cadência, priorização, captura e ajuste do Roadmap</span></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bvl" style="left:0;width:100%"></div></td></tr>
+          <tr><td><strong>Letramento e mudança</strong><span>Capacitação direcionada pelas iniciativas</span></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bsb" style="left:0;width:100%"></div></td></tr>
+          <tr><td><strong>Consolidação e autonomia</strong><span>Playbooks, transferência e nova leitura de maturidade</span></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div></td><td class="gc"><div class="gb bwb" style="left:0;width:100%"></div><div class="gms gw" style="right:-4px"></div></td></tr>
         </tbody>
       </table>
     </div>
