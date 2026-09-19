@@ -256,6 +256,11 @@ table.dgt .sub-row td{font-size:.65rem;font-weight:600;color:var(--gr);padding:.
 .phase-price{margin-top:1.2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
 .phase-price-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.4rem}
 .phase-price-card .price-v{margin-top:.45rem}
+.phase-options{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:.7rem 0 .9rem}
+.phase-option{min-width:0;padding-right:.75rem;border-right:1px solid var(--border)}
+.phase-option:last-child{padding-right:0;border-right:none}
+.phase-option .price-v{font-size:1.28rem;white-space:nowrap;margin:0 0 .28rem}
+.phase-option .price-u{margin:0;white-space:nowrap}
 .commercial-note{margin-top:1rem;font-size:.76rem;color:var(--mu);line-height:1.6}
 
 /* FOOTER */
@@ -812,8 +817,20 @@ footer span{color:rgba(245,243,239,0.8)}
       </div>
       <div class="phase-price-card">
         <div class="price-l">Fase 2 · Execução, Captura e Autonomia</div>
-        <div class="price-v phase-scenarios"><span class="scenario-value">R$ 547.502</span> &nbsp;·&nbsp; <span class="scenario-value">R$ 657.003</span> &nbsp;·&nbsp; <span class="scenario-value">R$ 876.003</span></div>
-        <div class="price-u">5&nbsp;&nbsp;·&nbsp;&nbsp;6&nbsp;&nbsp;·&nbsp;&nbsp;8 meses</div>
+        <div class="phase-options">
+          <div class="phase-option">
+            <div class="price-v">R$ 547.502</div>
+            <div class="price-u">5 meses</div>
+          </div>
+          <div class="phase-option">
+            <div class="price-v">R$ 657.003</div>
+            <div class="price-u">6 meses</div>
+          </div>
+          <div class="phase-option">
+            <div class="price-v">R$ 876.003</div>
+            <div class="price-u">8 meses</div>
+          </div>
+        </div>
         <div class="valor-d">O horizonte é escolhido entre os três cenários. O Roadmap produzido na Fase 1 define as ondas e iniciativas que cabem no envelope de capacidade contratado.</div>
       </div>
     </div>
