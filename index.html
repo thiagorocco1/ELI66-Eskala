@@ -247,7 +247,10 @@ table.dgt .sub-row td{font-size:.65rem;font-weight:600;color:var(--gr);padding:.
 .price-l{font-size:.65rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:.5rem}
 .price-big{font-family:'Playfair Display',serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:400;line-height:1;color:var(--dark)}
 .price-s{font-size:.85rem;color:var(--ml);font-weight:300;margin-top:.6rem;line-height:1.6}
-.price-ref .meta-strip{margin-top:0;padding-top:0;border-top:none;gap:1.8rem}
+.price-ref .meta-strip{margin-top:0;padding-top:0;border-top:none;display:flex;flex-direction:column;gap:.4rem}
+.price-ref .meta-strip>div{display:flex;align-items:baseline;gap:.5rem;white-space:nowrap}
+.price-ref .meta-strip>div strong{min-width:68px}
+.phase-scenarios .scenario-value{white-space:nowrap}
 .price-v{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--dark);line-height:1.1;margin-bottom:.35rem}
 .price-u{font-size:.62rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--vt);margin-bottom:.6rem}
 .phase-price{margin-top:1.2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
@@ -792,10 +795,10 @@ footer span{color:rgba(245,243,239,0.8)}
         <div class="price-s">Fase 1 + Fase 2. Valor de referência com a estrutura e capacidade atualmente dimensionadas.</div>
       </div>
       <div class="meta-strip">
-        <div><strong>Horizonte</strong>10 meses</div>
-        <div><strong>Fase 1</strong>4 meses</div>
-        <div><strong>Fase 2</strong>6 meses</div>
-        <div><strong>Impostos</strong>Incluídos</div>
+        <div><strong>Horizonte</strong><span>10 meses</span></div>
+        <div><strong>Fase 1</strong><span>4 meses</span></div>
+        <div><strong>Fase 2</strong><span>6 meses</span></div>
+        <div><strong>Impostos</strong><span>Incluídos</span></div>
       </div>
     </div>
 
@@ -809,8 +812,8 @@ footer span{color:rgba(245,243,239,0.8)}
       </div>
       <div class="phase-price-card">
         <div class="price-l">Fase 2 · Execução, Captura e Autonomia</div>
-        <div class="price-v">R$ 547.502 · R$ 657.003 · R$ 876.003</div>
-        <div class="price-u">5 · 6 · 8 meses</div>
+        <div class="price-v phase-scenarios"><span class="scenario-value">R$ 547.502</span> &nbsp;·&nbsp; <span class="scenario-value">R$ 657.003</span> &nbsp;·&nbsp; <span class="scenario-value">R$ 876.003</span></div>
+        <div class="price-u">5&nbsp;&nbsp;·&nbsp;&nbsp;6&nbsp;&nbsp;·&nbsp;&nbsp;8 meses</div>
         <div class="valor-d">O horizonte é escolhido entre os três cenários. O Roadmap produzido na Fase 1 define as ondas e iniciativas que cabem no envelope de capacidade contratado.</div>
       </div>
     </div>
